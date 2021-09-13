@@ -18,21 +18,21 @@ Bagian ini menjelaskan cara membuat app dengan django dari scracth atau kosong s
 
     cara aktifkan venv :
 
-        install venv
+    install venv
 
      ```sh
     pip install virtualenv
     ```
 
-        kemudian buat venv 
+    kemudian buat venv 
 
      ```sh
     virtualenv {{nama_env_yang_diinginkan}}
     ```
 
-        aktifkan venv :
+    aktifkan venv :
     
-        ```sh
+    ```sh
     path_to_venv_yang_dibuat/Scripts/activate
     ```
 
@@ -220,7 +220,7 @@ Sekian untuk bagian secara dasar pembuatan project django from scatch bukan untu
 
     jika port ingin diubah tidak 800 jalankan dengan perintah :
 
-        ```sh
+    ```sh
     python manage.py runserver port_number 
     ```
 
