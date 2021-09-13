@@ -1,0 +1,72 @@
+<html>
+<head>
+<style>
+{% load static %}
+body{
+    background-image: url("{% static "img/bg.jpeg" %}");
+    background-size: cover;
+    background-repeat:repeat;
+    height: 100%;
+}
+#register_form{
+    position: absolute;
+    width: 35%;
+    height: 74.6%;
+    left: 32.2%;
+    top : 9.947916666666666%;
+
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+   
+}
+.field{
+    position: absolute;
+    width : 32.239583333333336%;
+    height : 5.208333333333333%;
+
+    background: #FFFFFF;
+    border-radius: 30px;
+}
+#email{
+    left : 33.854166666666664%;
+    top : 22.916666666666668%;
+}
+#username{
+    left : 33.854166666666664%;
+    top : 30.0%;
+}
+#password{
+    left : 33.854166666666664%;
+    top : 37.083333333333336%;
+}
+#register{
+position: absolute;
+width : 6.71875%;
+height : 2.5%;
+left : 57.1875%;
+top : 46.71875%;
+fbackground: #564F49;
+border-radius: 20px;
+}
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<title>
+Jepara Furniture
+</title>
+</head> 
+<body>
+<div id ="register_form">
+
+</div>
+  <form   action="/user/register"  method="post">
+  {% csrf_token %}
+      <input type="email" class="field" id="email" placeholder="Email" name="email">
+
+      <input type="username" class="field" id="username" placeholder="User ID" name="username">
+ 
+ 
+      <input type="password" class="field" id="password" placeholder="Password" name="password">
+    <button type="submit" id='register' class="btn btn-default">register</button>
+  </form>
+</body>
+</html>
