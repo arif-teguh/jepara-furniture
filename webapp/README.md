@@ -9,7 +9,9 @@ Prerequisites:
 Guide berikut untuk command pada windows jika menggunakan linux atau mac mungkin akan sedikit berbeda
 
 ## Cara ingin membuat projek django (tidak wajib dilakukan untuk projek ini)
-
+<details>
+  <summary>Click to expand!</summary>
+    
 Bagian ini menjelaskan cara membuat app dengan django dari scracth atau kosong sehingga pembaca dapat membuat sendiri webapp django miliknya. Jika pembaca hanya ingin menjalankan dan mendevelop webapp ini bagian ini dapat di skip.
 
 0. Aktifkan venv (OPTIONAL)
@@ -154,9 +156,12 @@ Bagian ini menjelaskan cara membuat app dengan django dari scracth atau kosong s
     ```
 
 Sekian untuk bagian secara dasar pembuatan project django from scatch bukan untuk menjalankan project berikut.
+</details>
 
 ## Cara menjalankan webapps di local komputer anda
-
+<details>
+  <summary>Click to expand!</summary>
+    
 0. Aktifkan venv (optional)
     Caranya sudah ada di tutorial diatas silahkan diikuti jika ingin , INI TIDAK WAJIB
 
@@ -225,8 +230,11 @@ Sekian untuk bagian secara dasar pembuatan project django from scatch bukan untu
     ```
 
 sekian cara menjalankan apps pada local sudah selesai yay.
+</details>
 
 ## Sedikit tips untuk mengerti fungsi tiap file :
+<details>
+  <summary>Click to expand!</summary>
 
 folder user berisi apps atau fitur untuk user.
 folder staff berisi apps atau fitur untuk staff
@@ -241,3 +249,5 @@ file models.py berguna untuk django orm dimana jika kita menambah class pada mod
 file .html sudah jelas berguna untuk html page yang dilihat oleh user. File .html  pasti berada di direktori templates sesuai dengan app fiturnya cth page untuk user maka file .html akan ada di /user/templates/  dst.
 
 folder atau direktori static berguna untuk file-file static seperti image, css ,js yang dipakai oleh html untuk memperbagusnya.
+    
+</details>
