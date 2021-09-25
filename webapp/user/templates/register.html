@@ -1,72 +1,111 @@
+{% extends 'base.html' %}
 <html>
 <head>
+{% block style %}
 <style>
-{% load static %}
-body{
-    background-image: url("{% static "img/bg.jpeg" %}");
-    background-size: cover;
-    background-repeat:repeat;
-    height: 100%;
-}
-#register_form{
-    position: absolute;
-    width: 35%;
-    height: 74.6%;
-    left: 32.2%;
-    top : 9.947916666666666%;
 
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 50px;
-   
-}
-.field{
-    position: absolute;
-    width : 32.239583333333336%;
-    height : 5.208333333333333%;
 
+.box {
+    width: 33%;
+    max-height : 80vh;
+    padding: 4vh;
+    position: relative;
+    top: 10%;
+    background: #191919;
+    transition: 0.25s;
+    margin-top: 1vh;
+    left:33%;
+    border-radius: 2.5vh;
+    overflow:auto;
+}
+
+.box input[type="text"],
+.box input[type="password"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 30px 30px;
+    width: 50vh;
+    outline: none;
+    color: white;
+    border-radius: 1.5vh;
+    transition: 0.25s
+    align:left;
+}
+
+.box h1 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500
+    align:left;
+}
+
+
+
+.box input[type="submit"] {
+    position: relative;
+    right: 0vh;
+    align:right;
+    border: 0;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    padding: 2.4vh 6vh;
+    outline: none;
+    border-radius: 2.4vh;
+    transition: 0.25s;
+    cursor: pointer
     background: #FFFFFF;
-    border-radius: 30px;
+    border-radius: 1.5vh;
+    width: 50vh;
 }
-#email{
-    left : 33.854166666666664%;
-    top : 22.916666666666668%;
+
+.box input[type="submit"]:hover {
+    background: #2ecc71
 }
-#username{
-    left : 33.854166666666664%;
-    top : 30.0%;
+
+.forgot {
+    text-decoration: underline
 }
-#password{
-    left : 33.854166666666664%;
-    top : 37.083333333333336%;
-}
-#register{
-position: absolute;
-width : 6.71875%;
-height : 2.5%;
-left : 57.1875%;
-top : 46.71875%;
-fbackground: #564F49;
-border-radius: 20px;
-}
+
+
+{% load static %}
 </style>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock %}
 <title>
 Jepara Furniture
 </title>
 </head> 
 <body>
-<div id ="register_form">
-
+{% block body %}
+  
+<div class="d-flex align-items-center justify-content-center">
+<div>
+    <br>
+    <form   action="/register"  method="post" class="box">
+    {% csrf_token %}
+        <h1 style="align:left">Jepara <br>Furniture</h1>
+        <br><br>
+        <input name="email" type="text" name="email" placeholder="email"> 
+        <br>
+        <input name="username" type="text" nameusername placeholder="Username"> 
+        <br>
+        <input name="password" type="password" name="password" placeholder="Password"> 
+        <br>
+        <input type="submit" name="" value="signup">
+    </form>
+    <br>
 </div>
-  <form   action="/user/register"  method="post">
-  {% csrf_token %}
-      <input type="email" class="field" id="email" placeholder="Email" name="email">
-
-      <input type="username" class="field" id="username" placeholder="User ID" name="username">
- 
- 
-      <input type="password" class="field" id="password" placeholder="Password" name="password">
-    <button type="submit" id='register' class="btn btn-default">register</button>
-  </form>
+</div>
+{% endblock %}
 </body>
 </html>
