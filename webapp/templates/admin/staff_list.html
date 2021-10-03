@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block body %}
+<style>
+.child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container {
+  position: relative;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div  class="container"  align='center'>
+<table class='child'>
+<tr>
+<th>nama </th>
+<th> email</th>
+</tr>
+
+{% for each in staffs %}
+<tr>
+<td>{{each.user.username}}</td>
+<td>{{each.user.email}}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}
