@@ -1,4 +1,5 @@
-from .models import chairModels
+from webapp import user
+from .models import FurnitureModels, ReviewModels , ChatTopicModels,ChatContentModels
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -21,7 +22,7 @@ def login_user(request):
         if user is not None:
             login(request, user)
             return redirect(home)
-    return render(request,'login.html')
+    return render(request,'user/login.html')
 
 def register_user(request):
     if (request.method == "POST"):
@@ -37,13 +38,47 @@ def register_user(request):
             user = User.objects.create_user(username = username, email = email, password = password)
             user.save()
             return redirect('/login')
-    return render(request,'register.html')
+    return render(request,'user/register.html')
 
 
 @login_required
 def logout_user(request):
     logout(request)
-    return render(request,'land_page.html')
+    return render(request,'user/land_page.html')
 
 
+def view_furniture(request,kategori):
+    furniture = FurnitureModels.objects.filter(kategori=kategori)
+    return render(request,'user/furniture_list.html',{"furniture" : furniture})
 
+
+def view_furniture_details(request,kategori,id):
+    furniture = FurnitureModels.objects.get(kategori=kategori,id=id)
+    reviews = ReviewModels.objects.filter(furniture=furniture)
+    return render(request,'user/furniture_detail.html',{"furniture" : furniture, "reviews": reviews})
+
+@login_required
+def review_furniture(request,kategori,id):
+    furniture = FurnitureModels.objects.get(kategori=kategori,id=id)
+    curr_user = User.objects.get(id = request.user.id)
+    rating = request.POST['rating']
+    notes = request.POST['notes']
+    review = ReviewModels.objects.create(furniture = furniture , user = curr_user, notes = notes , rating = rating)
+    review.save()
+    all_review = ReviewModels.objects.filter(furniture=furniture)
+    return render(request,'user/furniture_detail.html',{"furniture" : furniture, "reviews": all_review})
+
+@login_required
+def chat(request):
+    curr_user = User.objects.get(id = request.user.id)
+    try :
+        topic = ChatTopicModels.objects.get(user = curr_user)
+    except ObjectDoesNotExist:
+        topic = ChatTopicModels.objects.create(user = curr_user)
+        topic.save()
+    if (request.method == "POST"):
+        content = request.POST['content']
+        cahat_content = ChatContentModels.objects.create(user = curr_user,topic = topic, content = content)
+        cahat_content.save()
+    all_chat = ChatContentModels.objects.filter(topic = topic)
+    return render(request,'user/chat_board.html',{"contents" : all_chat})

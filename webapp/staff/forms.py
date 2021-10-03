@@ -5,6 +5,6 @@ class RegisterUserForm(forms.Form):
     email = forms.EmailField() 
     password = forms.CharField()
 
-class AddChairForm(forms.Form):
+class AddFurnitureForm(forms.Form):
     nama = forms.CharField()
     harga = forms.IntegerField()

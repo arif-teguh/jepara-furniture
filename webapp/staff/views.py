@@ -1,4 +1,4 @@
-from user.models import chairModels
+from user.models import FurnitureModels
 from .models import IsStaffModel
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
-from .forms import AddChairForm
+from .forms import AddFurnitureForm
 from django.contrib.auth.decorators import login_required
 from .middleware import user_is_staff
 
@@ -30,18 +30,19 @@ def login_staff(request):
     return render(request,'staff/login.html')
 
 @user_is_staff
-def addNewChair(request):
+def addNewFurniture(request):
     if (request.method == "POST"):
         name = request.POST['nama']
         harga = request.POST['harga']
+        kategori = request.POST['kategori'].lower()
         gambar =request.FILES['file']
-        form = AddChairForm(request.POST)
+        form = AddFurnitureForm(request.POST)
         if(form.is_valid()):
-            chair = chairModels.objects.create(nama =  name , harga = harga, gambar = file)
+            chair = FurnitureModels.objects.create(nama =  name , harga = harga, gambar = gambar, kategori = kategori)
             chair.save()
             return redirect(home_staff)
     print('haha')
-    return render(request, 'staff/addchair.html')
+    return render(request, 'staff/addfurniture.html')
 
 @login_required
 def logout_staff(request):

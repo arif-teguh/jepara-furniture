@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from staff.models import IsStaffModel
 from .middleware import user_is_admin
 from django.contrib import messages
+from ..user.models import ChatTopicModels,ChatContentModels
 # Create your views here.
 @user_is_admin
 def add_staff(request):
@@ -36,3 +37,20 @@ def staff_list(request):
     staffs = IsStaffModel.objects.all()
 
     return render(request,'admin/staff_list.html',{'staffs':staffs})
+
+
+@user_is_admin
+def reply_chat(request,user_id):
+    user_chat = User.objects.get(id = user_id)
+    curr_user = User.objects.get(id = request.user.id)
+    try :
+        topic = ChatTopicModels.objects.get(user = user_chat)
+    except ObjectDoesNotExist:
+        topic = ChatTopicModels.objects.create(user = user_chat)
+        topic.save()
+    if (request.method == "POST"):
+        content = request.POST['content']
+        cahat_content = ChatContentModels.objects.create(user = curr_user,topic = topic, content = content)
+        cahat_content.save()
+    all_chat = ChatContentModels.objects.filter(topic = topic)
+    return render(request,'admin/chat_board.html',{"contents" : all_chat})
