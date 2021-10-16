@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from staff.models import IsStaffModel
 from .middleware import user_is_admin
 from django.contrib import messages
-from ..user.models import ChatTopicModels,ChatContentModels
+from user.models import ChatTopicModels,ChatContentModels
 # Create your views here.
 @user_is_admin
 def add_staff(request):

@@ -1,4 +1,3 @@
-from user.models import chairModels
 from .models import IsStaffModel
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
@@ -7,7 +6,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
-from .forms import AddChairForm
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 home = '/'

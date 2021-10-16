@@ -1,4 +1,3 @@
-from webapp import user
 from .models import FurnitureModels, ReviewModels , ChatTopicModels,ChatContentModels
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
@@ -7,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
-from .forms import RegisterUserForm  ,AddChairForm
+from .forms import RegisterUserForm 
 from django.contrib.auth.decorators import login_required
 home = '/'
 #from .models import ChairMode
