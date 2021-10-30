@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 home = '/'
 #from .models import ChairMode
 def land_page(request):
-    return render(request,'user/land_page.html')
+    return render(request,'user/home.html')
 
 def login_user(request):
     if (request.method == "POST"):

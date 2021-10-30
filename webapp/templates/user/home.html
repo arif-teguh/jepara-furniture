@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+
+<html lang="en">
+
+{% load static   %}
+<head>
+{% block style %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <title>Home</title>
+
+{% endblock %}
+</head>
+<body>
+{% block body %}
+    <div class="bg">
+        <div class="bg-img">
+        
+            <img class="img" src={% static  "img/img-home-top.png"  %}>
+        </div>
+
+        <div class="gap"></div> 
+
+        <div class="feature-bar">
+            <div class="btn-1">
+                <a href="">
+                    <img class="img-feature-1" src={% static  "img/btn-feature-1.png"  %}>
+                </a>
+            </div>
+            <div class="btn-2">
+                <a href="">
+                    <img class="img-feature-2" src={% static  "img/btn-feature-2.png"  %}>
+                </a>
+            </div>
+            <div class="btn-3">
+                <a href="">
+                    <img class="img-feature-3" src={% static  "img/btn-feature-3.png"  %}>
+                </a>
+            </div>    
+            <div class="btn-4">
+                <a href="">
+                    <img class="img-feature-4" src={% static  "img/btn-feature-4.png"  %}>
+                </a>
+            </div>
+        </div> 
+        <div class="gap"></div>
+        <div class="main-page">
+            <div class="bg-img-mp-1">
+                <img class="img-mp-1" src={% static  "img/img-mp-1.png" %}>
+            </div>
+            
+            <div class="bg-img-mp-2">
+                <img class="img-mp-2" src={% static  "img/img-mp-2.png" %}>
+            </div>
+            <img class="img-circle" src={% static  "img/circle.png" %}>
+        </div>
+        <div class="gap"></div>
+        <div class="catalogue-title">Top Categories</div>
+        <div class="catalogue">
+        
+            <div class="catalogue-column1">
+                <div class="catalogue-column1-row1">
+                    <img class="chair" src={% static "img/chair.png" %}>
+                    <a href="asdads.com">Chair ></a>
+                </div>
+                <div class="catalogue-column1-row2">
+                    <img class="table" src={% static "img/table.png" %}>
+                    <a href="">Table ></a>
+                </div>
+            </div>
+            <div class="catalogue-column2">
+                <div class="catalogue-column2-row1">
+                    <img class="closet" src={% static "img/closet.png" %}>
+                    <a href="">Wardrobe ></a>
+                </div>
+            </div>
+            <div class="catalogue-column3">
+                <div class="catalogue-column3-row1">
+                    <img class="bed" src={% static "img/bed.png" %}>
+                    <a href="">Bed ></a>
+                </div>
+                <div class="catalogue-column3-row2">
+                {% load static   %}
+                    <img class="drawer" src={% static "img/drawer.png" %}>
+                    <a href="">Drawer ></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}    
+</body>
+</html>
