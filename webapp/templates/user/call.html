@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+{% load static   %}
+<head>
+    {% block style %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/call.css' %}">
+    <title>Jepara Furniture</title>
+    {% endblock %}
+</head>
+<body>
+    {% block body %}
+    <div class="call-bg">
+        <div class="call-form-bg">
+            <div class="call-call-bg">
+                <img src="profile.png" style="max-height: 100%;">
+                <br>
+                <input class="call-call-desc" type="text" id="" name="" value="STAFF 1" placeholder="" readonly>
+                <br>
+                <input class="call-call-desc" id="" name="" value="00:00" placeholder="" readonly>
+            </div>
+            <div class="call-mic-button">
+                <input type="image" alt="Mic" value="" name="" img src={% static  "img/call/mic.png"  %} width="50px" height="50px">
+            </div>
+            <div class="call-speaker-button">
+                <input type="image" alt="Speaker" value="" name="" img src={% static  "img/call/speaker.png"  %} width="50px" height="50px">
+            </div>  
+            <br>
+            <input type="button" class="call-button" value="END" name="">
+        </div>
+    </div>
+    {% endblock %}  
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+{% load static   %}
+<head>
+    {% block style %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
+    <title>Jepara Furniture</title>
+    {% endblock %}
+</head>
+<body style="background-color: #ededed;font-family: Asimov">
+    {% block body %}
+    <div class="bg">
+        <div class="bg-detail">
+            <div class="row1">
+                <div class="name">
+                    <input class="input-name-title" type="text" id="" name="" value="CHAIR 1" placeholder="" disabled>
+                    <br>
+                    <span style="color: gold;">&#9733  </span>
+                    <input class="input-rating-title" type="text" id="" name="" value="4.5 (5 Ulasan)" placeholder="" disabled>
+                </div>
+                <div class="price">
+                    <input class="input-price" type="text" id="" name="" value="Rp.800.000" placeholder="" disabled>
+                </div>
+            </div>
+            <div class="row2">
+                <div class="bg-slideshow">
+                    <div class="slideshow-container">
+
+                        <div class="mySlides fade">
+                        <img src={% static  "img/detail/img-slideshow1.png"  %} style="width:100%">
+                        </div>
+                        
+                        <div class="mySlides fade">
+                        <img src={% static  "img/detail/img-slideshow1.png"  %} style="width:100%">
+                        </div>
+                        
+                        <div class="mySlides fade">
+                        <img src={% static  "img/detail/img-slideshow1.png"  %} style="width:100%">
+                        </div>
+            
+                        <div class="mySlides fade">
+                        <img src={% static  "img/detail/img-slideshow1.png"  %} style="width:100%">
+                        </div>
+                        
+                        <a class="prev" onclick="plusSlides(-1)">&#10096;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10097;</a>
+                        
+                        <br>
+                        <div style="text-align:center">
+                        <span class="dot" onclick="currentSlide(1)"></span> 
+                        <span class="dot" onclick="currentSlide(2)"></span> 
+                        <span class="dot" onclick="currentSlide(3)"></span> 
+                        <span class="dot" onclick="currentSlide(4)"></span> 
+                        </div>
+
+                    </div>
+                </div>    
+                <div class="desc">
+                    <div class="desc-text">
+                        <textarea  disabled class="input-desc-item" name = "" rows="8" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdo.Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdo."></textarea>
+                    </div>
+                    <div class="desc-number">
+                        <form action="/" method="post">
+                            <div class="stock">Stock :<input class="input-stock" type="text" id="" name="" value="&nbsp;" placeholder="" disabled></div>
+                            <div class="count">
+                                Jumlah
+                                <br>
+                                <span class="minus-counter">-</span>
+                                <input class="input-counter" type="text" value="1"/>
+                                <span class="plus-counter">+</span>
+                                <br>
+                                <input type="submit" class="desc-button" value="Beli" name="">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="gap"></div> 
+
+        <div class="feature-bar">
+            <div class="btn-1">
+                <a href="">
+                    <img class="img-feature" src={% static  "img/detail/btn-feature-1.png"  %}>
+                </a>
+            </div>
+            <div class="btn-2">
+                <a href="">
+                    <img class="img-feature" src={% static  "img/detail/btn-feature-2.png"  %}>
+                </a>
+            </div>
+            <div class="btn-3">
+                <a href="">
+                    <img class="img-feature" src={% static  "img/detail/btn-feature-3.png"  %}>
+                </a>
+            </div>    
+            <div class="btn-4">
+                <a href="">
+                    <img class="img-feature" src={% static  "img/detail/btn-feature-4.png"  %}>
+                </a>
+            </div>
+        </div> 
+
+        <div class="gap"></div>
+
+        <div class="main-page">
+            <div class="review">
+                <div class="review-title">Ulasan</div>
+                <input type="button" class="review-button" value="Tulis Review" name=""></div>
+                <div class="user-review-bg">
+                    <!-- for-loop per-review -->
+                    <div class="user-review">   
+                        <div class="user-review-name">
+                            <input class="input-user-review-name" type="text" id="" name="" value="Name" placeholder="" disabled>
+                            <br>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                        </div>
+                        <div class="user-review-comment">
+                            <input class="input-user-review-comment" type="text" id="" name="" value="Comment" placeholder="" disabled>
+                        </div>
+                    </div>
+
+                    <div class="user-review">
+                        <div class="user-review-name">
+                            <input class="input-user-review-name" type="text" id="" name="" value="Name" placeholder="" disabled>
+                            <br>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                        </div>
+                        <div class="user-review-comment">
+                            <input class="input-user-review-comment" type="text" id="" name="" value="Comment" placeholder="" disabled>
+                        </div>
+                    </div>
+
+                    <div class="user-review">
+                        <div class="user-review-name">
+                            <input class="input-user-review-name" type="text" id="" name="" value="Name" placeholder="" disabled>
+                            <br>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                        </div>
+                        <div class="user-review-comment">
+                            <input class="input-user-review-comment" type="text" id="" name="" value="Comment" placeholder="" disabled>
+                        </div>
+                    </div>
+
+                    <div class="user-review">
+                        <div class="user-review-name">
+                            <input class="input-user-review-name" type="text" id="" name="" value="Name" placeholder="" disabled>
+                            <br>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                        </div>
+                        <div class="user-review-comment">
+                            <input class="input-user-review-comment" type="text" id="" name="" value="Comment" placeholder="" disabled>
+                        </div>
+                    </div> 
+
+                </div>
+            </div>
+            <div class="black-gap"></div>
+            <div class="others">
+                <div class="others-title">Furnitur Lainnya</div>
+                <div class="others-item">
+                    <a href="">
+                        <img class="others-item-img" src={% static  "img/detail/others-img1.png"  %}>
+                        <div class="others-item-name">
+                            NAMA FURNITURE
+                        </div>
+                        <div class="others-item-price">
+                            RP.1.000.000
+                        </div>
+                    </a>
+                </div>
+                <div class="others-item">
+                    <a href="">
+                        <img class="others-item-img" src={% static  "img/detail/others-img2.png"  %}>
+                        <div class="others-item-name">
+                            NAMA FURNITURE
+                        </div>
+                        <div class="others-item-price">
+                            RP.1.000.000
+                        </div>
+                    </a>
+                </div>
+                <div class="others-item">
+                    <a href="">
+                        <img class="others-item-img" src={% static  "img/detail/others-img3.png"  %}>
+                        <div class="others-item-name">
+                            NAMA FURNITURE
+                        </div>
+                        <div class="others-item-price">
+                            RP.1.000.000
+                        </div>
+                    </a>
+                </div>
+                <div class="others-item">
+                    <a href="">
+                        <img class="others-item-img" src={% static  "img/detail/others-img4.png"  %}>
+                        <div class="others-item-name">
+                            NAMA FURNITURE
+                        </div>
+                        <div class="others-item-price">
+                            RP.1.000.000
+                        </div>
+                    </a>
+                </div>
+                
+            </div>
+        </div>  
+
+    </div>
+
+    <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+        
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+        
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+        
+        function showSlides(n) {
+          var i;
+          var slides = document.getElementsByClassName("mySlides");
+          var dots = document.getElementsByClassName("dot");
+          if (n > slides.length) {slideIndex = 1}    
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";  
+          }
+          for (i = 0; i < dots.length; i++) {
+              dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";  
+          dots[slideIndex-1].className += " active";
+        }
+        
+        $(document).ready(function() {
+			$('.minus-counter').click(function () {
+				var $input = $(this).parent().find('.input-counter');
+				var count = parseInt($input.val()) - 1;
+				count = count < 1 ? 1 : count;
+				$input.val(count);
+				$input.change();
+				return false;
+			});
+			$('.plus-counter').click(function () {
+				var $input = $(this).parent().find('.input-counter');
+				$input.val(parseInt($input.val()) + 1);
+				$input.change();
+				return false;
+			});
+		});
+        console.log($(this))
+        </script>
+        {% endblock %}
+</body>
+</html>

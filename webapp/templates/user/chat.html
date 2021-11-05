@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+{% load static   %}
+<head>
+    {% block style %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+    <script src="{% static 'json/chat.js' %}"></script>
+    <title>Jepara Furniture</title>
+    {% endblock %}
+</head>
+<body>
+    {% block body %}
+    <div class="bg">
+        <div class="form-bg">
+            <input type="image" alt="Profile" value="" name="" img src={% static  "img/chat/profile.png"  %} width="50px" height="50px" disabled>
+            <div class="chat-bg">
+                <div class="chat-gap"></div>
+                <div id="chatlog9" class="chat-admin"></div>
+                <div class="chat-gap"></div>
+                <div id="chatlog10" class="chat-user"></div>
+                <div class="chat-gap"></div>
+                <div id="chatlog7" class="chat-admin"></div>
+                <div class="chat-gap"></div>
+                <div id="chatlog8" class="chat-user"></div>
+                <div class="chat-gap"></div>
+                <div id="chatlog5" class="chat-admin"></div>
+                <div class="chat-gap"></div>
+                <div id="chatlog6" class="chat-user"></div>
+                <div class="chat-gap"></div>
+                <div id="chatlog3" class="chat-admin"></div>
+                <div class="chat-gap"></div>
+                <div id="chatlog4" class="chat-user"></div>
+                <div class="chat-gap"></div>
+                <div id="chatlog1" class="chat-admin"></div>
+                <div class="chat-gap"></div>
+                <div id="chatlog2" class="chat-user"></div>
+
+                <!-- Admin chatlog(ganjil) User chatlog(genap) -->
+                
+                <input type="text" name="chat" id="chatbox" placeholder="" onfocus="placeHolder()">
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

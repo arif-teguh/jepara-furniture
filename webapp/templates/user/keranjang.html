@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+{% load static   %}
+<head>
+    {% block style %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/keranjang.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
+    <title>Jepara Furniture</title>
+    {% endblock %}
+</head>
+<body style="background-color: #ededed;font-family: Asimov;font-size: 0px;color: #262626;">
+    {% block body %}
+    <div class="bg">
+        <div class="title1">
+            Barang yang di beli :
+        </div>
+        <div class="cart-list">
+            <!-- for-loop per item -->
+            <div class="cart-item">
+                <div class="cart-item-img">
+                    <input type="image" alt="" value="" name="" img src={% static  "img/keranjang/sofa.png"  %} width="100%" disabled>
+                </div>
+                <div class="cart-item-desc">
+                    <input class="cart-item-input" type="text" id="" name="" value="Sofa 1 Bahan Kulit Warna Hitam" placeholder="" disabled>
+                    <input class="cart-item-input" type="text" id="" name="" value="RP. 1.500.000" style="text-align: right;" placeholder="" disabled>
+                </div>
+            </div>
+            <!-- for loop per item -->
+            <div class="cart-item">
+                <div class="cart-item-img">
+                    <input type="image" alt="" value="" name="" img src={% static  "img/keranjang/sofa.png"  %} width="100%" disabled>
+                </div>
+                <div class="cart-item-desc">
+                    <input class="cart-item-input" type="text" id="" name="" value="Sofa 1 Bahan Kulit Warna Hitam" placeholder="" disabled>
+                    <input class="cart-item-input" type="text" id="" name="" value="RP. 1.500.000" style="text-align: right;" placeholder="" disabled>
+                </div>
+            </div>
+            <div class="cart-item">
+                <div class="cart-item-img">
+                    <input type="image" alt="" value="" name="" img src={% static  "img/keranjang/sofa.png"  %} width="100%" disabled>
+                </div>
+                <div class="cart-item-desc">
+                    <input class="cart-item-input" type="text" id="" name="" value="Sofa 1 Bahan Kulit Warna Hitam" placeholder="" disabled>
+                    <input class="cart-item-input" type="text" id="" name="" value="RP. 1.500.000" style="text-align: right;" placeholder="" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="cart-detail">
+            <form action="/" method="post">
+                <div class="cart-detail-text">
+                    <span>Detail Belanja</span>
+                    <br>
+                    <input class="cart-detail-input" type="text" id="" name="" value="Total Harga (3 Barang)" placeholder="" disabled>
+                    <input class="cart-detail-input" type="text" id="" name="" value="Rp.4.500.000" style="text-align: right;float: right;" placeholder="" disabled>
+                    <br>
+                    <input class="cart-detail-input" type="text" id="" name="" value="Biaya Pengantaran" placeholder="" disabled>
+                    <input class="cart-detail-input" type="text" id="" name="" value="Rp.100.000" style="text-align: right;float: right;" placeholder="" disabled>
+                    <br>
+                    <div class="small-gap"></div>
+                    <span>Total Tagihan</span>
+                    <input class="cart-detail-input" type="text" id="" name="" value="Rp.4.600.000" style="text-align: right;float: right;color: rgba(255, 0, 0, 0.74);" placeholder="" disabled>
+                </div>
+                    <div class="cart-detail-button">
+                        <img src={% static  "img/keranjang/shield-done.png"  %} style="vertical-align: middle;">
+                        <input type="submit" class="input-cart-submit" name="" value="Bayar">
+                    </div>
+            </form>
+        </div>
+        <div class="gap"></div>
+        <div class="shipping-bg">
+            <form action="/" method="post">
+                <div class="title2">
+                    Pengiriman dan Pembayaran
+                </div>
+                <input type="text" class="input-shipping1" name="" placeholder="Tulis Nama Alamat/ Kota/ Kecamatan Tujuan">
+                <textarea  class="input-shipping2" name = "" rows="8" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdo.Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdo."></textarea>
+                <input type="submit" class="input-shipping-submit" name="" value="Tambah Alamat">
+            </form>
+        </div>
+        <div class="gap"></div>
+        <div class="payment-bg">
+            <div class="payment">
+                <div class="payment-icon">
+                    <img src={% static  "img/keranjang/bca-img.png"  %} style="width:100%">
+                </div>
+                <div class="payment-name">
+                    BCA Virtual Account
+                </div>
+                <div class="payment-tick">
+                    <img src={% static  "img/keranjang/tick-square.png"  %} style="width:100%">
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

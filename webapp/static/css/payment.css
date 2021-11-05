@@ -1,0 +1,120 @@
+.bg{
+    position: relative;
+    left:0%;
+    top:0%;
+    right: 0%;
+    bottom: 0%;
+    font-size: 20px;
+}
+
+.gap{
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 10px;
+  background-color: #ededed;
+}
+
+.title{
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+.bg-va{
+  width: 100%;
+  background-color: white;
+  border-radius: 25px;
+  box-sizing: border-box;
+  padding: 30px;
+  line-height: 50px;
+}
+
+.bg-va-gap{
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 8px;
+  background-color: #000000;
+  margin: 15px 0;
+  border-radius: 25px;
+}
+
+.va-button{
+  background-color: black;
+  color: white;
+  padding: 5px 20px;
+  box-sizing: border-box;
+  border-radius: 25px;
+  float: right;
+}
+
+.title2{
+  position: relative;
+  width: 100%;
+  border-radius: 25px;
+  box-sizing: border-box;
+  padding: 30px;
+}
+
+.va-button2{
+  background-color: black;
+  color: white;
+  padding: 5px 50px;
+  box-sizing: border-box;
+  border-radius: 25px;
+  float: right;
+  margin-right: 20px;
+}
+
+.va-button3{
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  padding: 5px 50px;
+  box-sizing: border-box;
+  border-radius: 25px;
+  float: right;
+}
+
+.bg-instructions{
+  position: relative;
+  width: 100%;
+  border-radius: 25px;
+  box-sizing: border-box;
+  padding: 50px 30px;
+  background-color: white;
+  mix-blend-mode: normal;
+}
+
+
+/* Link */
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+a:link {
+  color: rgb(0, 0, 0);
+}
+a:visited {
+  color: rgb(0, 0, 0);
+}
+a:hover {
+  color: rgb(0, 0, 0);
+}
+a:active {
+  color: rgb(0, 0, 0);
+}

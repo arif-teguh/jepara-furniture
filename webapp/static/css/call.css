@@ -1,0 +1,102 @@
+.call-bg{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left:0%;
+    top:0%;
+    right: 0%;
+    bottom: 0%;
+    
+    padding: 10% 0;
+    background-color: #ededed;
+    white-space: nowrap;
+
+    font-family: Asimov;
+    font-style: normal;
+    font-size: 150%;
+}
+.call-form-bg{
+    position: relative;
+    display: block;
+    width: 30%;
+    height: auto;
+    border-radius: 25px;
+    padding: 3% 3% 3%;
+    margin: auto;
+    background-color: #262626;
+    text-align: center;
+}
+
+.call-call-bg{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 300px;
+    padding: 4% 0;
+    border-radius: 10px;
+    margin-bottom: 4%;
+    background-color: rgb(255, 255, 255);
+}
+.call-mic-button{
+    position: relative;
+    display: inline-block;
+    width: calc(49% - 2px);
+    height: fit-content;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 5px 0;
+    margin-right: 2%;
+    background-color: rgb(255, 255, 255);
+}
+.call-speaker-button{
+    position: relative;
+    display: inline-block;
+    width: calc(49% - 2px);
+    padding: 5px 0;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: white;
+    background-color: #515151;
+}
+.call-button{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: fit-content;
+    padding: 4% 0;
+    border-radius: 10px;
+    margin-top: 4%;
+    background-color: rgb(255, 255, 255);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.call-call-desc{
+    border: none;
+    color: rgb(0, 0, 0);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+  }
+
+/* Place Holder CSS */
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgb(0, 0, 0);
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgb(0, 0, 0);
+  }
+
+  textarea:focus, input:focus{
+    outline: none;
+}

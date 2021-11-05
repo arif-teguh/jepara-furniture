@@ -1,0 +1,286 @@
+.bg{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    left:0%;
+    top:0%;
+    right: 0%;
+    bottom: 0%;
+    background-color: #ededed;
+}
+
+.bg-slideshow{
+  position: relative;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.gap{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 10px;
+    background-color: #ededed;
+}
+
+.feature-bar{
+    position: relative;
+    display: block;
+    width: 100%;
+    bottom: 0%;
+    background-color: #FFFFFF;
+    text-align: center;
+}
+.btn-1{
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    padding: 0.5% 0;
+}
+.btn-2{
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    margin-left: 15%;
+    padding: 0.5% 0;
+}
+.btn-3{
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    margin-left: 15%;
+    padding: 0.5% 0;
+}
+.btn-4{
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    margin-left: 15%;
+    padding: 0.5% 0;
+}
+.img-feature{
+    position: relative;
+    display: block;
+    width: auto;
+    height: auto;
+}
+.main-page{
+    position: relative;
+    display: block;
+    width: 100%;
+    bottom: 0%;
+    text-align: justify;
+    background-color: #FFFFFF;
+    padding: 3% 0;
+}
+.bg-item{
+    position: relative;
+    width: 33%;
+    display: inline-block;
+    vertical-align: top;
+}
+.img-item{
+    display: block;
+    position: relative;
+    width: 70%;
+    height: auto;
+    mix-blend-mode: normal;
+    margin: 0 auto;
+    border-radius: 25px;
+}
+.item-desc{
+    display: block;
+    position: relative;
+    width: 70%;
+    margin: auto;
+    font-family: 'Amaranth', sans-serif;
+    font-size: 16px;
+}
+.item-rating{
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 3px 6px;
+}
+
+.input-rating{
+  display: inline-block;
+  font-family: 'Amaranth', sans-serif;
+  font-size: 16px;
+  width: 35%;
+  color: #262626;
+  border: none;
+  background-color: transparent;
+}
+
+.input-price{
+    display: inline-block;
+    width: 55%;
+    float: right;
+    text-align: center;
+    color: white;
+    background-color: #262626;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 1px;
+    font-family: 'Amaranth', sans-serif;
+    font-size: 20px;
+}
+.item-text{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    color: #262626;
+}
+
+.input-text-title{
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 24px;
+  background-color: transparent;
+  border: none;
+  font-family: 'Amaranth', sans-serif;
+  color: #262626;
+}
+
+.input-text{
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  font-family: 'Amaranth', sans-serif;
+  text-align: justify;
+  color: #262626;
+}
+
+/* Slideshow */
+
+.slideshow-container {
+  max-width: 70%;
+  position: relative;
+  margin: auto;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 12px;
+  margin-top: -22px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 24px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgb(255, 255, 255);
+}
+
+.text {
+  color: #f2f2f2;
+  font-size: 24px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 8px;
+  width: 100%;
+  text-align: center;
+  font-family: Asimov;
+}
+
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #4b4a4a;
+}
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* Link */
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+a:link {
+  color: rgb(0, 0, 0);
+}
+a:visited {
+  color: rgb(0, 0, 0);
+}
+a:hover {
+  color: rgb(0, 0, 0);
+}
+a:active {
+  color: rgb(0, 0, 0);
+}
+
+::-webkit-input-placeholder { /* Edge */
+  color: #262626;
+}
+
+:-ms-input-placeholder { /* Internet Explorer */
+  color: #262626;
+}
+
+::placeholder {
+  color: #262626;
+}

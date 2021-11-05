@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+{% load static   %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/complain.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth&family=Righteous&display=swap" rel="stylesheet">
+    <title>Jepara Furniture</title>
+    {% endblock %}
+</head>
+<body style="background-color: #ededed;font-family: 'Amaranth', sans-serif;font-size: 0px;">
+    {% block body %}
+    <div class="bg">
+        <div class="title">
+            <span style="font-family:'Righteous', cursive;font-size: 20px;">COMPLAIN - JEPARA FURNITURE</span>
+        </div>
+        <div class="bg-complain">
+            <div class="complain-left">
+                <img src={% static  "img/complain/map.png"  %} width="100%" style="text-align: center;">
+                <br>
+                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdo.Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdo. </span>
+            </div>
+            <div class="complain-right">
+                <form action="/login" method="post">
+                    <input class="input-text" type="text" id="" name="" value="" placeholder="Nama">
+                    <br>
+                    <input class="input-text" type="text" id="" name="" value="" placeholder="E-mail">
+                    <br>
+                    <textarea  name = "" rows="8" placeholder="Alamat"></textarea>
+                    <br>
+                    <textarea  name = "" rows="8" placeholder="Deskripsi"></textarea>
+                    <br>
+                    <div class="bg-button">
+                        <input type="submit" class="button-submit" name="" value="">
+                        <input type="button" class="button-upload" value="Upload Picture" name="">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

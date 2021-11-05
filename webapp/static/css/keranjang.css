@@ -1,0 +1,259 @@
+.bg{
+    position: relative;
+    left:0%;
+    top:0%;
+    right: 0%;
+    bottom: 0%;
+    font-size: 20px;
+}
+
+.gap{
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 10px;
+  background-color: #ededed;
+}
+
+.title1{
+  padding: 25px;
+  font-size: 30px;
+}
+
+.cart-list{
+  display: inline-block;
+  width: calc(60% - 40px);
+  padding: 20px;
+  margin: 20px;
+  box-sizing: border-box;
+  border-radius: 25px;
+  background-color: white;
+}
+
+.cart-item{
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.cart-item-img{
+  display: inline-block;
+  width: 30%;
+}
+
+.cart-item-desc{
+  display: inline-block;
+  position:absolute;
+  right: 0%;
+  width: 65%;
+  top: 0%;
+  bottom: 0%;
+  padding: 20px;
+  border-radius: 25px;
+  box-sizing: border-box;
+}
+
+.cart-item-input{
+  font-family: Asimov;
+  font-size: 20px;
+  width: 100%;
+  margin-top: 15px;
+  border: 0px;
+  background-color: transparent;
+  color: #262626;
+}
+
+.cart-detail{
+  display: inline-block;
+  width: calc(40% - 40px);
+  background-color: white;
+  padding: 30px;
+  margin: 20px;
+  box-sizing: border-box;
+  border-radius: 25px;
+  float: right;
+}
+
+.cart-detail-input{
+  font-family: Asimov;
+  display: inline-block;
+  font-size: 20px;
+  width: 49%;
+  margin-top: 5px;
+  border: 0px;
+  background-color: transparent;
+  color: #262626;
+}
+
+.input-cart-submit{
+  border: none  ;
+  background-color: #262626;
+  box-sizing: border-box;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-family: Asimov;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.small-gap{
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 5px;
+  border-radius: 100px;
+  margin: 10px 0;
+  background-color: #262626;
+}
+
+.cart-detail-button{
+  position: relative;
+  display: block;
+  width: 100%;
+  background-color: #262626;
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 25px;
+  margin-top: 20px;
+}
+
+
+
+.shipping-bg{
+  display: block;
+  background-color: white;
+  width: 100%;
+  position: relative;
+  padding: 25px;
+  box-sizing: border-box;
+  border-radius: 25px;
+}
+
+.title2{
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.input-shipping1{
+  width: 100%;
+  background-color: white;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border-radius: 25px;
+  border-color: #262626;
+  color: #262626;
+  border-width: medium;
+  border-style: solid;
+  text-align: left;
+  margin-bottom: 10px;
+  font-family: Asimov;
+  font-size: 20px;
+}
+
+.input-shipping2{
+  width: 100%;
+  background-color: white;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border-radius: 25px;
+  border-color: #262626;
+  color: #262626;
+  border-width: medium;
+  border-style: solid;
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: Asimov;
+  font-size: 20px;
+  text-align: left;
+}
+
+.input-shipping-submit{
+  width: 100%;
+  background-color: #262626;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border-radius: 25px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: Asimov;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.payment-bg{
+  display: block;
+  background-color: white;
+  width: 100%;
+  position: relative;
+  padding: 25px;
+  box-sizing: border-box;
+  border-radius: 25px;
+}
+
+.payment-icon{
+  display: inline-block;
+  width:10%;
+  vertical-align: middle;
+}
+
+.payment-name{
+  display: inline-block;
+  width:50%;
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+.payment-tick{
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+  padding: 5px;
+}
+
+/* Link */
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+a:link {
+  color: #262626;
+}
+a:visited {
+  color: #262626;
+}
+a:hover {
+  color: #262626;
+}
+a:active {
+  color: #262626;
+}
+
+::-webkit-input-placeholder { /* Edge */
+  text-align: center;
+}
+
+:-ms-input-placeholder { /* Internet Explorer */
+  text-align: center;
+}
+
+::placeholder {
+  text-align: center;
+}

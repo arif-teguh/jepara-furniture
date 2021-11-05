@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+{% load static   %}
+<head>
+    {% block style %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth&family=Righteous&display=swap" rel="stylesheet">
+    <title>Jepara Furniture</title>
+    {% endblock %}
+</head>
+<body style="background-color: #ededed;font-family: 'Amaranth', sans-serif;font-size: 0px;">
+    {% block body %}
+    <div class="bg">
+        <div class="bg-profile">
+            <div class="profile-left">
+                <input class="profile-img" type="image" alt="Profile" value="" name="" img src={% static  "img/profile/profile.png"  %} width="500px" height="500px" disabled>
+                <br>
+                <input class="button-upload" type="button" value="Upload Foto" name="">
+            </div>
+            <div class="profile-right">
+                <p class="profile-title">Biodata Diri</p>
+                <span class="filler-text">Nama</span>
+                <input class="profile-desc" type="text" id="" name="" value="Name" placeholder="xxxx" disabled>
+                <input class="button-edit" type="button" value="Ubah" name="">
+                <br>
+                <span class="filler-text">Tanggal Lahir</span>
+                <input class="profile-desc" type="text" id="" name="" value="DoB" placeholder="xxxx" disabled>
+                <input class="button-edit" type="button" value="Ubah" name="">
+                <br>
+                <span class="filler-text">Jenis Kelamin</span>
+                <input class="profile-desc" type="text" id="" name="" value="Gender" placeholder="xxxx" disabled>
+                <input class="button-edit" type="button" value="Ubah" name="">
+                <br>
+                <p class="profile-title">Detail Kontak</p>
+                <span class="filler-text">Email</span>
+                <input class="profile-desc" type="text" id="" name="" value="Email" placeholder="xxxx" disabled>
+                <input class="button-edit" type="button" value="Ubah" name="">
+                <br>
+                <span class="filler-text">Nomor Telepon</span>
+                <input class="profile-desc" type="text" id="" name="" value="Phone" placeholder="xxxx" disabled>
+                <input class="button-edit" type="button" value="Ubah" name="">
+                <br>
+
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+{% load static   %}
+<head>
+    {% block style %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/payment.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
+    <title>Jepara Furniture</title>
+    {% endblock %}
+</head>
+<body style="background-color: #ededed;font-family: 'Amaranth', sans-serif;font-size: 0px;">
+    {% block body %}
+    <div class="bg">
+        <div class="title">
+            <span>Batas Akhir Pembayaran</span>
+            <br>
+            <span style="font-weight: bold;">Kamis, 23 September 2021</span>
+        </div>
+        <div class="bg-va">
+            <img src={% static  "img/payment/bca-img.png"  %} style="width: 10%;">
+            <span style="text-align: right;float: right;font-weight: bold;">ATM BCA</span>
+            
+            <div class="bg-va-gap"></div>
+            
+            <span style="color: grey;">Nomor Virtual Account</span>
+            <br>
+            <span style="font-weight: bold;">80777087777936080</span>
+            <br>
+            <span style="color: grey;">Total Pembayaran</span>
+            <br>
+            <span style="font-weight: bold;">Rp.4.600.000</span>
+            <a href=""><span class="va-button">Lihat Detail</span></a>
+        </div>
+
+        <div class="title2">
+            <span>Cara Pembayaran</span>
+            <a href=""><span class="va-button3">Upload Pembayaran</span></a>
+            <a href=""><span class="va-button2">Belanja Lagi</span></a>
+        </div>
+
+        <div class="bg-instructions">
+            <img src={% static  "img/payment/img-instructions.png"  %} style="width: 50%;">
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
