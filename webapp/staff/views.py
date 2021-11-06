@@ -1,4 +1,4 @@
-from user.models import FurnitureModels
+import user.models as userModel
 from .models import IsStaffModel
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
@@ -7,7 +7,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
-from .forms import AddFurnitureForm
 from django.contrib.auth.decorators import login_required
 from .middleware import user_is_staff
 
@@ -29,25 +28,27 @@ def login_staff(request):
             return redirect(home_staff)
     return render(request,'staff/login.html')
 
-@user_is_staff
-def addNewFurniture(request):
-    if (request.method == "POST"):
-        name = request.POST['nama']
-        harga = request.POST['harga']
-        kategori = request.POST['kategori'].lower()
-        gambar =request.FILES['file']
-        form = AddFurnitureForm(request.POST)
-        if(form.is_valid()):
-            chair = FurnitureModels.objects.create(nama =  name , harga = harga, gambar = gambar, kategori = kategori)
-            chair.save()
-            return redirect(home_staff)
-    print('haha')
-    return render(request, 'staff/addfurniture.html')
 
-@login_required
+
 def logout_staff(request):
     logout(request)
     return render(request,'staff/login.html')
 
+
+@user_is_staff
+def reply_chat(request,user_id):
+    user_chat = User.objects.get(id = user_id)
+    curr_user = User.objects.get(id = request.user.id)
+    try :
+        topic = userModel.ChatTopicModels.objects.get(user = user_chat)
+    except ObjectDoesNotExist:
+        topic = userModel.ChatTopicModels.objects.create(user = user_chat)
+        topic.save()
+    if (request.method == "POST"):
+        content = request.POST['content']
+        cahat_content = userModel.ChatContentModels.objects.create(user = curr_user,topic = topic, content = content)
+        cahat_content.save()
+    all_chat = userModel.ChatContentModels.objects.filter(topic = topic)
+    return render(request,'staff/chat.html',{"contents" : all_chat, "user_chat" : user_chat})
 
 

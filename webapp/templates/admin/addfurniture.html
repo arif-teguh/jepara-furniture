@@ -85,25 +85,25 @@
 <div class="d-flex align-items-center justify-content-center">
 <div  >
     <br>
-    <form   action="/staff/chair/add"  method="post" class="box">
+    <form  action="/admin/furniture/add"  method="post" class="box" enctype="multipart/form-data">
     {% csrf_token %}
         <h1 style="align:left">Jepara <br>Furniture</h1>
         <br><br>
         <input name="nama" type="text" name="nama" placeholder="nama"> 
         <br>
-        <input name="harga" type="number" nameusername placeholder="price"> 
+        <input name="harga" type="number"  placeholder="price"> 
+        <input name="stok" type="number"  placeholder="stock"> 
+        <input name="info" type="text"  placeholder="Description"> 
         <br>
         <br>
           <select name="kategori" >
-            <option value="Wardobe">Volvo</option>
-            <option value="Bed">Saab</option>
-            <option value="Table">Opel</option>
-            <option value="Chair">Audi</option>
-            <option value="drawer">Audi</option>
+            <option value="wardobe">Wardobe</option>
+            <option value="bed">Bed</option>
+            <option value="table">Table</option>
+            <option value="chair">Chair</option>
+            <option value="drawer">Drawer</option>
         </select> 
-        <br>
-        <input type="file" id="avatar" name="file" accept="image/png"> 
-        <br>
+        <input type="file" id="avatar" name="file"> 
         <input type="submit" name="" value="Add ">
     </form>
     <br>

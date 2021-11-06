@@ -19,25 +19,25 @@
         <div class="bg-detail">
             <div class="row1">
                 <div class="name">
-                    <input class="input-name-title" type="text" id="" name="" value="CHAIR 1" placeholder="" disabled>
+                    <input class="input-name-title" type="text" id="" name="" value={{furniture.nama}} placeholder="" disabled>
                     <br>
                     <span style="color: gold;">&#9733  </span>
-                    <input class="input-rating-title" type="text" id="" name="" value="4.5 (5 Ulasan)" placeholder="" disabled>
+                    <input class="input-rating-title" type="text" id="" name="" value={{rating}} placeholder="" disabled>
                 </div>
                 <div class="price">
-                    <input class="input-price" type="text" id="" name="" value="Rp.800.000" placeholder="" disabled>
+                    <input class="input-price" type="text" id="" name="" value=" Rp {{furniture.harga}}" placeholder="" disabled>
                 </div>
             </div>
             <div class="row2">
                 <div class="bg-slideshow">
                     <div class="slideshow-container">
-
-                        <div class="mySlides fade">
-                        <img src={% static  "img/detail/img-slideshow1.png"  %} style="width:100%">
+                        {% for each in gambar_furniture %}
+                        <div >
+                        <img src={% static  each  %} style="width:100%">
                         </div>
-                        
-                        <div class="mySlides fade">
-                        <img src={% static  "img/detail/img-slideshow1.png"  %} style="width:100%">
+                        {% endfor %}
+                        {% comment %} <div class="mySlides fade">
+                        <img src={% static  gambar_furniture  %} style="width:100%">
                         </div>
                         
                         <div class="mySlides fade">
@@ -46,7 +46,7 @@
             
                         <div class="mySlides fade">
                         <img src={% static  "img/detail/img-slideshow1.png"  %} style="width:100%">
-                        </div>
+                        </div> {% endcomment %}
                         
                         <a class="prev" onclick="plusSlides(-1)">&#10096;</a>
                         <a class="next" onclick="plusSlides(1)">&#10097;</a>
@@ -63,11 +63,11 @@
                 </div>    
                 <div class="desc">
                     <div class="desc-text">
-                        <textarea  disabled class="input-desc-item" name = "" rows="8" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdo.Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdo."></textarea>
+                        <p   class="input-desc-item" name = "" rows="8">{{furniture.info}}</textarea>
                     </div>
                     <div class="desc-number">
                         <form action="/" method="post">
-                            <div class="stock">Stock :<input class="input-stock" type="text" id="" name="" value="&nbsp;" placeholder="" disabled></div>
+                            <div class="stock">Stock :<p type="text" id="" name="">{{furniture.stock}} </div>
                             <div class="count">
                                 Jumlah
                                 <br>
@@ -116,9 +116,10 @@
                 <input type="button" class="review-button" value="Tulis Review" name=""></div>
                 <div class="user-review-bg">
                     <!-- for-loop per-review -->
+                    {% for review in reviews %}
                     <div class="user-review">   
                         <div class="user-review-name">
-                            <input class="input-user-review-name" type="text" id="" name="" value="Name" placeholder="" disabled>
+                            <input class="input-user-review-name" type="text" id="" name="" value={{review.user.username}} placeholder="" disabled>
                             <br>
                             <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
                             <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
@@ -127,11 +128,12 @@
                             <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
                         </div>
                         <div class="user-review-comment">
-                            <input class="input-user-review-comment" type="text" id="" name="" value="Comment" placeholder="" disabled>
+                            <input class="input-user-review-comment" type="text" id="" name="" value={{review.notes}} placeholder="" disabled>
                         </div>
                     </div>
-
-                    <div class="user-review">
+                    {% endfor %}
+                    <!-- for-loop per-review -->
+                    {% comment %} <div class="user-review">
                         <div class="user-review-name">
                             <input class="input-user-review-name" type="text" id="" name="" value="Name" placeholder="" disabled>
                             <br>
@@ -174,7 +176,7 @@
                         <div class="user-review-comment">
                             <input class="input-user-review-comment" type="text" id="" name="" value="Comment" placeholder="" disabled>
                         </div>
-                    </div> 
+                    </div>  {% endcomment %}
 
                 </div>
             </div>

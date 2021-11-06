@@ -3,3 +3,5 @@ webapp/webapp/__pycache__/*
 webapp/staff/__pycache__/*
 webapp/admin_jepara/__pycache__/*
 */__pycache__/*
+webapp/static_file/*
+*/migrations/*

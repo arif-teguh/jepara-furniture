@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+import os
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # Create your models here.
 # class ChairModel(Models.models):
 #     nama = models.varchar(default = "test")
@@ -10,8 +14,10 @@ from django.contrib.auth.models import User
 class FurnitureModels(models.Model):
     nama = models.CharField(max_length=200)
     harga = models.IntegerField(null=False)
-    gambar = models.FileField()
+    gambar = models.FileField(upload_to = 'static/uploaded')
     kategori = models.CharField(max_length=30)
+    info = models.TextField()
+    stock = models.IntegerField(null=False)
 
 
 

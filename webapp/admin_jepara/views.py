@@ -11,7 +11,8 @@ from django.contrib.auth.decorators import login_required
 from staff.models import IsStaffModel
 from .middleware import user_is_admin
 from django.contrib import messages
-from user.models import ChatTopicModels,ChatContentModels
+import user.models as userModel
+from .forms import AddFurnitureForm
 # Create your views here.
 @user_is_admin
 def add_staff(request):
@@ -44,13 +45,33 @@ def reply_chat(request,user_id):
     user_chat = User.objects.get(id = user_id)
     curr_user = User.objects.get(id = request.user.id)
     try :
-        topic = ChatTopicModels.objects.get(user = user_chat)
+        topic = userModel.ChatTopicModels.objects.get(user = user_chat)
     except ObjectDoesNotExist:
-        topic = ChatTopicModels.objects.create(user = user_chat)
+        topic = userModel.ChatTopicModels.objects.create(user = user_chat)
         topic.save()
     if (request.method == "POST"):
         content = request.POST['content']
-        cahat_content = ChatContentModels.objects.create(user = curr_user,topic = topic, content = content)
+        cahat_content = userModel.ChatContentModels.objects.create(user = curr_user,topic = topic, content = content)
         cahat_content.save()
-    all_chat = ChatContentModels.objects.filter(topic = topic)
-    return render(request,'admin/chat_board.html',{"contents" : all_chat})
+    all_chat = userModel.ChatContentModels.objects.filter(topic = topic)
+    return render(request,'admin/chat.html',{"contents" : all_chat})
+
+
+
+@user_is_admin
+def addNewFurniture(request):
+    form = AddFurnitureForm(request.POST)
+    if (request.method == "POST"):
+        name = request.POST['nama']
+        harga = request.POST['harga']
+        info = request.POST['info']
+        stock = request.POST['stok']
+        kategori = request.POST['kategori'].lower()
+        gambar =request.FILES.get('file')
+        print(gambar)
+        #form = AddFurnitureForm(request.POST)
+        if(form.is_valid()):
+            chair = userModel.FurnitureModels.objects.create(nama =  name , harga = harga, gambar = gambar, kategori = kategori, info = info , stock = stock)
+            chair.save()
+            return redirect("/")
+    return render(request, 'admin/addfurniture.html',{'form': form})

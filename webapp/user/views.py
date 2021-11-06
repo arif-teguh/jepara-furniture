@@ -1,3 +1,4 @@
+from typing import overload
 from .models import FurnitureModels, ReviewModels , ChatTopicModels,ChatContentModels
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
@@ -9,6 +10,8 @@ from django.shortcuts import render
 from .forms import RegisterUserForm 
 from django.contrib.auth.decorators import login_required
 home = '/'
+LOGIN_URL = "/login"
+LOGIN_REDIRECT_URL = "/login"
 #from .models import ChairMode
 def land_page(request):
     return render(request,'user/home.html')
@@ -40,23 +43,37 @@ def register_user(request):
     return render(request,'user/register.html')
 
 
-@login_required
+@login_required(login_url = "/login")
 def logout_user(request):
     logout(request)
     return render(request,'user/land_page.html')
 
 
 def view_furniture(request,kategori):
-    furniture = FurnitureModels.objects.filter(kategori=kategori)
-    return render(request,'user/furniture_list.html',{"furniture" : furniture})
+    furnitures = FurnitureModels.objects.filter(kategori=kategori)
+    final_furnitures = []
+    for each in furnitures :
+        furnitur = {}
+        furnitur["nama"] = each.nama
+        furnitur["harga"] = each.harga
+        furnitur["info"] = each.info
+        furnitur["gambar"] = (str(each.gambar)).replace("static/","")
+        furnitur["rating"] = calculate_rating(each)
+        furnitur["kategori"] = each.kategori
+        furnitur["id"] = each.id
+        final_furnitures.append(furnitur)
+    return render(request,'user/furniture_list.html',{"furnitures" : final_furnitures})
 
 
 def view_furniture_details(request,kategori,id):
-    furniture = FurnitureModels.objects.get(kategori=kategori,id=id)
-    reviews = ReviewModels.objects.filter(furniture=furniture)
-    return render(request,'user/furniture_detail.html',{"furniture" : furniture, "reviews": reviews})
+    furniture = FurnitureModels.objects.get(id=id)
+    gambar_furniture = []
+    gambar_furniture.append((str(furniture.gambar)).replace("static/",""))
+    reviews = ReviewModels.objects.filter(futniture = furniture)
+    rating = calculate_rating(furniture) 
+    return render(request,'user/detail.html',{"furniture" : furniture, "reviews": reviews, "rating":rating,"gambar_furniture":gambar_furniture})
 
-@login_required
+@login_required(login_url = "/login")
 def review_furniture(request,kategori,id):
     furniture = FurnitureModels.objects.get(kategori=kategori,id=id)
     curr_user = User.objects.get(id = request.user.id)
@@ -67,7 +84,7 @@ def review_furniture(request,kategori,id):
     all_review = ReviewModels.objects.filter(furniture=furniture)
     return render(request,'user/furniture_detail.html',{"furniture" : furniture, "reviews": all_review})
 
-@login_required
+@login_required(login_url = "/login")
 def chat(request):
     curr_user = User.objects.get(id = request.user.id)
     try :
@@ -80,4 +97,38 @@ def chat(request):
         cahat_content = ChatContentModels.objects.create(user = curr_user,topic = topic, content = content)
         cahat_content.save()
     all_chat = ChatContentModels.objects.filter(topic = topic)
-    return render(request,'user/chat_board.html',{"contents" : all_chat})
+    return render(request,'user/chat.html',{"contents" : all_chat})
+
+@login_required(login_url = "/login")
+def call(request):
+    return render(request,'user/call.html')
+
+
+@login_required(login_url = "/login")
+def complain(request):
+    return render(request,'user/complain.html')
+
+
+@login_required(login_url = "/login")
+def preorder(request):
+    return render(request,'user/preorder.html')
+
+@login_required(login_url = "/login")
+def checkout(request):
+    return render(request,'user/checkout.html')
+
+
+@login_required(login_url = "/login")
+def payment(request):
+    return render(request,'user/payment.html')
+
+
+def calculate_rating(furniture):
+    reviews = ReviewModels.objects.filter(futniture = furniture)
+    tmp_value = 0
+    for review in reviews:
+        tmp_value += review.rating
+    final_value = "-"
+    if reviews :
+        final_value = str(tmp_value/reviews.count())
+    return final_value

@@ -45,9 +45,9 @@
                 <div id="chatlog2" class="chat-user"></div>
                 {% for content in contents %}
                     {% if content.user.id == request.user.id %}
-                        <br>user {{request.user.id}}: {{ content.content }}
-                    {% else %}
                         <br>admin : {{ content.content }}
+                    {% else %}
+                        <br>user : {{ content.content }}
                     {% endif %}
                 {% endfor %}
                 <!-- Admin chatlog(ganjil) User chatlog(genap) -->
