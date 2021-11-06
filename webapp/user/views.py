@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from .forms import RegisterUserForm
@@ -28,6 +29,8 @@ def login_user(request):
         if user is not None:
             login(request, user)
             return redirect(home)
+        else :
+            messages.error(request, 'Username atau password salah')
     return render(request, "user/login.html")
 
 
@@ -45,6 +48,8 @@ def register_user(request):
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
             return redirect("/login")
+        else :
+            messages.error(request, 'Ada yang salah dengan user mu')
     return render(request, "user/register.html")
 
 
@@ -89,8 +94,7 @@ def review_furniture(request, kategori, id):
     notes = request.POST["notes"]
     review = ReviewModels.objects.create(furniture=furniture, user=curr_user, notes=notes, rating=rating)
     review.save()
-    all_review = ReviewModels.objects.filter(furniture=furniture)
-    return render(request, "user/furniture_detail.html", {"furniture": furniture, "reviews": all_review})
+    return redirect(f"review/furniture/{kategori}-{id}")
 
 
 @login_required(login_url="/login")
@@ -131,6 +135,7 @@ def checkout_fast(request,id_furniture):
         jumlah = int(request.POST["jumlah"])
         furnitur = FurnitureModels.objects.get(id=id_furniture)
         if(int(jumlah) > furnitur.stock or int(jumlah) <=0 ):
+            messages.error(request, 'Form submission fail')
             return redirect(request.META.get('HTTP_REFERER'))
         try :
             keranjang = ShoppingCartModels.objects.get(user=user)
@@ -142,6 +147,7 @@ def checkout_fast(request,id_furniture):
         keranjang.total_furnitur = jumlah
         order.save()
         keranjang.save()
+        messages.success(request, (f"Berhasil menambahkan {jumlah} {furnitur.nama} kedalam keranjang"))
     keranjang = ShoppingCartModels.objects.get(user=user)
     all_order = OrderModels.objects.filter(user=user , keranjang = keranjang)
     return render(request, "user/checkout.html" ,{"orders": all_order , "keranjang" : keranjang})

@@ -36,4 +36,36 @@
     font-size: 30px;
     text-decoration: none;
   }
+  .error {
+    padding: 20px;
+    background-color: #f44336;
+    color: rgb(255, 255, 255);
+  }
+  
+  .success {
+    padding: 20px;
+    background-color: #16a86b;
+    color: rgb(255, 255, 255);
+  }
+  
+  .info {
+    padding: 20px;
+    background-color: #407a9e;
+    color: rgb(255, 255, 255);
+  }
+  
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  }
   

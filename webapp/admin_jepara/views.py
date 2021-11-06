@@ -13,6 +13,7 @@ from .middleware import user_is_admin
 from django.contrib import messages
 import user.models as userModel
 from .forms import AddFurnitureForm
+from django.contrib import messages
 # Create your views here.
 @user_is_admin
 def add_staff(request):
@@ -30,13 +31,14 @@ def add_staff(request):
             user.save()
             staff = IsStaffModel.objects.create(user = user)
             staff.save()
-            return redirect('/admin/staff')
+            messages.success(request, (f"{user.username} berhasil ditambahkan !"))
+        else :
+            messages.error(request, 'Ada data yang kurang atau belum diisi!')
     return render(request,'admin/register_staff.html')
 
 @user_is_admin
 def staff_list(request):
     staffs = IsStaffModel.objects.all()
-
     return render(request,'admin/staff_list.html',{'staffs':staffs})
 
 
@@ -68,10 +70,11 @@ def addNewFurniture(request):
         stock = request.POST['stok']
         kategori = request.POST['kategori'].lower()
         gambar =request.FILES.get('file')
-        print(gambar)
         #form = AddFurnitureForm(request.POST)
         if(form.is_valid()):
-            chair = userModel.FurnitureModels.objects.create(nama =  name , harga = harga, gambar = gambar, kategori = kategori, info = info , stock = stock)
-            chair.save()
-            return redirect("/")
+            furniture = userModel.FurnitureModels.objects.create(nama =  name , harga = harga, gambar = gambar, kategori = kategori, info = info , stock = stock)
+            furniture.save()
+            messages.success(request, (f"{furniture.nama} berhasil ditambahkan !"))
+        else :
+            messages.error(request, 'Ada data yang kurang atau belum diisi!')
     return render(request, 'admin/addfurniture.html',{'form': form})

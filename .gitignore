@@ -1,4 +1,4 @@
-webapp/user/__pycache__/*
+webapp\user\__pycache__\
 webapp/webapp/__pycache__/*
 webapp/staff/__pycache__/*
 webapp/admin_jepara/__pycache__/*
@@ -7,3 +7,4 @@ webapp/static_file/*
 webapp/user/migrations/*
 webapp/staff/migrations/*
 webapp/admin_jepara/migrations/*
+webapp/webapp/migrations/*
