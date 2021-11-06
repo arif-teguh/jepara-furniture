@@ -13,7 +13,7 @@ urlpatterns = [
     path('view/furniture/<str:kategori>-<int:id>',views.view_furniture_details),
     path('view/furniture/<str:kategori>',views.view_furniture),
     path('review/furniture/<str:kategori>-<int:id>',views.review_furniture),
-    path('checkout',views.checkout),
+    path('checkout/<int:id>',views.checkout),
     path('payment',views.payment),
     path('chat',views.chat),
     path('call',views.call),

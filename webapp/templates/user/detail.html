@@ -33,7 +33,7 @@
                     <div class="slideshow-container">
                         {% for each in gambar_furniture %}
                         <div >
-                        <img src={% static  each  %} style="width:100%">
+                        <img src="/{{furniture.gambar}}" style="width:100%">
                         </div>
                         {% endfor %}
                         {% comment %} <div class="mySlides fade">
@@ -66,13 +66,14 @@
                         <p   class="input-desc-item" name = "" rows="8">{{furniture.info}}</textarea>
                     </div>
                     <div class="desc-number">
-                        <form action="/" method="post">
-                            <div class="stock">Stock :<p type="text" id="" name="">{{furniture.stock}} </div>
+                        <form action="/checkout/{{furniture.id}}" method="post">
+                            {% csrf_token %}
+                            <div class="stock">Stock :<p  type="text" id="" name="">{{furniture.stock}} </div>
                             <div class="count">
                                 Jumlah
                                 <br>
                                 <span class="minus-counter">-</span>
-                                <input class="input-counter" type="text" value="1"/>
+                                <input class="input-counter" type="text" name ="jumlah" value="1"/>
                                 <span class="plus-counter">+</span>
                                 <br>
                                 <input type="submit" class="desc-button" value="Beli" name="">
@@ -89,6 +90,7 @@
             <div class="btn-1">
                 <a href="">
                     <img class="img-feature" src={% static  "img/detail/btn-feature-1.png"  %}>
+                    
                 </a>
             </div>
             <div class="btn-2">
@@ -183,50 +185,19 @@
             <div class="black-gap"></div>
             <div class="others">
                 <div class="others-title">Furnitur Lainnya</div>
+                {% for each in other_furniture %}
                 <div class="others-item">
                     <a href="">
-                        <img class="others-item-img" src={% static  "img/detail/others-img1.png"  %}>
+                        <img class="others-item-img" src="/{{each.gambar}}">
                         <div class="others-item-name">
-                            NAMA FURNITURE
+                            {{each.nama}}
                         </div>
                         <div class="others-item-price">
-                            RP.1.000.000
+                            Rp {{each.harga}}
                         </div>
                     </a>
                 </div>
-                <div class="others-item">
-                    <a href="">
-                        <img class="others-item-img" src={% static  "img/detail/others-img2.png"  %}>
-                        <div class="others-item-name">
-                            NAMA FURNITURE
-                        </div>
-                        <div class="others-item-price">
-                            RP.1.000.000
-                        </div>
-                    </a>
-                </div>
-                <div class="others-item">
-                    <a href="">
-                        <img class="others-item-img" src={% static  "img/detail/others-img3.png"  %}>
-                        <div class="others-item-name">
-                            NAMA FURNITURE
-                        </div>
-                        <div class="others-item-price">
-                            RP.1.000.000
-                        </div>
-                    </a>
-                </div>
-                <div class="others-item">
-                    <a href="">
-                        <img class="others-item-img" src={% static  "img/detail/others-img4.png"  %}>
-                        <div class="others-item-name">
-                            NAMA FURNITURE
-                        </div>
-                        <div class="others-item-price">
-                            RP.1.000.000
-                        </div>
-                    </a>
-                </div>
+                {% endfor %}
                 
             </div>
         </div>  

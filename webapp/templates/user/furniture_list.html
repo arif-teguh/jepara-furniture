@@ -88,22 +88,22 @@
 
         <div class="main-page">
             <!-- for-loop per item -->
-            {% for furniture in furnitures %}
-            <a href="/view/furniture/{{furniture.kategori}}-{{furniture.id}}" >
+            {% for each in furnitures %}
+            <a href="/view/furniture/{{each.furniture.kategori}}-{{each.furniture.id}}" >
             <div class="bg-item">
-                <img class="img-item" type="image" alt="" value="" name="" img src={% static furniture.gambar %} width="100%" >
+                <img class="img-item" type="image" alt="" value="" name="" img src="/{{each.furniture.gambar}}" width="100%" >
                 <br>
                 <div class="item-desc">
                     <div class="item-rating">
                         <span style="color: gold;">&#9733  </span>
-                        <input class="input-rating" type="text" id="" name="" value={{furniture.rating}} placeholder="" disabled>
-                        <input class="input-price" type="text" id="" name="" value={{furniture.harga}} placeholder="" disabled>
+                        <input class="input-rating" type="text" id="" name="" value={{each.rating}} placeholder="" disabled>
+                        <input class="input-price" type="text" id="" name="" value={{each.furniture.harga}} placeholder="" disabled>
                     </div>
                     <br>
                         <h style="float: right;color: gray;font-size: 16px;" >Detail</a>
                     <div class="item-text">
-                        <input class="input-text-title" type="text" id="" name="" value={{furniture.nama}} placeholder="" disabled>
-                        <textarea  disabled class="input-text" name = "" rows="8" placeholder={{furniture.info}}></textarea>
+                        <input class="input-text-title" type="text" id="" name="" value={{each.furniture.nama}} placeholder="" disabled>
+                        <textarea  disabled class="input-text" name = "" rows="8" placeholder={{each.furniture.info}}></textarea>
                     </div>
                 </div>
             </div>

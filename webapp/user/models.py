@@ -20,7 +20,19 @@ class FurnitureModels(models.Model):
     stock = models.IntegerField(null=False)
 
 
+class ShoppingCartModels(models.Model):
+    user =  models.ForeignKey(User,on_delete=models.CASCADE,
+         null=False, blank=False) 
+    total_harga = models.IntegerField(null=False)   
 
+
+class OrderModels(models.Model):
+    user =  models.ForeignKey(User,on_delete=models.CASCADE,
+         null=False, blank=False)
+    futnitur = models.ForeignKey(FurnitureModels, on_delete=models.CASCADE)
+    jumlah = models.IntegerField(null=False)
+    keranjang =  models.ForeignKey(ShoppingCartModels ,on_delete=models.CASCADE, null=False, blank=False)  
+    
 class ReviewModels(models.Model):
     futniture = models.ForeignKey(FurnitureModels, on_delete=models.CASCADE)
     user =  models.ForeignKey(User,on_delete=models.CASCADE,
