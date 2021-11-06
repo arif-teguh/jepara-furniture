@@ -125,28 +125,43 @@ def preorder(request):
 
 
 @login_required(login_url="/login")
-def checkout(request,id):
+def checkout_fast(request,id_furniture):
+    user = User.objects.get(id=request.user.id)
     if request.method == "POST":
-        user = User.objects.get(id=request.user.id)
         jumlah = int(request.POST["jumlah"])
-        furnitur = FurnitureModels.objects.get(id=id)
-        if(int(jumlah) > furnitur.stock):
+        furnitur = FurnitureModels.objects.get(id=id_furniture)
+        if(int(jumlah) > furnitur.stock or int(jumlah) <=0 ):
             return redirect(request.META.get('HTTP_REFERER'))
-        keranjang = ShoppingCartModels.objects.get(user=user)
-        if not keranjang:
-            keranjang = ShoppingCartModels.objects.create(user=user, total_harga = 0)
-        order = OrderModels.objects.create(furnitur = furnitur,user = user, jumlah= jumlah, keranjang = keranjang)
-        keranjang.total_harga += furnitur.harga * jumlah
+        try :
+            keranjang = ShoppingCartModels.objects.get(user=user)
+        except ObjectDoesNotExist:
+            keranjang = ShoppingCartModels.objects.create(user=user, total = 0) 
+        current_total = furnitur.harga * jumlah           
+        order = OrderModels.objects.create(furnitur = furnitur,user = user, jumlah= jumlah, keranjang = keranjang, total = current_total)
+        keranjang.total += current_total
+        keranjang.total_furnitur = jumlah
         order.save()
         keranjang.save()
-    all_order = OrderModels.objects.get(user=user)
     keranjang = ShoppingCartModels.objects.get(user=user)
-    return render(request, "user/checkout.html" ,{"orders": all_order, "keranjang" : keranjang})
+    all_order = OrderModels.objects.filter(user=user , keranjang = keranjang)
+    return render(request, "user/checkout.html" ,{"orders": all_order , "keranjang" : keranjang})
 
+@login_required(login_url="/login")
+def checkout_all(request):
+    user = User.objects.get(id=request.user.id)
+    try :
+        keranjang = ShoppingCartModels.objects.get(user=user)
+    except ObjectDoesNotExist:
+        return redirect(request.META.get('HTTP_REFERER'))
+    keranjang = ShoppingCartModels.objects.get(user=user)
+    all_order = OrderModels.objects.filter(user=user , keranjang = keranjang)
+    return render(request, "user/checkout.html" ,{"orders": all_order , "keranjang" : keranjang})    
 
 @login_required(login_url="/login")
 def payment(request):
-    return render(request, "user/payment.html")
+    user = User.objects.get(id=request.user.id)
+    keranjang = ShoppingCartModels.objects.get(user=user)
+    return render(request, "user/payment.html",{"keranjang": keranjang})
 
 
 def calculate_rating(furniture):

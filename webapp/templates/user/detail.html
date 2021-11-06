@@ -241,6 +241,7 @@
 				$input.change();
 				return false;
 			});
+            $('#id_furniture').style.display = "none";
 			$('.plus-counter').click(function () {
 				var $input = $(this).parent().find('.input-counter');
 				$input.val(parseInt($input.val()) + 1);

@@ -20,49 +20,35 @@
         </div>
         <div class="cart-list">
             <!-- for-loop per item -->
+            {% for item in orders %}
             <div class="cart-item">
                 <div class="cart-item-img">
-                    <input type="image" alt="" value="" name="" img src={% static  "img/keranjang/sofa.png"  %} width="100%" disabled>
+                    <input type="image" alt="" value="" name="" img src="/{{item.furnitur.gambar}}" width="100%" disabled>
                 </div>
                 <div class="cart-item-desc">
-                    <input class="cart-item-input" type="text" id="" name="" value="Sofa 1 Bahan Kulit Warna Hitam" placeholder="" disabled>
-                    <input class="cart-item-input" type="text" id="" name="" value="RP. 1.500.000" style="text-align: right;" placeholder="" disabled>
+                    <input disabled class="cart-item-input" type="text" id="" name="" value=" {{item.jumlah}} {{item.furnitur.nama}}                                
+                                        @{{item.furnitur.harga}}" placeholder="" >
+                    <input disabled class="cart-item-input" type="text" id="" name="" value="RP. {{item.total}}" style="text-align: right;" placeholder="" >
                 </div>
             </div>
+            {% endfor %}
             <!-- for loop per item -->
-            <div class="cart-item">
-                <div class="cart-item-img">
-                    <input type="image" alt="" value="" name="" img src={% static  "img/keranjang/sofa.png"  %} width="100%" disabled>
-                </div>
-                <div class="cart-item-desc">
-                    <input class="cart-item-input" type="text" id="" name="" value="Sofa 1 Bahan Kulit Warna Hitam" placeholder="" disabled>
-                    <input class="cart-item-input" type="text" id="" name="" value="RP. 1.500.000" style="text-align: right;" placeholder="" disabled>
-                </div>
-            </div>
-            <div class="cart-item">
-                <div class="cart-item-img">
-                    <input type="image" alt="" value="" name="" img src={% static  "img/keranjang/sofa.png"  %} width="100%" disabled>
-                </div>
-                <div class="cart-item-desc">
-                    <input class="cart-item-input" type="text" id="" name="" value="Sofa 1 Bahan Kulit Warna Hitam" placeholder="" disabled>
-                    <input class="cart-item-input" type="text" id="" name="" value="RP. 1.500.000" style="text-align: right;" placeholder="" disabled>
-                </div>
-            </div>
         </div>
         <div class="cart-detail">
-            <form action="/" method="post">
+            <form action="/payment" method="post">
+                {% csrf_token %}
                 <div class="cart-detail-text">
                     <span>Detail Belanja</span>
                     <br>
-                    <input class="cart-detail-input" type="text" id="" name="" value="Total Harga (3 Barang)" placeholder="" disabled>
-                    <input class="cart-detail-input" type="text" id="" name="" value="Rp.4.500.000" style="text-align: right;float: right;" placeholder="" disabled>
+                    <input class="cart-detail-input" type="text" id="" name="" value="Total Harga {{keranjang.total_furnitur}} item" placeholder="" disabled>
+                    <input class="cart-detail-input" type="text" id="" name="" value="Rp. {{keranjang.total}}" style="text-align: right;float: right;" placeholder="" disabled>
                     <br>
                     <input class="cart-detail-input" type="text" id="" name="" value="Biaya Pengantaran" placeholder="" disabled>
                     <input class="cart-detail-input" type="text" id="" name="" value="Rp.100.000" style="text-align: right;float: right;" placeholder="" disabled>
                     <br>
                     <div class="small-gap"></div>
                     <span>Total Tagihan</span>
-                    <input class="cart-detail-input" type="text" id="" name="" value="Rp.4.600.000" style="text-align: right;float: right;color: rgba(255, 0, 0, 0.74);" placeholder="" disabled>
+                    <input class="cart-detail-input" type="text" id="total_harga" name="" value={{keranjang.total}} style="text-align: right;float: right;color: rgba(255, 0, 0, 0.74);" placeholder="" disabled>
                 </div>
                     <div class="cart-detail-button">
                         <img src={% static  "img/keranjang/shield-done.png"  %} style="vertical-align: middle;">
@@ -73,6 +59,7 @@
         <div class="gap"></div>
         <div class="shipping-bg">
             <form action="/" method="post">
+            {% csrf_token %}
                 <div class="title2">
                     Pengiriman dan Pembayaran
                 </div>
@@ -96,6 +83,12 @@
             </div>
         </div>
     </div>
+
+<script>
+$(document).ready(function(){
+    document.getElementById('total_harga').value = "Rp " + (parseInt(document.getElementById('total_harga').value) + 100000);
+});
+</script>
     {% endblock %}
 </body>
 </html>

@@ -23,16 +23,18 @@ class FurnitureModels(models.Model):
 class ShoppingCartModels(models.Model):
     user =  models.ForeignKey(User,on_delete=models.CASCADE,
          null=False, blank=False) 
-    total_harga = models.IntegerField(null=False)   
+    total = models.IntegerField(null=False , default= 0)   
+    total_furnitur = models.IntegerField(null=False)   
 
 
 class OrderModels(models.Model):
     user =  models.ForeignKey(User,on_delete=models.CASCADE,
          null=False, blank=False)
-    futnitur = models.ForeignKey(FurnitureModels, on_delete=models.CASCADE)
+    furnitur = models.ForeignKey(FurnitureModels, on_delete=models.CASCADE)
     jumlah = models.IntegerField(null=False)
-    keranjang =  models.ForeignKey(ShoppingCartModels ,on_delete=models.CASCADE, null=False, blank=False)  
-    
+    keranjang =  models.ForeignKey(ShoppingCartModels ,on_delete=models.SET_NULL, null= True)  
+    total = models.IntegerField(null=False, default= 0)
+
 class ReviewModels(models.Model):
     futniture = models.ForeignKey(FurnitureModels, on_delete=models.CASCADE)
     user =  models.ForeignKey(User,on_delete=models.CASCADE,
