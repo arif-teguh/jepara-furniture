@@ -82,8 +82,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'jepara_furniture', #nama schema yang  diinginkan
-        'USER': 'root', #nama user name mysql
-        'PASSWORD': 'reksa041099',
+        'USER': 'mysql', #nama user name mysql
+        'PASSWORD': 'arif1234',
         'HOST': 'localhost',#kalau di pc pasti ini , tapi online y nama serverya
         'PORT': '3306', #port defatult 
         }

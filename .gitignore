@@ -1,2 +1,4 @@
-user/__pyache__/*
-webapp/__pyache__/*
+user/__pycache__/*
+webapp/__pycache__/*
+staff/__pycache__/*
+admin_jepara/__pycache__/*
