@@ -9,4 +9,5 @@ urlpatterns = [
     path('login', views.login_staff),
     path('logout',views.logout_staff),
     path('chat/<int:user_id>',views.reply_chat),
+    path('chat/<int:user_id>/reload',views.reply_chat_reload),
 ]

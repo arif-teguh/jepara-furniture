@@ -1,0 +1,13 @@
+{% for content in contents %}
+    {% if content.user.id == request.user.id %}
+        <div id="" class="chat-user">
+            {{content.user.username}} : {{ content.content }}
+        </div>
+        <div class="chat-gap"></div>
+        {% else %}
+        <div class="chat-admin">
+            {{content.user.username}} : {{ content.content }}
+        </div>
+        <div class="chat-gap"></div>
+    {% endif %}
+{% endfor %}

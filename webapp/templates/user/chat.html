@@ -4,6 +4,15 @@
 {% load static   %}
 <head>
     {% block style %}
+    <script>
+     $(document).ready(function() {
+         $('#chat').load(window.location.href + "/reload");
+    });
+
+setInterval(function(){
+   $('#chat').load(window.location.href + "/reload");
+}, 1000) /* time in milliseconds (ie 2 seconds)*/
+</script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -151,19 +160,8 @@
             <div class="chat-bg">
                 <form action="/chat" method="post">
                 {% csrf_token %}
-                {% for content in contents %}
-                    {% if content.user.id == request.user.id %}
-                        <div id="" class="chat-user">
-                            {{request.user.username}} : {{ content.content }}
-                        </div>
-                        <div class="chat-gap"></div>
-                        {% else %}
-                        <div class="chat-admin">
-                            Staff Jepara : {{ content.content }}
-                        </div>
-                        <div class="chat-gap"></div>
-                    {% endif %}
-                {% endfor %}
+                <div id = "chat">
+                </div>
                 <!-- Admin chatlog(ganjil) User chatlog(genap) -->
                 <div class="bg-chat-form">
                         {% comment %} <input type="image" alt="Profile" value="" name="content" img src={% static  "img/chat/profile.png"  %} width="50px" height="50px" disabled> {% endcomment %}
