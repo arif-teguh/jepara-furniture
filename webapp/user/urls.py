@@ -17,6 +17,7 @@ urlpatterns = [
     path('checkout/<int:id_furniture>',views.checkout_fast),
     path('payment',views.payment),
     path('chat',views.chat),
+    path('chat/reload',views.chat_reload),
     path('call',views.call),
     path('complain',views.complain),
     path('preorder',views.preorder),

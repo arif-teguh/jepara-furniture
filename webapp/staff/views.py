@@ -51,4 +51,14 @@ def reply_chat(request,user_id):
     all_chat = userModel.ChatContentModels.objects.filter(topic = topic)
     return render(request,'staff/chat.html',{"contents" : all_chat, "user_chat" : user_chat})
 
-
+@user_is_staff
+def reply_chat_reload(request,user_id):
+    user_chat = User.objects.get(id = user_id)
+    curr_user = User.objects.get(id = request.user.id)
+    try :
+        topic = userModel.ChatTopicModels.objects.get(user = user_chat)
+    except ObjectDoesNotExist:
+        topic = userModel.ChatTopicModels.objects.create(user = user_chat)
+        topic.save()
+    all_chat = userModel.ChatContentModels.objects.filter(topic = topic)
+    return render(request,'staff/chat_content.html',{"contents" : all_chat, "user_chat" : user_chat})

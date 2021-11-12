@@ -3,6 +3,10 @@
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
 
 
+setInterval(function(){
+  $('#chat').load('/chat');
+}, 2000) /* time in milliseconds (ie 2 seconds)*/
+
 var messages = [], //array that hold the record of each string in chat
   lastUserMessage = "", //keeps track of the most recent input string from the user
   botMessage = "", //var keeps track of what the chatbot is going to say

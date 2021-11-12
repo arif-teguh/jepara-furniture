@@ -112,6 +112,16 @@ def chat(request):
     all_chat = ChatContentModels.objects.filter(topic=topic)
     return render(request, "user/chat.html", {"contents": all_chat})
 
+@login_required(login_url="/login")
+def chat_reload(request):
+    curr_user = User.objects.get(id=request.user.id)
+    try:
+        topic = ChatTopicModels.objects.get(user=curr_user)    
+    except ObjectDoesNotExist:
+        topic = ChatTopicModels.objects.create(user=curr_user)
+        topic.save()
+    all_chat = ChatContentModels.objects.filter(topic=topic)
+    return render(request, "user/chat_content.html", {"contents": all_chat})
 
 @login_required(login_url="/login")
 def call(request):

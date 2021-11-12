@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="{% static 'css/chat.css' %}">
     {% comment %} <script src="{% static 'json/chat.js' %}"></script> {% endcomment %}
     <title>Jepara Furniture</title>
+<script>
+setInterval(function(){
+   $('html').load(window.location.href);
+}, 3000) /* time in milliseconds (ie 2 seconds)*/
+</script>
     {% endblock %}
 </head>
 <body>
