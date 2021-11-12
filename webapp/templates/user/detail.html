@@ -13,7 +13,7 @@
     <title>Jepara Furniture</title>
     {% endblock %}
 </head>
-<body style="background-color: #ededed;font-family: Asimov">
+<body style="background-color: #ededed;font-family: 'Amaranth', sans-serif;">
     {% block body %}
     <div class="bg">
         <div class="bg-detail">
@@ -32,11 +32,13 @@
                 <div class="bg-slideshow">
                     <div class="slideshow-container">
                         {% for each in gambar_furniture %}
-                        <div >
-                        <img src="/{{furniture.gambar}}" style="width:100%">
+                        <div class="mySlides">
+                            <img src="/{{furniture.gambar}}" style="width:100%">
                         </div>
                         {% endfor %}
-                        {% comment %} <div class="mySlides fade">
+
+                        {% comment %} 
+                        <div class="mySlides fade">
                         <img src={% static  gambar_furniture  %} style="width:100%">
                         </div>
                         
@@ -46,7 +48,8 @@
             
                         <div class="mySlides fade">
                         <img src={% static  "img/detail/img-slideshow1.png"  %} style="width:100%">
-                        </div> {% endcomment %}
+                        </div> 
+                        {% endcomment %}
                         
                         <a class="prev" onclick="plusSlides(-1)">&#10096;</a>
                         <a class="next" onclick="plusSlides(1)">&#10097;</a>
@@ -63,17 +66,17 @@
                 </div>    
                 <div class="desc">
                     <div class="desc-text">
-                        <p   class="input-desc-item" name = "" rows="8">{{furniture.info}}</textarea>
+                        <p class="input-desc-item" name = "" rows="8">{{furniture.info}}</p>
                     </div>
                     <div class="desc-number">
                         <form action="/checkout/{{furniture.id}}" method="post">
                             {% csrf_token %}
-                            <div class="stock">Stock :<p  type="text" id="" name="">{{furniture.stock}} </div>
+                            <div class="stock">Stock :<span class="input-stock">{{furniture.stock}} </span></div>
                             <div class="count">
                                 Jumlah
                                 <br>
                                 <span class="minus-counter">-</span>
-                                <input class="input-counter" type="text" name ="jumlah" value="1"/>
+                                <input class="input-counter" type="text" name ="jumlah" value="1">
                                 <span class="plus-counter">+</span>
                                 <br>
                                 <input type="submit" class="desc-button" value="Beli" name="">
@@ -87,12 +90,7 @@
         <div class="gap"></div> 
 
         <div class="feature-bar">
-            <div class="btn-1">
-                <a href="">
-                    <img class="img-feature" src={% static  "img/detail/btn-feature-1.png"  %}>
-                    
-                </a>
-            </div>
+            
             <div class="btn-2">
                 <a href="">
                     <img class="img-feature" src={% static  "img/detail/btn-feature-2.png"  %}>
@@ -241,7 +239,7 @@
 				$input.change();
 				return false;
 			});
-            $('#id_furniture').style.display = "none";
+      
 			$('.plus-counter').click(function () {
 				var $input = $(this).parent().find('.input-counter');
 				$input.val(parseInt($input.val()) + 1);

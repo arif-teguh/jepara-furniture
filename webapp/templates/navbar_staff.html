@@ -1,0 +1,72 @@
+{% load static %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Righteous" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">  
+<style>
+
+.error {
+  padding: 20px;
+  background-color: #f44336;
+  color: rgb(255, 255, 255);
+}
+
+.success {
+  padding: 20px;
+  background-color: #16a86b;
+  color: rgb(255, 255, 255);
+}
+
+.info {
+  padding: 20px;
+  background-color: #407a9e;
+  color: rgb(255, 255, 255);
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+</style>
+<div class="topnav">
+
+    {% if user.is_authenticated %}
+    <a href='/'>
+      <img id ="user_icon" src ={% static "img/LoginUserIcon.png" %} width="28px" height ="25px">
+    {% else %}
+    <a href='/login'>
+      <img id ="user_icon" src ={% static "img/NonLoginUserIcon.png" %} width="28px" height ="25px">
+    {% endif %}
+    </a>
+    
+    <a href="/">Profile</a>
+    <a href="/view/furniture/wardobe">Preorder</a>
+    <a href="/about">Complain</a>
+    <a href="/">Chat</a>
+
+    <a>
+    <a id='main_logo' style="float: left;">JEPARA FURNITURE</h>
+    </a>
+</div>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags%} 
+          <div class="{{message.tags}}">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <strong>{{message.tags}} !</strong> {{ message }}.
+          </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}

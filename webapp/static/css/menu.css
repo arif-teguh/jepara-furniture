@@ -31,36 +31,28 @@
     background-color: #FFFFFF;
     text-align: center;
 }
-.btn-1{
-    position: relative;
-    display: inline-block;
-    width: auto;
-    height: auto;
-    padding: 0.5% 0;
-}
 .btn-2{
-    position: relative;
-    display: inline-block;
-    width: auto;
-    height: auto;
-    margin-left: 15%;
-    padding: 0.5% 0;
+  position: relative;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  padding: 0.5% 0;
 }
 .btn-3{
-    position: relative;
-    display: inline-block;
-    width: auto;
-    height: auto;
-    margin-left: 15%;
-    padding: 0.5% 0;
+  position: relative;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  margin-left: 20%;
+  padding: 0.5% 0;
 }
 .btn-4{
-    position: relative;
-    display: inline-block;
-    width: auto;
-    height: auto;
-    margin-left: 15%;
-    padding: 0.5% 0;
+  position: relative;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  margin-left: 20%;
+  padding: 0.5% 0;
 }
 .img-feature{
     position: relative;

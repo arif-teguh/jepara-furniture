@@ -93,24 +93,32 @@ textarea{
   margin-right: 5px;
   border-radius: 25px;
   height: 100%;
-  float: right;
   font-family: Asimov;
   font-size: 20px;
-  cursor: pointer;
-}
+  cursor: pointer; 
+  }
+  
+  input[type="file"] {
+      display: none;
+      width: 0px;
+      height: 0px;
+  }
 
-.button-submit{
-  background-image: url('send.png');
-  border:none;
-  background-repeat:no-repeat;
-  background-size:100% 100%;
-  width: 40px;
-  height: 40px;
-  border-radius: 25px;
-  background-color: transparent;
-  float: right;
-  cursor: pointer;
-}
+  .button-submit{
+    display: inline-block;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 5px 25px;
+    text-align: center;
+    box-sizing: border-box;
+    margin-right: 5px;
+    border-radius: 25px;
+    height: 100%;
+    float: right;
+    font-family: Asimov;
+    font-size: 20px;
+    cursor: pointer;
+    }
 
 
 

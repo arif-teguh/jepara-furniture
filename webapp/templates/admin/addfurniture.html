@@ -1,74 +1,148 @@
-{% extends 'base.html' %}
+{% extends 'base_admin.html' %}
 <html>
 <head>
 {% block style %}
 <style>
-.box {
-    width: 33%;
-    max-height : 80vh;
-    padding: 4vh;
+.addfurniture-bg{
     position: relative;
-    top: 10%;
-    background: #191919;
-    transition: 0.25s;
-    margin-top: 1vh;
-    left:33%;
-    border-radius: 2.5vh;
-    overflow:auto;
+    height: 100%;
+    width: 100%;
+    left:0%;
+    top:0%;
+    right: 0%;
+    bottom: 0%;
+    
+    padding: 10% 0;
+    background-color: #ededed;
+    white-space: nowrap;
+
+    font-family: Asimov;
+    font-style: normal;
+    font-size: 150%;
 }
-
-.box input[type="file"],
-.box input[type="text"],
-.box input[type="number"] {
-    border: 0;
-    background: none;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    border: 2px solid #3498db;
-    padding: 30px 30px;
-    width: 50vh;
-    outline: none;
-    color: white;
-    border-radius: 1.5vh;
-    transition: 0.25s
-    align:left;
-}
-
-.box h1 {
-    color: white;
-    text-transform: uppercase;
-    font-weight: 500
-    align:left;
-}
-
-
-
-.box input[type="submit"] {
+.addfurniture-form-bg{
     position: relative;
-    right: 0vh;
-    align:right;
-    border: 0;
     display: block;
-    margin: 20px auto;
+    width: 40%;
+    height: auto;
+    border-radius: 25px;
+    padding: 3%;
+    margin: auto;
+    background-color: #262626;
     text-align: center;
-    padding: 2.4vh 6vh;
-    outline: none;
-    border-radius: 2.4vh;
-    transition: 0.25s;
-    cursor: pointer
-    background: #FFFFFF;
-    border-radius: 1.5vh;
-    width: 50vh;
 }
 
-.box input[type="submit"]:hover {
-    background: #2ecc71
+.addfurniture-input{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: fit-content;
+    padding: 4%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-bottom: 4%;
+    background-color: rgb(255, 255, 255);
+    font-family: Asimov;
+    font-size: 20px;
 }
 
-.forgot {
-    text-decoration: underline
+.bg-button{
+  position: relative;
+  display: block;
+  width: 100%;
+  font-size: 20px;
+  height: fit-content
 }
+
+.button-upload{
+  display: inline-block;
+  background-color: #ededed;
+  color: #262626;
+  padding: 5px 25px;
+  text-align: center;
+  box-sizing: border-box;
+  margin-right: 5px;
+  border-radius: 25px;
+  height: 100%;
+  font-family: Asimov;
+  font-size: 20px;
+  cursor: pointer;
+  float: left; 
+  }
+  
+  input[type="file"] {
+      display: none;
+      width: 0px;
+      height: 0px;
+  }
+
+  .button-submit{
+    display: inline-block;
+    background-color: #ededed;
+    color: #262626;
+    padding: 5px 25px;
+    text-align: center;
+    box-sizing: border-box;
+    margin-right: 5px;
+    border-radius: 25px;
+    height: 100%;
+    float: right;
+    font-family: Asimov;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+}
+
+
+
+::-webkit-input-placeholder { /* Edge */
+    color: rgba(0, 0, 0, 0.308);
+    font-family: Asimov;
+    font-style: normal;
+    font-size: 20px;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer */
+    color: rgba(0, 0, 0, 0.308);
+    font-family: Asimov;
+    font-style: normal;
+    font-size: 20px;
+  }
+  
+  ::placeholder {
+    color: rgba(0, 0, 0, 0.308);
+    font-family: Asimov;
+    font-style: normal;
+    font-size: 20px;
+  }
+
+  a:link {
+    text-decoration: none;
+  }
+  
+  a:visited {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
+  
+  a:active {
+    text-decoration: none;
+  }
+  a:link {
+    color: rgba(255, 255, 255, 0.411);
+  }
+  a:visited {
+    color: rgba(255, 255, 255, 0.411);
+  }
+  a:hover {
+    color: rgb(255, 255, 255);
+  }
+  a:active {
+    color: rgba(255, 255, 255, 0.411);
+  }
 
 
 {% load static %}
@@ -79,34 +153,39 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/addfurniture.css' %}">
 {% endblock %}
 {% block body %}
-  
-<div class="d-flex align-items-center justify-content-center">
-<div  >
-    <br>
-    <form  action="/admin/furniture/add"  method="post" class="box" enctype="multipart/form-data">
-    {% csrf_token %}
-        <h1 style="align:left">Jepara <br>Furniture</h1>
-        <br><br>
-        <input name="nama" type="text" name="nama" placeholder="nama"> 
+<body>
+    <div class="addfurniture-bg">
+    <div  class="addfurniture-form-bg">
         <br>
-        <input name="harga" type="number"  placeholder="price"> 
-        <input name="stok" type="number"  placeholder="stock"> 
-        <input name="info" type="text"  placeholder="Description"> 
+        <form  action="/admin/furniture/add"  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <h1 style="text-align: left;color:#ededed ;">Add Furniture</h1>
+            <br>
+            <input class="addfurniture-input" name="nama" type="text" name="nama" placeholder="Nama"> 
+            <input class="addfurniture-input" name="harga" type="number"  placeholder="Price"> 
+            <input class="addfurniture-input" name="stok" type="number"  placeholder="Stock"> 
+            <input class="addfurniture-input" name="info" type="text"  placeholder="Deskripsi"> 
+            <select name="kategori" class="addfurniture-input">
+                <option value="wardobe">Wardobe</option>
+                <option value="bed">Bed</option>
+                <option value="table">Table</option>
+                <option value="chair">Chair</option>
+                <option value="drawer">Drawer</option>
+            </select>
+            
+            <div class="bg-button">
+                <input type="submit" class="button-submit" name="" value="Add">
+                <label for="button-upload" class="button-upload">
+                    <input type="file" id="button-upload" name="file">Upload Picture
+                </label>
+            </div>
+
+        </form>
         <br>
-        <br>
-          <select name="kategori" >
-            <option value="wardobe">Wardobe</option>
-            <option value="bed">Bed</option>
-            <option value="table">Table</option>
-            <option value="chair">Chair</option>
-            <option value="drawer">Drawer</option>
-        </select> 
-        <input type="file" id="avatar" name="file"> 
-        <input type="submit" name="" value="Add ">
-    </form>
-    <br>
-</div>
-</div>
+    </div>
+    </div>
+</body>     
 {% endblock %}

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/preorder.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Amaranth&family=Righteous&display=swap" rel="stylesheet">
     <title>Jepara Furniture</title>
+    
     {% endblock %}
 </head>
 <body style="background-color: #ededed;font-family: 'Amaranth', sans-serif;font-size: 0px;">
@@ -26,6 +27,7 @@
             </div>
             <div class="complain-right">
                 <form action="/login" method="post">
+                    {% csrf_token %}
                     <input class="input-text" type="text" id="" name="" value="" placeholder="Nama">
                     <br>
                     <input class="input-text" type="text" id="" name="" value="" placeholder="E-mail">
@@ -35,8 +37,10 @@
                     <input class="input-text" type="text" id="" name="" value="" placeholder="Jenis Furnitur">
                     <br>
                     <div class="bg-button">
-                        <input type="submit" class="button-submit" name="" value="">
-                        <input type="button" class="button-upload" value="Upload Picture" name="">
+                        <input type="submit" class="button-submit" name="" value="Submit">
+                        <label for="button-upload" class="button-upload">
+                            <input type="file" id="button-upload" name="file">Upload Picture
+                        </label>
                     </div>
                 </form>
             </div>

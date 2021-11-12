@@ -1,43 +1,58 @@
-{% extends 'base.html' %}
-{% block body %}
-<style>
-.child {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.container {
-  position: relative;
-}
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 80%;
-}
+<!DOCTYPE html>
+{% extends 'base_admin.html' %}
+<html lang="en">
+{% load static   %}
+<head>
+    {% block style %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/staff_list.css' %}">
+    
+    <title>Jepara Furniture</title>
+    {% endblock %}
+</head>
+<body>
+    {% block body %}
+    <div class="bg">
+        <div class="bg2">
+            <div class="table-title">
+                <span class="title">Manage Staff</span>        
+                <a href="">
+                    <img src={% static  "img/add-button-black.png"  %} class="add-button">
+                </a>
+            </div>
+        
+            <div class="bg-table">
+                <table class="table-staff">
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Opsi</th>
+                    </tr>
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+                    {% for each in staffs %}
+                    <tr>
+                        <td>{{each.user.id}}</td>    
+                        <td>{{each.user.username}}</td>
+                        <td>{{each.user.email}}</td>
+                        <td>
+                            <a href="tes1.com">
+                                <img src={% static  "img/search-button.png"  %} class="button-table">
+                            </a>
+                            </a>
+                            <a href="tes3.com">
+                                <img src={% static  "img/delete-button.png"  %} class="button-table">
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
 
-</style>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<div  class="container"  align='center'>
-<table class='child'>
-<tr>
-<th>nama </th>
-<th> email</th>
-</tr>
-
-{% for each in staffs %}
-<tr>
-<td>{{each.user.username}}</td>
-<td>{{each.user.email}}</td>
-</tr>
-{% endfor %}
-</table>
-</div>
-{% endblock %}
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endblock %}  
+</body>
+</html>

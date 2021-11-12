@@ -1,79 +1,90 @@
-{% extends 'base.html' %}
+{% extends 'base_admin.html' %}
 <html>
 <head>
 {% block style %}
 <style>
-
-
-.box {
-    width: 33%;
-    max-height : 80vh;
-    padding: 4vh;
+    .register-bg{
     position: relative;
-    top: 10%;
-    background: #191919;
-    transition: 0.25s;
-    margin-top: 1vh;
-    left:33%;
-    border-radius: 2.5vh;
-    overflow:auto;
+    height: 100%;
+    width: 100%;
+    left:0%;
+    top:0%;
+    right: 0%;
+    bottom: 0%;
+    
+    padding: 10% 0;
+    background-color: #ededed;
+    white-space: nowrap;
+
+    font-family: Asimov;
+    font-style: normal;
+    font-size: 150%;
 }
-.box input[type="email"],
-.box input[type="text"],
-.box input[type="password"] {
-    border: 0;
-    background: none;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    border: 2px solid #3498db;
-    padding: 30px 30px;
-    width: 50vh;
-    outline: none;
-    color: white;
-    border-radius: 1.5vh;
-    transition: 0.25s
-    align:left;
-}
-
-.box h1 {
-    color: white;
-    text-transform: uppercase;
-    font-weight: 500
-    align:left;
-}
-
-
-
-.box input[type="submit"] {
+.register-form-bg{
     position: relative;
-    right: 0vh;
-    align:right;
-    border: 0;
     display: block;
-    margin: 20px auto;
-    text-align: center;
-    padding: 2.4vh 6vh;
-    outline: none;
-    border-radius: 2.4vh;
-    transition: 0.25s;
-    cursor: pointer
-    background: #FFFFFF;
-    border-radius: 1.5vh;
-    width: 50vh;
+    width: 40%;
+    height: auto;
+    border-radius: 25px;
+    padding: 1% 3% 3%;
+    margin: auto;
+    background-color: #262626;
+    text-align: left;
 }
 
-.box input[type="submit"]:hover {
-    background: #2ecc71
+.register-input-textpw{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: fit-content;
+    padding: 4%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-bottom: 4%;
+    background-color: rgb(255, 255, 255);
+    font-family: Asimov;
+    font-size: 20px;
 }
 
-.forgot {
-    text-decoration: underline
+.register-input-register{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: fit-content;
+    padding: 4% 0;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: white;
+    background-color: #515151;
+    cursor: pointer;
+
+    font-family: Asimov;
+    font-style: normal;
+    font-size: 100%;
 }
 
+::-webkit-input-placeholder { /* Edge */
+    color: rgba(0, 0, 0, 0.308);
+    font-family: Asimov;
+    font-style: normal;
+    font-size: 20px;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer */
+    color: rgba(0, 0, 0, 0.308);
+    font-family: Asimov;
+    font-style: normal;
+    font-size: 20px;
+  }
+  
+  ::placeholder {
+    color: rgba(0, 0, 0, 0.308);
+    font-family: Asimov;
+    font-style: normal;
+    font-size: 20px;
+  }
 
 {% load static %}
-</style>
 </style>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -86,26 +97,19 @@ Jepara Furniture
 </title>
 </head> 
 <body>
-{% block body %}
-  
-<div class="d-flex align-items-center justify-content-center">
-<div>
-    <br>
-    <form   action="/admin/staff/add"  method="post" class="box">
-    {% csrf_token %}
-        <h1 style="align:left">Add Staff</h1>
-        <br><br>
-        <input name="email" type="email" name="email" placeholder="email"> 
-        <br>
-        <input name="username" type="text" nameusername placeholder="Username"> 
-        <br>
-        <input name="password" type="password" name="password" placeholder="Password"> 
-        <br>
-        <input type="submit" name="" value="Add Staff">
-    </form>
-    <br>
-</div>
-</div>
-{% endblock %}
+    {% block body %}
+    <div class="register-bg">
+        <div class="register-form-bg">
+            <form action="/admin/staff/add" method="post">
+                {% csrf_token %}
+                <p style="text-align: left;font-size: 200%;color: white;">ADD STAFF</p>
+                <input type="email" class="register-input-textpw" name="email" placeholder="EMAIL">
+                <input type="text" class="register-input-textpw" name="username" placeholder="USERNAME">
+                <input type="password" class="register-input-textpw" name="password" placeholder="PASSWORD">
+                <input type="submit" class="register-input-register" name="" value="Add Staff">
+            </form>
+        </div>
+    </div>
+    {% endblock %} 
 </body>
 </html>
