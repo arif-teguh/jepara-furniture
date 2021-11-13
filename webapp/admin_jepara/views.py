@@ -78,3 +78,7 @@ def addNewFurniture(request):
         else :
             messages.error(request, 'Ada data yang kurang atau belum diisi!')
     return render(request, 'admin/addfurniture.html',{'form': form})
+
+@user_is_admin
+def base(request):
+    return render(request, 'admin/admin.html')

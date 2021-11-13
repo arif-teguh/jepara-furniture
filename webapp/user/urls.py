@@ -21,5 +21,7 @@ urlpatterns = [
     path('call',views.call),
     path('complain',views.complain),
     path('preorder',views.preorder),
+    path('profile',views.profile),
+    path('profile/edit',views.edit_profile),
 ]
 

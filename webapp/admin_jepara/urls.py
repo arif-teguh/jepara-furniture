@@ -13,4 +13,5 @@ urlpatterns = [
     path('staff',views.staff_list),
     path('chat/<int:user_id>',views.reply_chat),
     path('furniture/add',views.addNewFurniture),
+    path('',views.base),
 ]

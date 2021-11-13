@@ -54,3 +54,15 @@ class ChatContentModels(models.Model):
     content = models.CharField(max_length=200)
     topic = models.ForeignKey(ChatTopicModels,on_delete=models.CASCADE,
          null=False, blank=False)
+
+
+
+class ProfileModels(models.Model):
+    user =  models.ForeignKey(User,on_delete=models.CASCADE,
+         null=False, blank=False)
+    alamat = models.TextField()
+    gender =  models.CharField(max_length=20)
+    full_name = models.TextField()
+    phone = models.CharField(max_length=20)
+    birth_date = models.DateField()
+    profile_pic = models.FileField(upload_to = 'static/uploaded/profile', null= True , default="static/uploaded/profile/profile.png")

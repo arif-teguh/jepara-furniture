@@ -7,4 +7,7 @@ webapp/static_file/*
 webapp/user/migrations/*
 webapp/staff/migrations/*
 webapp/admin_jepara/migrations/*
-webapp/webapp/migrations/*
+**/migrations/*
+__pycache__/
+*.pyc
+*.pyo

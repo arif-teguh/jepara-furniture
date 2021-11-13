@@ -1,46 +1,60 @@
 <!DOCTYPE html>
+{% extends 'base.html' %}
 <html lang="en">
+{% load static   %}
 <head>
+{% block style %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="/static/css/profile.css">
     <link href="https://fonts.googleapis.com/css2?family=Amaranth&family=Righteous&display=swap" rel="stylesheet">
     <title>Profile</title>
+     {% endblock %}
 </head>
 <body>
+ {% block body %}
     <div class="bg">
         <div class="bg-profile">
             <div class="profile-left">
-                <img src="profile.png" class="profile-img" width="500px" height="500px">
+                {% if profile.profile_pic %}
+                <img src="/{{profile.profile_pic}}" class="profile-img" width="500px" height="500px">
+                {% else %}
+                <img src="/static/img/profile.png" class="profile-img" width="500px" height="500px">
+                {% endif %}
                 <br>
+                <form action="/profile/edit" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
                 <label for="button-upload" class="button-upload">
-                    <input type="file" id="button-upload" name="">Upload Foto
+                    <input type="file" id="button-upload" name="file">Upload Foto
                 </label>
 
             </div>
             <div class="profile-right">
-                <form action="" method="post">
+                
                 <p class="profile-title">Biodata Diri</p>
                 <span class="filler-text">Nama</span>
-                <input class="profile-desc" type="text" id="" name="" value="Name">
+                <input class="profile-desc" type="text" id="" name="full_name" value="{{profile.full_name}}">
                 
                 <br>
                 <span class="filler-text">Tanggal Lahir</span>
-                <input class="profile-desc" type="text" id="" name="" value="DoB">
+                <input class="profile-desc" type="date" id="" name="birth_date" value="{{profile.birth_date}}">
                 
                 <br>
                 <span class="filler-text">Jenis Kelamin</span>
-                <input class="profile-desc" type="text" id="" name="" value="Gender">
-                
+                <input class="profile-desc" type="text" id="" name="gender" value="{{profile.gender}}">
+                <br>
+                <span class="filler-text">Alamat</span>
+                <input class="profile-desc" type="text" id="" name="alamat" value="{{profile.alamat}}">
+
                 <br>
                 <p class="profile-title">Detail Kontak</p>
                 <span class="filler-text">Email</span>
-                <input class="profile-desc" type="text" id="" name="" value="Email">
+                <p class="profile-desc" type="text" id="" name="email" value="{{request.user.email}}">
                 
                 <br>
                 <span class="filler-text">Nomor Telepon</span>
-                <input class="profile-desc" type="text" id="" name="" value="Phone">
+                <input class="profile-desc" type="text" id="" name="phone" value="{{profile.phone}}">
                 
                 <br>
                 <input type="submit" class="submit-button" name="" value="Submit">
@@ -48,5 +62,6 @@
             </div>
         </div>
     </div>
+     {% endblock %}
 </body>
 </html>

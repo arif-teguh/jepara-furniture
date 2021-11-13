@@ -1,7 +1,7 @@
 from typing import overload
 
 from django.http.response import HttpResponseNotAllowed
-from .models import FurnitureModels, OrderModels, ReviewModels, ChatTopicModels, ChatContentModels, OrderModels,ShoppingCartModels
+from .models import FurnitureModels, OrderModels, ReviewModels, ChatTopicModels, ChatContentModels, OrderModels,ShoppingCartModels, ProfileModels
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -189,3 +189,26 @@ def calculate_rating(furniture):
     if reviews:
         final_value = str(tmp_value / reviews.count())
     return final_value
+
+def profile(request):
+    profile = ProfileModels.objects.get(user = request.user)
+    return render(request, "profile.html",{"profile": profile})
+
+
+
+def edit_profile(request):
+    profile = ProfileModels.objects.get(user = request.user)
+    if request.method == "POST":
+        profile.alamat = request.POST['alamat']
+        profile.gender = request.POST['gender']
+        profile.full_name = request.POST['full_name']
+        profile.phone = request.POST['phone']
+        profile.birth_date = str(request.POST['birth_date'])
+        print(request.FILES)
+        profile_pic =request.FILES.get('file')
+        print(profile_pic)
+        if profile_pic :
+            profile.profile_pic = profile_pic
+        profile.save()
+    profile.birth_date = str(profile.birth_date)
+    return render(request, "profile-edit.html",{"profile": profile})
