@@ -11,6 +11,7 @@ urlpatterns = [
     # path('logout',views.logout_staff),
     path('staff/add',views.add_staff),
     path('staff',views.staff_list),
+    path('user',views.user_list),
     path('chat/<int:user_id>',views.reply_chat),
     path('furniture/add',views.addNewFurniture),
     path('',views.base),

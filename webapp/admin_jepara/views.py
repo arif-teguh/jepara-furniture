@@ -9,6 +9,7 @@ from django.shortcuts import render
 from user.forms import RegisterUserForm 
 from django.contrib.auth.decorators import login_required
 from staff.models import IsStaffModel
+
 from .middleware import user_is_admin
 from django.contrib import messages
 import user.models as userModel
@@ -27,10 +28,22 @@ def add_staff(request):
             username = request.POST['username']
             password = request.POST['password']
             email = request.POST['email']
-            user = User.objects.create_user(username = username, email = email, password = password)
+            alamat = request.POST.get('alamat')
+            gender = request.POST.get('gender')
+            phone = request.POST.get('phone')
+            full_name = request.POST.get('full_name')
+            birth_date = request.POST.get('birth_date')
+            user = User.objects.create_user(username = username, email = email, password = password, is_staff = True)
             user.save()
-            staff = IsStaffModel.objects.create(user = user)
-            staff.save()
+            profile = userModel.ProfileModels.objects.create(
+                alamat = alamat,
+                gender = gender,
+                phone = phone,
+                full_name = full_name,
+                birth_date = birth_date,
+                user = user
+            )
+            profile.save()
             messages.success(request, (f"{user.username} berhasil ditambahkan !"))
         else :
             messages.error(request, 'Ada data yang kurang atau belum diisi!')
@@ -38,9 +51,19 @@ def add_staff(request):
 
 @user_is_admin
 def staff_list(request):
-    staffs = IsStaffModel.objects.all()
-    return render(request,'admin/staff_list.html',{'staffs':staffs})
+    user_in_staff = User.objects.filter(is_staff=True)
+    staffs_profile = userModel.ProfileModels.objects.filter(user__in = user_in_staff )
+    return render(request,'admin/staff_list.html',{'staffs':staffs_profile})
 
+@user_is_admin
+def user_list(request):
+    staffs = IsStaffModel.objects.all()
+    user_in_staff = []
+    for staff in staffs :
+        user_in_staff.append(staff.user.id)
+    staffs_profile = userModel.ProfileModels.objects.all().exclude(user__id__in = user_in_staff )
+    return render(request,'admin/user_list.html',{'staffs':staffs_profile})
+    
 
 @user_is_admin
 def reply_chat(request,user_id):
@@ -81,4 +104,4 @@ def addNewFurniture(request):
 
 @user_is_admin
 def base(request):
-    return render(request, 'admin/admin.html')
+    return render(request, 'base_admin.html')

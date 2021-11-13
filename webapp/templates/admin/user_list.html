@@ -33,7 +33,7 @@
                         <th>Gender<th>
                         <th>Nomor Hp<th>
                         <th>Tanggal lahir<th>
-                        <th>Opsi</th>
+                        {% comment %} <th>Opsi</th> {% endcomment %}
                     </tr>
 
                     {% for each in staffs %}
@@ -45,7 +45,7 @@
                         <td>{{each.gender}}</td>
                         <td>{{each.phone}}</td>
                         <td>{{each.birth_date}}</td>
-                        <td>
+                        {% comment %} <td>
                             <a href="tes1.com">
                                 <img src={% static  "img/search-button.png"  %} class="button-table">
                             </a>
@@ -53,7 +53,7 @@
                             <a href="tes3.com">
                                 <img src={% static  "img/delete-button.png"  %} class="button-table">
                             </a>
-                        </td>
+                        </td> {% endcomment %}
                     </tr>
                     {% endfor %}
 

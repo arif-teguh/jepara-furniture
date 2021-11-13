@@ -14,7 +14,7 @@ def user_is_admin(func):
         try :
             req = args[0]
             if not req.user.is_superuser :
-                return redirect('home')
+                return redirect(home)
             return func(*args, **kwargs)
         except ObjectDoesNotExist:
              return redirect(home)

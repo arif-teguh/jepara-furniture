@@ -15,7 +15,15 @@ Jepara Furniture
 </title>
 </head> 
 <body>
-  <header>{% include 'navbar.html' %}</header>
+  <header>
+  {% if request.user.is_superuser %}
+    {% include 'navbar_admin.html' %}
+  {% elif   request.user.is_staff %}
+    {% include 'navbar_staff.html' %}
+  {% else %}
+    {% include 'navbar.html' %}
+  {% endif %}
+  </header>
     {% block body %}
     {% endblock %}
   <footer>{% include 'footer.html' %}</footer>

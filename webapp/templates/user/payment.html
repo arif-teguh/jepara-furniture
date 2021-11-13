@@ -38,7 +38,11 @@
 
         <div class="title2">
             <span>Cara Pembayaran</span>
-            <a href=""><span class="va-button3">Upload Pembayaran</span></a>
+            <form action="/payment" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input required type="file" id="button-upload" name="file">Upload Foto Pembayaran
+            <input type="submit" class="submit-button" name="" value="Submit">
+            </form>
             <a href="/"><span class="va-button2">Belanja Lagi</span></a>
         </div>
 

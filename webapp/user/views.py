@@ -1,7 +1,11 @@
 from typing import overload
+from django.core import exceptions
 
 from django.http.response import HttpResponseNotAllowed
-from .models import FurnitureModels, OrderModels, ReviewModels, ChatTopicModels, ChatContentModels, OrderModels,ShoppingCartModels, ProfileModels
+from .models import (
+    FurnitureModels, OrderModels, ReviewModels, ChatTopicModels,
+    ChatContentModels, OrderModels,ShoppingCartModels, ProfileModels,ComplainModels, PreOrderModels, PaymentModels
+)
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -47,6 +51,20 @@ def register_user(request):
             email = request.POST["email"]
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
+            alamat = request.POST.get('alamat')
+            gender = request.POST.get('gender')
+            phone = request.POST.get('phone')
+            full_name = request.POST.get('full_name')
+            birth_date = request.POST.get('birth_date')
+            profile = ProfileModels.objects.create(
+                alamat = alamat,
+                gender = gender,
+                phone = phone,
+                full_name = full_name,
+                birth_date = birth_date,
+                user = user
+            )
+            profile.save()
             return redirect("/login")
         else :
             messages.error(request, 'Ada yang salah dengan user mu')
@@ -123,18 +141,59 @@ def chat_reload(request):
     all_chat = ChatContentModels.objects.filter(topic=topic)
     return render(request, "user/chat_content.html", {"contents": all_chat})
 
-@login_required(login_url="/login")
-def call(request):
-    return render(request, "user/call.html")
+# @login_required(login_url="/login")
+# def call(request):
+#     return render(request, "user/call.html")
 
 
 @login_required(login_url="/login")
 def complain(request):
+    if request.method == "POST":
+        try :
+            alamat = request.POST['alamat']
+            nama = request.POST['nama']
+            email = request.POST['email']
+            deskripsi = request.POST['deskripsi']
+            pic =request.FILES.get('file')
+            complain = ComplainModels.objects.create(
+                user = request.user,
+                alamat = alamat,
+                nama = nama,
+                email = email,
+                deskripsi = deskripsi,
+            )
+            if pic :
+                complain.picture = pic
+            complain.save()
+            messages.success(request, 'Komplain berhasil dikirimkan !')
+        except exceptions as e: 
+            print(e)
+            messages.error(request, 'Ada data yang salah !')
     return render(request, "user/complain.html")
 
 
 @login_required(login_url="/login")
 def preorder(request):
+    if request.method == "POST":
+        try :
+            alamat = request.POST['alamat']
+            nama = request.POST['nama']
+            email = request.POST['email']
+            jenis_furniture = request.POST['jenis_furniture']
+            pic =request.FILES.get('file')
+            preorder = PreOrderModels.objects.create(
+                user = request.user,
+                alamat = alamat,
+                nama = nama,
+                email = email,
+                jenis_furniture = jenis_furniture,
+            )
+            if pic :
+                preorder.picture = pic
+            preorder.save()
+            messages.success(request, 'Preorder berhasil dikirimkan !')
+        except : 
+            messages.error(request, 'Ada data yang salah atau kurang!')
     return render(request, "user/preorder.html")
 
 
@@ -176,7 +235,35 @@ def checkout_all(request):
 @login_required(login_url="/login")
 def payment(request):
     user = User.objects.get(id=request.user.id)
-    keranjang = ShoppingCartModels.objects.get(user=user)
+    try :
+        keranjang = ShoppingCartModels.objects.get(user=user)
+    except :
+        messages.info(request, 'Keranjang anda masih kosong isi terlebih  dahulu!')
+        return redirect("/")
+    if request.method == "POST":
+        try:
+            profile = ProfileModels.objects.get(user = request.user)
+            picture =request.FILES['file']
+            if not picture :
+                raise
+            payment = PaymentModels.objects.create(
+                user = request.user,
+                alamat = profile.alamat,
+                total = keranjang.total,
+                status = "Pending",
+                bukti_pembayaran = picture,
+                total_furnitur = keranjang.total_furnitur,
+                keranjang_deleted_id = keranjang.id
+            )
+            payment.save()
+            orders = OrderModels.objects.filter(keranjang = keranjang)
+            for order in orders :
+                order.keranjang_deleted_id = keranjang.id
+                order.save()
+            keranjang.delete()
+            return redirect("/")
+        except :
+            messages.error(request, 'Foto bukti pembayaran harus ada!')
     return render(request, "user/payment.html",{"keranjang": keranjang})
 
 
@@ -204,9 +291,7 @@ def edit_profile(request):
         profile.full_name = request.POST['full_name']
         profile.phone = request.POST['phone']
         profile.birth_date = str(request.POST['birth_date'])
-        print(request.FILES)
         profile_pic =request.FILES.get('file')
-        print(profile_pic)
         if profile_pic :
             profile.profile_pic = profile_pic
         profile.save()

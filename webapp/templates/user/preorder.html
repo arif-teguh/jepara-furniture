@@ -26,15 +26,15 @@
                 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdo.Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdo. </span>
             </div>
             <div class="complain-right">
-                <form action="/login" method="post">
+                <form action="/preorder" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <input class="input-text" type="text" id="" name="" value="" placeholder="Nama">
+                    <input required class="input-text" type="text" id="" name="nama" value="" placeholder="Nama">
                     <br>
-                    <input class="input-text" type="text" id="" name="" value="" placeholder="E-mail">
+                    <input required class="input-text" type="text" id="" name="email" value="" placeholder="E-mail">
                     <br>
-                    <textarea  class="input-text" name = "" rows="8" placeholder="Alamat"></textarea>
+                    <textarea required  class="input-text" name = "alamat" rows="8" placeholder="Alamat"></textarea>
                     <br>
-                    <input class="input-text" type="text" id="" name="" value="" placeholder="Jenis Furnitur">
+                    <input  required class="input-text" type="text" id="" name="jenis_furniture" value="" placeholder="Jenis Furnitur">
                     <br>
                     <div class="bg-button">
                         <input type="submit" class="button-submit" name="" value="Submit">
