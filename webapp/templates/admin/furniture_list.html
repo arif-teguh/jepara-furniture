@@ -78,6 +78,7 @@ border:hidden;
 
 .table-staff td, .table-staff th {
 padding: 8px;
+max-width: 150px;
 overflow: hidden;
 text-overflow: ellipsis;
 color: white;
@@ -87,8 +88,8 @@ color: white;
 
 .table-staff tr:hover {background-color: #4e4e4e;}
 
-table th:first-child {width: 4%;}
-table td:first-child {width: 4%;}
+/* table th:first-child {width: 4%;}
+table td:first-child {width: 4%;} */
 
 .table-staff th {
 padding-top: 12px;
@@ -157,7 +158,12 @@ a:hover {
 a:active {
   color: rgba(255, 255, 255, 0.411);
 }
+img{
+  width: 100%;
+}
+
     </style>
+
 
     <title>Jepara Furniture</title>
     {% endblock %}
@@ -167,34 +173,41 @@ a:active {
     <div class="bg">
         <div class="bg2">
             <div class="table-title">
-                <span class="title">Manage User</span>        
+                <span class="title">Manage Furniture</span>        
+                <a href="/admin/furniture/add">
+                    <img src={% static  "img/add-button-black.png"  %} class="add-button">
+                </a>
             </div>
         
             <div class="bg-table">
                 <table class="table-staff">
                     <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Alamat</th>
-                        <th>Gender</th>
-                        <th>Nomor Hp</th>
-                        <th>Tanggal lahir</th>
+                        <!-- <th>ID</th> -->
+                        <th>Nama</th>
+                        <th>Harga</th>
+                        <th>Gambar</th>
+                        <th>Kategori</th>
+                        <th>Info</th>
+                        <th>Stock</th>
                         <th>Opsi</th>
                     </tr>
 
-                    {% for each in staffs %}
+                    {% for each in furnitures %}
                     <tr>
-                        <td>{{each.user.id}}</td>    
-                        <td>{{each.user.username}}</td>
-                        <td>{{each.user.email}}</td>
-                        <td>{{each.alamat}}</td>
-                        <td>{{each.gender}}</td>
-                        <td>{{each.phone}}</td>
-                        <td>{{each.birth_date}}</td>
+                        <!-- <td>{{each.user.id}}</td>     -->
+                        <td>{{each.furniture.nama}}</td>
+                        <td>{{each.furniture.harga}}</td>
+                        <td>
+                            
+                            <img src="/{{each.furniture.gambar}}">
+                            
+                        </td>
+                        <td>{{each.furniture.kategori}}</td>
+                        <td>{{each.furniture.info}}</td>
+                        <td>{{each.furniture.stock}}</td>
                         <td>
                             <a href="tes1.com">
-                                <img src={% static  "img/chat-button.png"  %} class="button-table">
+                                <img src={% static  "img/edit-button.png"  %} class="button-table">
                             </a>
                             </a>
                             <a href="tes3.com">

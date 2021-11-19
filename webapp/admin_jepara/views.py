@@ -64,6 +64,15 @@ def user_list(request):
     staffs_profile = userModel.ProfileModels.objects.all().exclude(user__id__in = user_in_staff )
     return render(request,'admin/user_list.html',{'staffs':staffs_profile})
     
+@user_is_admin
+def furniture_list(request):
+    furnitures = userModel.FurnitureModels.objects.all()
+    final_furnitures = []
+    for each in furnitures:
+        furnitur = {}
+        furnitur["furniture"] = each
+        final_furnitures.append(furnitur)
+    return render(request, "admin/furniture_list.html", {"furnitures": final_furnitures})
 
 @user_is_admin
 def reply_chat(request,user_id):

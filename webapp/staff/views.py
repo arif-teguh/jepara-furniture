@@ -62,3 +62,33 @@ def reply_chat_reload(request,user_id):
         topic.save()
     all_chat = userModel.ChatContentModels.objects.filter(topic = topic)
     return render(request,'staff/chat_content.html',{"contents" : all_chat, "user_chat" : user_chat})
+
+@user_is_staff
+def complain_list(request):
+    complains = userModel.ComplainModels.objects.all()
+    final_complains = []
+    for each in complains:
+        complain = {}
+        complain["complain"] = each
+        final_complains.append(complain)
+    return render(request, 'staff/complain_list.html',{"complains": final_complains})
+
+@user_is_staff
+def preorder_list(request):
+    preorders = userModel.PreOrderModels.objects.all()
+    final_preorders = []
+    for each in preorders:
+        preorder = {}
+        preorder["preorder"] = each
+        final_preorders.append(preorder)
+    return render(request, 'staff/preorder_list.html',{"preorders": final_preorders})
+
+    # furnitures = userModel.FurnitureModels.objects.all()
+    # final_furnitures = []
+    # for each in furnitures:
+    #     furnitur = {}
+    #     furnitur["furniture"] = each
+    #     final_furnitures.append(furnitur)
+    # return render(request, "admin/furniture_list.html", {"furnitures": final_furnitures})
+
+    

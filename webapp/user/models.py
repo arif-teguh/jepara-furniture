@@ -25,7 +25,7 @@ class ShoppingCartModels(models.Model):
     user =  models.ForeignKey(User,on_delete=models.CASCADE,
          null=False, blank=False) 
     total = models.IntegerField(null=False , default= 0)   
-    total_furnitur = models.IntegerField(null=False)   
+    total_furnitur = models.IntegerField(null=False , default = 0)   
 
 
 

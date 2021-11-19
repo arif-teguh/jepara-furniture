@@ -240,7 +240,7 @@ def payment(request):
     except :
         messages.info(request, 'Keranjang anda masih kosong isi terlebih  dahulu!')
         return redirect("/")
-    if request.method == "POST":
+    if request.method == "GET":
         try:
             profile = ProfileModels.objects.get(user = request.user)
             picture =request.FILES['file']
