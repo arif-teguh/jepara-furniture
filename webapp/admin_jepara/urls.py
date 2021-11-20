@@ -15,5 +15,6 @@ urlpatterns = [
     path('furniture',views.furniture_list),
     path('chat/<int:user_id>',views.reply_chat),
     path('furniture/add',views.addNewFurniture),
+    path('furniture/delete/<int:furtniture_id>',views.delete_furniture),
     path('',views.base),
 ]

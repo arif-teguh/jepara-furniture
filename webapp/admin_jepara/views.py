@@ -112,5 +112,12 @@ def addNewFurniture(request):
     return render(request, 'admin/addfurniture.html',{'form': form})
 
 @user_is_admin
+def delete_furniture(request, furtniture_id):
+    furniture = userModel.FurnitureModels.objects.get(id = furtniture_id)
+    messages.success(request, (f"{furniture.nama} berhasil dihapus !"))
+    furniture.delete()
+    return redirect(request.META.get('HTTP_REFERER'))
+
+@user_is_admin
 def base(request):
     return render(request, 'base_admin.html')
