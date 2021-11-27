@@ -14,8 +14,8 @@
 Jepara Furniture
 </title>
 </head> 
-<body>
-  <header>
+<body style="min-height: 1440px;">
+  <header style="z-index: 3;">
   {% if request.user.username == "owner" %}
     {% include 'navbar_owner.html' %}
   {% elif request.user.is_superuser %}
