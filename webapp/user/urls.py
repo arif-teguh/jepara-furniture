@@ -23,5 +23,6 @@ urlpatterns = [
     path('preorder',views.preorder),
     path('profile',views.profile),
     path('profile/edit',views.edit_profile),
+    path('confirmation',views.confirmation),
 ]
 

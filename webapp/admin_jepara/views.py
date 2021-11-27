@@ -10,6 +10,7 @@ from user.forms import RegisterUserForm
 from django.contrib.auth.decorators import login_required
 from staff.models import IsStaffModel
 
+
 from .middleware import user_is_admin
 from django.contrib import messages
 import user.models as userModel
@@ -138,3 +139,40 @@ def login_admin(request):
 def logout_admin(request):
     logout(request)
     return render(request,'admin/login.html')
+
+
+@user_is_admin
+def view_profile(request, id_user):
+    user = User.objects.get(id = id_user)
+    profile = userModel.ProfileModels.objects.get(user = user)
+    return render( request, 'admin/profile-viewonly.html',{'profile':profile})
+
+
+@user_is_admin
+def order_list(request):
+    payment = userModel.PaymentModels.objects.all().exclude(status = "Completed")
+    return render( request, 'admin/order_list.html',{'payment':payment})
+
+@user_is_admin
+def confirm_order(request, order_id):
+    try :
+        payment = userModel.PaymentModels.objects.get(id=order_id, status = "Pending")
+        payment.status = "Delivered"
+        payment.save()
+        messages.success(request, ("Status pembayaran berhasil diubah menjadi dikirm !"))
+    except :
+        messages.error(request, ("Status pembayaran gagal diubah!"))
+        return redirect(request.META.get('HTTP_REFERER'))    
+    return redirect(request.META.get('HTTP_REFERER'))
+
+@user_is_admin
+def order_detail(request, order_id):
+    try:
+        payment = userModel.PaymentModels.objects.get(id = order_id)
+    except:
+        messages.error(request, 'Tidak ada pesanan yang butuh konfirmasi !')
+        return redirect("/")
+    keranjang_deleted_id = payment.keranjang_deleted_id
+    all_order = userModel.OrderModels.objects.filter(user=payment.user , keranjang_deleted_id = keranjang_deleted_id)
+    #return render(request, "user/checkout.html" ,{"orders": all_order , "keranjang" : keranjang})
+    return render(request, "admin/order_detail.html",{"orders": all_order, "keranjang": payment})

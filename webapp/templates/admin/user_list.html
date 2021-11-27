@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% extends 'base_admin.html' %}
+{% extends 'base.html' %}
 <html lang="en">
 {% load static   %}
 <head>
@@ -180,7 +180,9 @@ a:active {
                         <th>Gender</th>
                         <th>Nomor Hp</th>
                         <th>Tanggal lahir</th>
+                        {% if request.user.username != "owner" %}
                         <th>Opsi</th>
+                        {% endif %}
                     </tr>
 
                     {% for each in staffs %}
@@ -192,15 +194,13 @@ a:active {
                         <td>{{each.gender}}</td>
                         <td>{{each.phone}}</td>
                         <td>{{each.birth_date}}</td>
+                        {% if request.user.username != "owner" %}
                         <td>
-                            <a href="tes1.com">
-                                <img src={% static  "img/chat-button.png"  %} class="button-table">
-                            </a>
-                            </a>
-                            <a href="tes3.com">
-                                <img src={% static  "img/delete-button.png"  %} class="button-table">
+                            <a href="/admin/profile/other-view/{{each.user.id}}">
+                                <img src={% static  "img/edit-button.png"  %} class="button-table">
                             </a>
                         </td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
 

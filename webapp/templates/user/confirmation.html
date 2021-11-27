@@ -35,7 +35,7 @@
             <!-- for loop per item -->
         </div>
         <div class="cart-detail">
-            <form action="/payment" method="get">
+            <form action="/confirmation" method="post">
                 {% csrf_token %}
                 <div class="cart-detail-text">
                     <span>Detail Belanja</span>
@@ -52,7 +52,7 @@
                 </div>
                     <label class="cart-detail-button" for="input-cart-submit">
                         <img src={% static  "img/keranjang/shield-done.png"  %} style="vertical-align: middle;">
-                        <input type="submit" id="input-cart-submit" class="input-cart-submit" name="" value="Bayar">
+                        <input type="submit" id="input-cart-submit" class="input-cart-submit" name="" value="Konfirmasi Pnemerimaan">
                     </label>
             </form>
         </div>

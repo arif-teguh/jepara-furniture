@@ -92,3 +92,7 @@ def preorder_list(request):
     # return render(request, "admin/furniture_list.html", {"furnitures": final_furnitures})
 
     
+@user_is_staff
+def chat_list(request):
+    chat_list = userModel.ChatTopicModels.objects.all()
+    return render ( request, 'staff/chat_list.html',{"chat_list": chat_list})

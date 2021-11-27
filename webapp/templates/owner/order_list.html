@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% extends 'base.html' %}
+{% extends 'base_admin.html' %}
 <html lang="en">
 {% load static   %}
 <head>
@@ -173,53 +173,41 @@ img{
     <div class="bg">
         <div class="bg2">
             <div class="table-title">
-                <span class="title">Manage Furniture</span> 
-                {% if request.user.username != "owner" %}       
+                <span class="title">Manage Order</span>        
                 <a href="/admin/furniture/add">
                     <img src={% static  "img/add-button-black.png"  %} class="add-button">
                 </a>
-                {% endif %}
             </div>
         
             <div class="bg-table">
                 <table class="table-staff">
                     <tr>
                         <!-- <th>ID</th> -->
-                        <th>Nama</th>
+                        <th>Nama Pembei</th>
                         <th>Harga</th>
-                        <th>Gambar</th>
-                        <th>Kategori</th>
-                        <th>Info</th>
-                        <th>Stock</th>
-                        {% if request.user.username != "owner" %}
+                        <th>Gambar pembayaran</th>
+                        <th>alamat</th>
+                        <th>status</th>
                         <th>Opsi</th>
-                        {% endif %}
                     </tr>
 
-                    {% for each in furnitures %}
+                    {% for each in payment %}
                     <tr>
                         <!-- <td>{{each.user.id}}</td>     -->
-                        <td>{{each.furniture.nama}}</td>
-                        <td>{{each.furniture.harga}}</td>
+                        <td>{{each.user.username}}</td>
+                        <td>{{each.total}}</td>
                         <td>
                             
-                            <img src="/{{each.furniture.gambar}}">
+                            <img src="/{{each.bukti_pembayaran}}">
                             
                         </td>
-                        <td>{{each.furniture.kategori}}</td>
-                        <td>{{each.furniture.info}}</td>
-                        <td>{{each.furniture.stock}}</td>
-                        {% if request.user.username != "owner" %}
+                        <td>{{each.alamat}}</td>
+                        <td>{{each.status}}</td>
                         <td>
-                            <a href="tes1.com">
-                                <img src={% static  "img/edit-button.png"  %} class="button-table">
-                            </a>
-                            </a>
-                            <a href="/admin/furniture/delete/{{each.furniture.id}}">
-                                <img src={% static  "img/delete-button.png"  %} class="button-table">
+                            <a href="/admin/order/{{each.id}}">
+                                <img src={% static  "img/send-button.png"  %} class="button-table">
                             </a>
                         </td>
-                        {% endif %}
                     </tr>
                     {% endfor %}
 

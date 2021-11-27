@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% extends 'base_admin.html' %}
+{% extends 'base.html' %}
 <html lang="en">
 {% load static   %}
 <head>
@@ -180,34 +180,40 @@ img{
                 <table class="table-staff">
                     <tr>
                         <!-- <th>ID</th> -->
-                        <th>Username</th>
-                        <th>Total Keranjang</th>
-                        <th>Bukti Pembayaran</th>
-                        <th>Status Transaksi</th>
+                        <th>Nama Pembei</th>
+                        <th>Harga</th>
+                        <th>Gambar pembayaran</th>
+                        <th>alamat</th>
+                        <th>status</th>
                         <th>Opsi</th>
                     </tr>
 
-                    {% for each in ? %}
+                    {% for each in payment %}
                     <tr>
                         <!-- <td>{{each.user.id}}</td>     -->
-                        <td>    </td>
-                        <td>    </td>
+                        <td>{{each.user.username}}</td>
+                        <td>{{each.total}}</td>
                         <td>
                             
-                            <img src="  ">
+                            <img src="/{{each.bukti_pembayaran}}">
                             
                         </td>
-    
-                        <td>    </td>
+                        <td>{{each.alamat}}</td>
+                        <td>{{each.status}}</td>
                         <td>
-                            <a href="   ">
+                        {% if request.user.username == "owner" %}
+                        {% else %}
+                        
+                            <a href="/admin/order/{{each.id}}">
                                 <img src={% static  "img/send-button.png"  %} class="button-table">
                             </a>
-                            </a>
-                            <a href="/admin/order/delete/   ">
-                                <img src={% static  "img/delete-button.png"  %} class="button-table">
+                        
+                        {%endif%}
+                            <a href="/admin/orders/detail/{{each.id}}">
+                                <img src={% static  "img/edit-button.png"  %} class="button-table">
                             </a>
                         </td>
+                        
                     </tr>
                     {% endfor %}
 

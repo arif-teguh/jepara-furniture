@@ -16,7 +16,7 @@
     {% block body %}
     <div class="bg">
         <div class="title1">
-            Barang yang di beli :
+            Detail Order :
         </div>
         <div class="cart-list">
             <!-- for-loop per item -->
@@ -34,11 +34,16 @@
             {% endfor %}
             <!-- for loop per item -->
         </div>
-        <div class="cart-detail">
-            <form action="/payment" method="get">
-                {% csrf_token %}
+        <div class="cart-detail">    
                 <div class="cart-detail-text">
                     <span>Detail Belanja</span>
+                    <br>
+                    <input class="cart-detail-input" type="text" id="" name="" value="Alamat" placeholder="" disabled>
+                    <input class="cart-detail-input" type="text" id="" name="" value="{{keranjang.alamat}}" style="text-align: right;float: right;" placeholder="" disabled>
+                    <br>
+                    <input class="cart-detail-input" type="text" id="" name="" value="Status" placeholder="" disabled>
+                    <input class="cart-detail-input" type="text" id="" name="" value="{{keranjang.status}}" style="text-align: right;float: right;" placeholder="" disabled>
+                    <br>
                     <br>
                     <input class="cart-detail-input" type="text" id="" name="" value="Total Harga {{keranjang.total_furnitur}} item" placeholder="" disabled>
                     <input class="cart-detail-input" type="text" id="" name="" value="Rp. {{keranjang.total}}" style="text-align: right;float: right;" placeholder="" disabled>
@@ -50,39 +55,16 @@
                     <span>Total Tagihan</span>
                     <input class="cart-detail-input" type="text" id="total_harga" name="" value={{keranjang.total}} style="text-align: right;float: right;color: rgba(255, 0, 0, 0.74);" placeholder="" disabled>
                 </div>
+                {% if request.user.username != "owner" and keranjang.status != "Completed"%}
+                <form action="/admin/order/{{keranjang.id}}" method="post">
+                {% csrf_token %}
                     <label class="cart-detail-button" for="input-cart-submit">
                         <img src={% static  "img/keranjang/shield-done.png"  %} style="vertical-align: middle;">
-                        <input type="submit" id="input-cart-submit" class="input-cart-submit" name="" value="Bayar">
+                        <input type="submit" id="input-cart-submit" class="input-cart-submit" name="" value="Ubah staatus menjadi dikirim ">
                     </label>
             </form>
+            {% endif %}
         </div>
-        <div class="gap"></div>
-        <div class="shipping-bg">
-            <form action="/" method="post">
-            {% csrf_token %}
-                <div class="title2">
-                    Pengiriman dan Pembayaran
-                </div>
-                <input type="text" class="input-shipping1" name="" placeholder="Tulis Nama Alamat/ Kota/ Kecamatan Tujuan">
-                <textarea  class="input-shipping2" name = "" rows="8" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdo.Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdo."></textarea>
-                <input type="submit" class="input-shipping-submit" name="" value="Tambah Alamat">
-            </form>
-        </div>
-        <div class="gap"></div>
-        <div class="payment-bg">
-            <div class="payment">
-                <div class="payment-icon">
-                    <img src={% static  "img/keranjang/bca-img.png"  %} style="width:100%">
-                </div>
-                <div class="payment-name">
-                    BCA Virtual Account
-                </div>
-                <div class="payment-tick">
-                    <img src={% static  "img/keranjang/tick-square.png"  %} style="width:100%">
-                </div>
-            </div>
-        </div>
-    </div>
 
 <script>
 $(document).ready(function(){

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% extends 'base_admin.html' %}
+{% extends 'base.html' %}
 <html lang="en">
 {% load static   %}
 <head>
@@ -17,10 +17,12 @@
     <div class="bg">
         <div class="bg2">
             <div class="table-title">
-                <span class="title">Manage Staff</span>        
+                <span class="title">Manage Staff</span>  
+                {% if request.user.username != "owner" %}
                 <a href="/admin/staff/add">
                     <img src={% static  "img/add-button-black.png"  %} class="add-button">
                 </a>
+                {% endif %}
             </div>
         
             <div class="bg-table">
@@ -33,7 +35,9 @@
                         <th>Gender</th>
                         <th>Nomor Hp</th>
                         <th>Tanggal lahir</th>
+                        {% if request.user.username != "owner" %}
                         <th>Opsi</th>
+                        {% endif %}
                     </tr>
 
                     {% for each in staffs %}
@@ -45,15 +49,13 @@
                         <td>{{each.gender}}</td>
                         <td>{{each.phone}}</td>
                         <td>{{each.birth_date}}</td>
+                        {% if request.user.username != "owner" %}
                         <td>
-                            <a href="tes1.com">
+                            <a href="/admin/profile/other-view/{{each.user.id}}">
                                 <img src={% static  "img/edit-button.png"  %} class="button-table">
                             </a>
-                            </a>
-                            <a href="tes3.com">
-                                <img src={% static  "img/delete-button.png"  %} class="button-table">
-                            </a>
                         </td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
 

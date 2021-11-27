@@ -18,9 +18,6 @@
         <div class="bg2">
             <div class="table-title">
                 <span class="title">Manage Admin</span>        
-                <a href="   ">
-                    <img src={% static  "img/add-button-black.png"  %} class="add-button">
-                </a>
             </div>
         
             <div class="bg-table">
@@ -33,10 +30,9 @@
                         <th>Gender</th>
                         <th>Nomor Hp</th>
                         <th>Tanggal lahir</th>
-                        <th>Opsi</th>
                     </tr>
 
-                    {% for each in staffs %}
+                    {% for each in admins %}
                     <tr>
                         <td>{{each.user.id}}</td>    
                         <td>{{each.user.username}}</td>
@@ -45,15 +41,6 @@
                         <td>{{each.gender}}</td>
                         <td>{{each.phone}}</td>
                         <td>{{each.birth_date}}</td>
-                        <td>
-                            <a href="tes1.com">
-                                <img src={% static  "img/edit-button.png"  %} class="button-table">
-                            </a>
-                            </a>
-                            <a href="tes3.com">
-                                <img src={% static  "img/delete-button.png"  %} class="button-table">
-                            </a>
-                        </td>
                     </tr>
                     {% endfor %}
 

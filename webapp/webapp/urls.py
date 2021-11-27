@@ -26,4 +26,5 @@ urlpatterns = [
     path('',include('user.urls')),
     path('staff/',include('staff.urls')),
     path('admin/',include('admin_jepara.urls')),
+    path('owner/',include('owner_jepara.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

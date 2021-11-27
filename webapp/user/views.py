@@ -1,6 +1,6 @@
 from typing import overload
 from django.core import exceptions
-
+from datetime import datetime
 from django.http.response import HttpResponseNotAllowed
 from .models import (
     FurnitureModels, OrderModels, ReviewModels, ChatTopicModels,
@@ -51,7 +51,7 @@ def register_user(request):
             email = request.POST["email"]
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
-            alamat = request.POST.get('alamat')
+            alamat = "alamat"
             gender = request.POST.get('gender')
             phone = request.POST.get('phone')
             full_name = request.POST.get('full_name')
@@ -242,10 +242,17 @@ def payment(request):
         return redirect("/")
     if request.method == "POST":
         try:
+            payment = PaymentModels.objects.filter(user=request.user).exclude(status = "Completed")
+            if payment.count() > 0 :
+                messages.error(request, 'Tidak dapat melakukan pembayaran dikarenakan Karena pembayaran sebelumnya belum selesai')
+                return redirect(request.META.get('HTTP_REFERER'))
             profile = ProfileModels.objects.get(user = request.user)
             picture =request.FILES['bukti_pembayaran']
             if not picture :
                 raise
+            if profile.alamat == "alamat" or not bool(profile.alamat):
+                messages.error(request, 'Ganti alamat terlebih dahulu di halaman profile sebelum melakukan pembayaran')
+                return redirect(request.META.get('HTTP_REFERER'))
             payment = PaymentModels.objects.create(
                 user = request.user,
                 alamat = profile.alamat,
@@ -258,6 +265,9 @@ def payment(request):
             payment.save()
             orders = OrderModels.objects.filter(keranjang = keranjang)
             for order in orders :
+                furniture = order.furnitur
+                furniture.stock -= order.jumlah
+                furniture.save()
                 order.keranjang_deleted_id = keranjang.id
                 order.save()
             keranjang.delete()
@@ -278,7 +288,16 @@ def calculate_rating(furniture):
     return final_value
 
 def profile(request):
-    profile = ProfileModels.objects.get(user = request.user)
+    try:
+        profile = ProfileModels.objects.get(user = request.user)
+    except:
+        profile = ProfileModels.objects.create(
+                alamat = "alamat",
+                gender = "M",
+                phone = "phone",
+                full_name = "full_name",
+                user = request.user
+            )
     return render(request, "profile.html",{"profile": profile})
 
 
@@ -297,3 +316,22 @@ def edit_profile(request):
         profile.save()
     profile.birth_date = str(profile.birth_date)
     return render(request, "profile-edit.html",{"profile": profile})
+
+
+@login_required(login_url="/login")
+def confirmation(request):
+    try:
+        payment = PaymentModels.objects.get(user=request.user , status = "Delivered")
+    except:
+        messages.error(request, 'Tidak ada pesanan yang butuh konfirmasi !')
+        return redirect("/")
+    keranjang_deleted_id = payment.keranjang_deleted_id
+    all_order = OrderModels.objects.filter(user=request.user , keranjang_deleted_id = keranjang_deleted_id)
+    if request.method == "POST":
+        payment.status = "Completed"
+        payment.tanggal_bayar =  datetime.now()
+        payment.save()
+        messages.success(request, 'Pesanan berhasil diselesaikan !')
+        return redirect("/")
+    #return render(request, "user/checkout.html" ,{"orders": all_order , "keranjang" : keranjang})
+    return render(request, "user/confirmation.html",{"orders": all_order, "keranjang": payment})

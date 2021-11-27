@@ -89,6 +89,9 @@ class PaymentModels(models.Model):
      alamat =  models.TextField()
      bukti_pembayaran = models.FileField(upload_to = 'static/uploaded/payment', null= False)
      keranjang_deleted_id = models.IntegerField(null=False)
+     tanggal_bayar = models.DateTimeField(null=True,auto_now_add= True)
+     tanggal_selesai = models.DateTimeField(null=True)
+
 
 
 class OrderModels(models.Model):

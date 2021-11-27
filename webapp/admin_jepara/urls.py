@@ -14,9 +14,13 @@ urlpatterns = [
     path('staff/add',views.add_staff),
     path('staff',views.staff_list),
     path('user',views.user_list),
+    path('order',views.order_list),
+    path('order/<int:order_id>',views.confirm_order),
+    path('orders/detail/<int:order_id>',views.order_detail),
     path('furniture',views.furniture_list),
     path('chat/<int:user_id>',views.reply_chat),
     path('furniture/add',views.addNewFurniture),
     path('furniture/delete/<int:furtniture_id>',views.delete_furniture),
+    path('profile/other-view/<int:id_user>',views.view_profile),
     path('',views.base),
 ]
