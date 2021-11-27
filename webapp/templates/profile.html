@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/static/css/profile.css">
     <link href="https://fonts.googleapis.com/css2?family=Amaranth&family=Righteous&display=swap" rel="stylesheet">
     <title>Profile</title>
-     {% endblock %}
+{% endblock %}
 </head>
 <body>
  {% block body %}
@@ -18,14 +18,17 @@
         <div class="bg-profile">
             <div class="profile-left">
                 {% if profile.profile_pic %}
-                <img src="/{{profile.profile_pic}}" class="profile-img" width="500px" height="500px">
+                <img src="/{{profile.profile_pic}}" class="profile-img" width="500px">
                 {% else %}
-                <img src="/static/img/profile.png" class="profile-img" width="500px" height="500px">
+                <img src="/static/img/profile.png" class="profile-img" width="500px">
                 {% endif %}
                 <br>
-                {% comment %} <label for="button-upload" class="button-upload">
+
+                {% comment %} 
+                <label for="button-upload" class="button-upload">
                     <input type="file" id="button-upload" name="file">Upload Foto
-                </label> {% endcomment %}
+                </label> 
+                {% endcomment %}
 
             </div>
             <div class="profile-right">

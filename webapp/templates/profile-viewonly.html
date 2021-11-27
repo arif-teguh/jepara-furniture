@@ -1,19 +1,34 @@
 <!DOCTYPE html>
+{% extends 'base.html' %}
 <html lang="en">
+{% load static   %}
 <head>
+{% block style %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="/static/css/profile.css">
     <link href="https://fonts.googleapis.com/css2?family=Amaranth&family=Righteous&display=swap" rel="stylesheet">
     <title>Profile</title>
+{% endblock %}
 </head>
 <body>
+ {% block body %}
     <div class="bg">
         <div class="bg-profile">
             <div class="profile-left">
-                <img src="profile.png" class="profile-img" width="500px" height="500px">
-                
+                {% if profile.profile_pic %}
+                <img src="/{{profile.profile_pic}}" class="profile-img" width="500px">
+                {% else %}
+                <img src="/static/img/profile.png" class="profile-img" width="500px">
+                {% endif %}
+                <br>
+
+                {% comment %} 
+                <label for="button-upload" class="button-upload">
+                    <input type="file" id="button-upload" name="file">Upload Foto
+                </label> 
+                {% endcomment %}
 
             </div>
             <div class="profile-right">
@@ -21,35 +36,41 @@
                 
                 <span class="filler-text">Nama</span>
 
-                <span class="profile-desc">Name</span>
+                <span class="profile-desc">{{profile.full_name}}</span>
                 <br>
 
                 <span class="filler-text">Tanggal Lahir</span>
                 
-                <span class="profile-desc">DoB</span>
+                <span class="profile-desc">{{profile.birth_date}}</span>
+                <br>
+
+                <span class="filler-text">Alamat</span>
+                
+                <span class="profile-desc">{{profile.alamat}}</span>
                 <br>
 
                 <span class="filler-text">Jenis Kelamin</span>
                 
-                <span class="profile-desc">Gender</span>
+                <span class="profile-desc">{{profile.gender}}</span>
                 <br>
 
                 <p class="profile-title">Detail Kontak</p>
 
                 <span class="filler-text">Email</span>
                 
-                <span class="profile-desc">Email</span>
+                <span class="profile-desc">{{request.user.email}}</span>
                 <br>
 
                 <span class="filler-text">Nomor Telepon</span>
                 
-                <span class="profile-desc">Phone</span>
+                <span class="profile-desc">{{profile.phone}}</span>
                 <br>
 
-                
+
 
             </div>
         </div>
     </div>
+     {% endblock %}
 </body>
 </html>

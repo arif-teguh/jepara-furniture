@@ -1,4 +1,4 @@
-{% extends 'base_admin.html' %}
+{% extends 'base_owner.html' %}
 <html>
 <head>
 {% block style %}
@@ -152,9 +152,9 @@ Jepara Furniture
     {% block body %}
     <div class="login-bg">
         <div class="login-form-bg">
-            <form action="/admin/login" method="post">
+            <form action="/staff/login" method="post">
                 {% csrf_token %}
-                <p style="text-align: left;font-size: 200%;color: white;">Sign In as Admin</p>
+                <p style="text-align: left;font-size: 200%;color: white;">Sign In as Owner</p>
                 <input type="text" class="login-input-textpw" name="username" placeholder="USERNAME">
                 <input type="password" class="login-input-textpw" name="password" placeholder="PASSWORD">
                 <input type="submit" class="login-input-login" name="" value="LOGIN">

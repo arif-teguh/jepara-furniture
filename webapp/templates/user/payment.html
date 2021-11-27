@@ -10,41 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/payment.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
     <title>Jepara Furniture</title>
-    <style>
-        .button-upload{
-            display: inline-block;
-            background-color: #333;
-            color: rgb(255, 255, 255);
-            padding: 5px 25px;
-            text-align: center;
-            box-sizing: border-box;
-            margin-right: 5px;
-            border-radius: 25px;
-            height: 100%;
-            font-size: 20px;
-            cursor: pointer; 
-        }  
-        
-        input[type="file"] {
-            display: none;
-            width: 0px;
-            height: 0px;
-        }
 
-        .button-submit{
-            display: inline-block;
-            background-color: #333;
-            color: #ededed;
-            padding: 5px;
-            text-align: center;
-            box-sizing: border-box;
-            border-radius: 100px;
-            width: 40px;
-            font-size: 20px;
-            font-weight: bold;
-            cursor: pointer; 
-        }
-    </style>
     {% endblock %}
 </head>
 <body style="background-color: #ededed;font-family: 'Amaranth', sans-serif;font-size: 0px;">
@@ -80,7 +46,10 @@
             </label>
 
             <input type="submit" class="button-submit" name="" value="&#10003;">
+            <a href="/"><span class="va-button3">Konfirmasi Barang Sudah Diterima &#10003;</span></a>
             </form>
+            
+            <br>
             <a href="/"><span class="va-button2">Belanja Lagi</span></a>
         </div>
 

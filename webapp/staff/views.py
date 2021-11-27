@@ -15,7 +15,7 @@ home = '/'
 #from .models import ChairMode
 @user_is_staff
 def land_page(request):
-    return render(request,'staff/land_page.html')
+    return render(request,'staff/chat.html')
 
 def login_staff(request):
     if (request.method == "POST"):

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% extends 'base_owner.html' %}
+<html lang="en">
+{% load static   %}
+<head>
+    {% block style %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/staff_list.css' %}">
+    
+    <title>Jepara Furniture</title>
+    {% endblock %}
+</head>
+<body>
+    {% block body %}
+    <div class="bg">
+        <div class="bg2">
+            <div class="table-title">
+                <span class="title">Manage Admin</span>        
+                <a href="   ">
+                    <img src={% static  "img/add-button-black.png"  %} class="add-button">
+                </a>
+            </div>
+        
+            <div class="bg-table">
+                <table class="table-staff">
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Alamat</th>
+                        <th>Gender</th>
+                        <th>Nomor Hp</th>
+                        <th>Tanggal lahir</th>
+                        <th>Opsi</th>
+                    </tr>
+
+                    {% for each in staffs %}
+                    <tr>
+                        <td>{{each.user.id}}</td>    
+                        <td>{{each.user.username}}</td>
+                        <td>{{each.user.email}}</td>
+                        <td>{{each.alamat}}</td>
+                        <td>{{each.gender}}</td>
+                        <td>{{each.phone}}</td>
+                        <td>{{each.birth_date}}</td>
+                        <td>
+                            <a href="tes1.com">
+                                <img src={% static  "img/edit-button.png"  %} class="button-table">
+                            </a>
+                            </a>
+                            <a href="tes3.com">
+                                <img src={% static  "img/delete-button.png"  %} class="button-table">
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endblock %}  
+</body>
+</html>

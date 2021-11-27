@@ -74,7 +74,7 @@ def register_user(request):
 @login_required(login_url="/login")
 def logout_user(request):
     logout(request)
-    return render(request, "user/land_page.html")
+    return render(request, "user/home.html")
 
 
 def view_furniture(request, kategori):

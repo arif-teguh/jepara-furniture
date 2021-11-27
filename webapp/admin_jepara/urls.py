@@ -9,6 +9,8 @@ urlpatterns = [
     # path('login', views.login_staff),
     # path('chair/add',views.addNewChair),
     # path('logout',views.logout_staff),
+    path('login', views.login_admin),
+    path('logout',views.logout_admin),
     path('staff/add',views.add_staff),
     path('staff',views.staff_list),
     path('user',views.user_list),

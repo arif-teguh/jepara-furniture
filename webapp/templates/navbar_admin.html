@@ -45,23 +45,24 @@
     {% if user.is_authenticated %}
     <a href='/profile'>
       <img id ="user_icon" src ={% static "img/LoginUserIcon.png" %} width="28px" height ="25px">
+    </a> 
+    <a href="/admin/logout">Logout</a>
     {% else %}
     <a href='/login'>
       <img id ="user_icon" src ={% static "img/NonLoginUserIcon.png" %} width="28px" height ="25px">
-    {% endif %}
     </a>
-
-    <a href="/profile">Profile</a>
+    {% endif %}
+    
     <a href="/staff/preorder">Preorder</a>
     <a href="/staff/complain">Complain</a>
     <a href="/staff/chat">Chat</a>
     <a href="/admin/furniture">Furniture</a>
     <a href="/admin/user">User</a>
     <a href="/admin/staff">Staff</a>
-    <a href="/">Order</a>
+    <a href="/admin/order">Order</a>
 
         <a>
-    <a id='main_logo' style="float: left;">JEPARA FURNITURE</h>
+    <a id='main_logo' style="float: left;" href="/">JEPARA FURNITURE</h>
     </a>
 </div>
 {% if messages %}

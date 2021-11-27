@@ -50,10 +50,10 @@
                     <span>Total Tagihan</span>
                     <input class="cart-detail-input" type="text" id="total_harga" name="" value={{keranjang.total}} style="text-align: right;float: right;color: rgba(255, 0, 0, 0.74);" placeholder="" disabled>
                 </div>
-                    <div class="cart-detail-button">
+                    <label class="cart-detail-button" for="input-cart-submit">
                         <img src={% static  "img/keranjang/shield-done.png"  %} style="vertical-align: middle;">
-                        <input type="submit" class="input-cart-submit" name="" value="Bayar">
-                    </div>
+                        <input type="submit" id="input-cart-submit" class="input-cart-submit" name="" value="Bayar">
+                    </label>
             </form>
         </div>
         <div class="gap"></div>

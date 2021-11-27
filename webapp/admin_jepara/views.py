@@ -16,6 +16,9 @@ import user.models as userModel
 from .forms import AddFurnitureForm
 from django.contrib import messages
 # Create your views here.
+
+home_admin = '/admin'
+
 @user_is_admin
 def add_staff(request):
     if (request.method == "POST"):
@@ -120,4 +123,18 @@ def delete_furniture(request, furtniture_id):
 
 @user_is_admin
 def base(request):
-    return render(request, 'base_admin.html')
+    return render(request, 'admin/order.html')
+
+def login_admin(request):
+    if (request.method == "POST"):
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None :
+            login(request, user)
+            return redirect(home_admin)
+    return render(request,'admin/login.html')
+
+def logout_admin(request):
+    logout(request)
+    return render(request,'admin/login.html')

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/static/css/profile.css">
     <link href="https://fonts.googleapis.com/css2?family=Amaranth&family=Righteous&display=swap" rel="stylesheet">
     <title>Profile</title>
-     {% endblock %}
+{% endblock %}
 </head>
 <body>
  {% block body %}
@@ -18,9 +18,9 @@
         <div class="bg-profile">
             <div class="profile-left">
                 {% if profile.profile_pic %}
-                <img src="/{{profile.profile_pic}}" class="profile-img" width="500px" height="500px">
+                <img src="/{{profile.profile_pic}}" class="profile-img" width="500px">
                 {% else %}
-                <img src="/static/img/profile.png" class="profile-img" width="500px" height="500px">
+                <img src="/static/img/profile.png" class="profile-img" width="500px">
                 {% endif %}
                 <br>
                 <form action="/profile/edit" method="post" enctype="multipart/form-data">
@@ -50,14 +50,16 @@
                 <br>
                 <p class="profile-title">Detail Kontak</p>
                 <span class="filler-text">Email</span>
-                <p class="profile-desc" type="text" id="" name="email" value="{{request.user.email}}">
+                <input class="profile-desc" type="text" id="" name="email" value="{{request.user.email}}">
                 
                 <br>
                 <span class="filler-text">Nomor Telepon</span>
                 <input class="profile-desc" type="text" id="" name="phone" value="{{profile.phone}}">
                 
                 <br>
+                
                 <input type="submit" class="submit-button" name="" value="Submit">
+                
                 </form>    
             </div>
         </div>
