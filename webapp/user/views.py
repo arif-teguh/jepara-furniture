@@ -105,14 +105,30 @@ def view_furniture_details(request, kategori, id):
 
 
 @login_required(login_url="/login")
-def review_furniture(request, kategori, id):
-    furniture = FurnitureModels.objects.get(kategori=kategori, id=id)
-    curr_user = User.objects.get(id=request.user.id)
-    rating = request.POST["rating"]
-    notes = request.POST["notes"]
-    review = ReviewModels.objects.create(furniture=furniture, user=curr_user, notes=notes, rating=rating)
-    review.save()
-    return redirect(f"review/furniture/{kategori}-{id}")
+def review_furniture(request, id):
+    if request.method == "POST":
+        furniture = FurnitureModels.objects.get(id=id)
+        user_has_review = ReviewModels.objects.filter(user = request.user ,futniture=furniture)
+        if user_has_review.count():
+            messages.error(request, 'Kamu sudah menulis review pada furniture ini!')
+            return redirect(request.META.get('HTTP_REFERER'))
+        curr_user = request.user
+        user_has_order_complete = OrderModels.objects.filter(user=curr_user,furnitur = furniture)
+        payment_complete = False
+        for order in user_has_order_complete:
+            payment = PaymentModels.objects.filter(user = curr_user, keranjang_deleted_id = order.keranjang_deleted_id, status = "Completed")
+            if payment.count() > 0:
+                payment_complete = True
+                break
+        if not payment_complete:
+            messages.error(request, 'Kamu belum pernah membeli furniture ini , Kamu tidak bisa menreview furnitur ini!')
+            return redirect(request.META.get('HTTP_REFERER'))
+        rating = request.POST["star"]
+        notes = request.POST["notes"]
+        review = ReviewModels.objects.create(futniture=furniture, user=curr_user, notes=notes, rating=rating)
+        review.save()
+    return redirect(request.META.get('HTTP_REFERER'))
+    
 
 
 @login_required(login_url="/login")
@@ -335,3 +351,5 @@ def confirmation(request):
         return redirect("/")
     #return render(request, "user/checkout.html" ,{"orders": all_order , "keranjang" : keranjang})
     return render(request, "user/confirmation.html",{"orders": all_order, "keranjang": payment})
+
+

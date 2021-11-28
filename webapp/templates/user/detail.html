@@ -294,7 +294,7 @@
             <div class="write-review-title">
                 <div class="others-title">Tulis Review</div>
             </div>
-            <form action="/" method="post" enctype="">
+            <form action="/review/furniture/{{furniture.id}}" method="post">
             {% csrf_token %}
             <div class="write-review">   
                 <div class="txt-center">
@@ -313,7 +313,7 @@
                       </div>
                   </div>
                   
-                <textarea class="input-review" name = "" rows="4" placeholder="Tulis Review"></textarea>
+                <textarea class="input-review" name = "notes" rows="4" placeholder="Tulis Review"></textarea>
                 <input type="submit" class="review-button" name="" value="Submit Review">
             
                 </div>

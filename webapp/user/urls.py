@@ -12,7 +12,7 @@ urlpatterns = [
     path('accounts/login/*',views.login_user),
     path('view/furniture/<str:kategori>-<int:id>',views.view_furniture_details),
     path('view/furniture/<str:kategori>',views.view_furniture),
-    path('review/furniture/<str:kategori>-<int:id>',views.review_furniture),
+    path('review/furniture/<int:id>',views.review_furniture),
     path('checkout',views.checkout_all),
     path('checkout/<int:id_furniture>',views.checkout_fast),
     path('payment',views.payment),
