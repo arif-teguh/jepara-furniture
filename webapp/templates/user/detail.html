@@ -11,6 +11,114 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
     <title>Jepara Furniture</title>
+    <style>
+        .write-review-title{
+            position: relative;
+            display: block;
+            width: 95%;
+            margin: 20px auto 0;
+            background-color: #FFFFFF;
+            box-sizing: border-box;
+        }
+        .write-review{
+            position: relative;
+            display: block;
+            width: 95%;
+            margin: 0 auto 20px;
+            background-color: #FFFFFF;
+            padding: 0 20px 3%;
+            box-sizing: border-box;
+        }
+        .input-review{
+            width: 100%;
+            padding: 20px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: none;
+            background-color: #ededed;
+            color: #666;
+            border-radius: 10px;
+            border-style: solid;
+            border-color: #666;
+            border-width: thin;
+            font-family: Asimov;
+            font-size: 20px;
+        }
+
+        ::placeholder{
+            color:rgb(119, 119, 119);
+        }
+
+        textarea{
+            resize: none;
+        }
+
+        .review-button{
+            position: relative;
+            display: inline-block;
+            float: right;
+            padding: 5px 10px;
+            height: 100%;
+            border-radius: 20px;
+            box-sizing: border-box;
+            color: white;
+            background-color: #262626;
+            font-family: 'Amaranth', sans-serif;
+            font-size: 16px;
+        }
+
+        .txt-center {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .clear {
+            float: none;
+            clear: both;
+        }
+
+        .rating {
+            width: fit-content;
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            text-align: center;
+            position: relative;
+        }
+
+        .rating>label {
+            float: right;
+            display: inline;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            width: 1.1em;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .rating>label:hover,
+        .rating>label:hover~label,
+        .rating>input.radio-btn:checked~label {
+            color: transparent;
+        }
+
+        .rating>label:hover:before,
+        .rating>label:hover~label:before,
+        .rating>input.radio-btn:checked~label:before,
+        .rating>input.radio-btn:checked~label:before {
+        content: "\2605";
+        position: absolute;
+        left: 0;
+        color: #FFD700;
+        }
+
+
+    </style>
     {% endblock %}
 </head>
 <body style="background-color: #ededed;font-family: 'Amaranth', sans-serif;">
@@ -112,8 +220,8 @@
 
         <div class="main-page">
             <div class="review">
-                <div class="review-title">Ulasan</div>
-                <input type="button" class="review-button" value="Tulis Review" name=""></div>
+                <div class="others-title">Ulasan</div>
+                
                 <div class="user-review-bg">
                     <!-- for-loop per-review -->
                     {% for review in reviews %}
@@ -181,6 +289,38 @@
                 </div>
             </div>
             <div class="black-gap"></div>
+            <!-- BATAS IF REVIEW -->
+
+            <div class="write-review-title">
+                <div class="others-title">Tulis Review</div>
+            </div>
+            <form action="/" method="post" enctype="">
+            {% csrf_token %}
+            <div class="write-review">   
+                <div class="txt-center">
+                      <div class="rating">
+                        <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+                        <label for="star5">☆</label>
+                        <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+                        <label for="star4">☆</label>
+                        <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                        <label for="star3">☆</label>
+                        <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
+                        <label for="star2">☆</label>
+                        <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
+                        <label for="star1">☆</label>
+                        <div class="clear"></div>
+                      </div>
+                  </div>
+                  
+                <textarea class="input-review" name = "" rows="4" placeholder="Tulis Review"></textarea>
+                <input type="submit" class="review-button" name="" value="Submit Review">
+            
+                </div>
+            </form>
+            <div class="black-gap"></div>
+
+            <!-- BATAS IF REVIEW -->
             <div class="others">
                 <div class="others-title">Furnitur Lainnya</div>
                 {% for each in other_furniture %}
