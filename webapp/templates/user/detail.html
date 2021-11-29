@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/detail.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Jepara Furniture</title>
     <style>
         .write-review-title{
@@ -117,6 +118,31 @@
         color: #FFD700;
         }
 
+        /* Review Stars */
+        
+        .stars{
+            position: absolute;
+            top: 50%;
+            background-color: #FFD700;
+            height: 20px;
+            text-align: left;
+            z-index: 100;
+        }
+
+        .stars-img{
+            position: absolute;
+            top: 50%;
+            text-align: left;
+            height: 20px;
+            z-index: 150;
+        }
+
+        /* Review Stars */
+
+        .user-review-name{
+            width: 28%;
+            height: 45px;
+        }
 
     </style>
     {% endblock %}
@@ -227,16 +253,13 @@
                     {% for review in reviews %}
                     <div class="user-review">   
                         <div class="user-review-name">
-                            <input class="input-user-review-name" type="text" id="" name="" value={{review.user.username}} placeholder="" disabled>
+                            <span class="input-user-review-name">{{review.user.username}}</span>
                             <br>
-                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
-                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
-                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
-                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
-                            <input class="input-user-review-rating" type="text" id="" name="" value="&#9733  " placeholder="" disabled>
+                            <span class="stars" style="width: calc(20% * {{review.rating}} );"></span>
+                            <img class="stars-img" src={% static  "img/stars.png"  %} alt="{{review.rating}}" title="{{review.rating}}" width="100%">
                         </div>
                         <div class="user-review-comment">
-                            <input class="input-user-review-comment" type="text" id="" name="" value={{review.notes}} placeholder="" disabled>
+                            <span class="input-user-review-comment">{{review.notes}}</span>
                         </div>
                     </div>
                     {% endfor %}
