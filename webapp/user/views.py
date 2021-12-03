@@ -300,7 +300,9 @@ def calculate_rating(furniture):
         tmp_value += review.rating
     final_value = "-"
     if reviews:
-        final_value = str(tmp_value / reviews.count())
+        final_value = tmp_value / reviews.count()
+        if len(str(final_value)) > 3:
+            final_value =  "{:.2f}".format(final_value)
     return final_value
 
 def profile(request):
