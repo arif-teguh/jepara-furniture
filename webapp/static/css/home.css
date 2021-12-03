@@ -36,6 +36,7 @@ a:link {
     right: 0%;
     bottom: 0%;
     background-color: #ededed;
+    min-height: 500px;
 }
 .bg-img{
     position: relative;

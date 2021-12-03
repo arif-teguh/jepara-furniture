@@ -4,6 +4,7 @@
   top:0%;
   right: 0%;
   bottom: 0%;
+  min-height: 500px;
 }
 
 .bg-detail{
@@ -249,6 +250,7 @@ width: calc(100% / 3);
 display: inline-block;
 vertical-align: top;
 margin-bottom: 15px;
+margin-top: 15px;
 }
 
 .user-review-name{

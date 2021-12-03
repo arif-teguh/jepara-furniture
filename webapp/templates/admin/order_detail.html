@@ -18,54 +18,55 @@
         <div class="title1">
             Detail Order :
         </div>
-        <div class="cart-list">
-            <!-- for-loop per item -->
-            {% for item in orders %}
-            <div class="cart-item">
-                <div class="cart-item-img">
-                    <input type="image" alt="" value="" name="" img src="/{{item.furnitur.gambar}}" width="100%" disabled>
+        <div style="display: block;position: relative;min-height: 500px;">
+            <div class="cart-list">
+                <!-- for-loop per item -->
+                {% for item in orders %}
+                <div class="cart-item">
+                    <div class="cart-item-img">
+                        <input type="image" alt="" value="" name="" img src="/{{item.furnitur.gambar}}" width="100%" disabled>
+                    </div>
+                    <div class="cart-item-desc">
+                        <input disabled class="cart-item-input" type="text" id="" name="" value=" {{item.jumlah}} {{item.furnitur.nama}}                                
+                                            @{{item.furnitur.harga}}" placeholder="" >
+                        <input disabled class="cart-item-input" type="text" id="" name="" value="RP. {{item.total}}" style="text-align: right;" placeholder="" >
+                    </div>
                 </div>
-                <div class="cart-item-desc">
-                    <input disabled class="cart-item-input" type="text" id="" name="" value=" {{item.jumlah}} {{item.furnitur.nama}}                                
-                                        @{{item.furnitur.harga}}" placeholder="" >
-                    <input disabled class="cart-item-input" type="text" id="" name="" value="RP. {{item.total}}" style="text-align: right;" placeholder="" >
-                </div>
+                {% endfor %}
+                <!-- for loop per item -->
             </div>
-            {% endfor %}
-            <!-- for loop per item -->
-        </div>
-        <div class="cart-detail">    
-                <div class="cart-detail-text">
-                    <span>Detail Belanja</span>
-                    <br>
-                    <input class="cart-detail-input" type="text" id="" name="" value="Alamat" placeholder="" disabled>
-                    <input class="cart-detail-input" type="text" id="" name="" value="{{keranjang.alamat}}" style="text-align: right;float: right;" placeholder="" disabled>
-                    <br>
-                    <input class="cart-detail-input" type="text" id="" name="" value="Status" placeholder="" disabled>
-                    <input class="cart-detail-input" type="text" id="" name="" value="{{keranjang.status}}" style="text-align: right;float: right;" placeholder="" disabled>
-                    <br>
-                    <br>
-                    <input class="cart-detail-input" type="text" id="" name="" value="Total Harga {{keranjang.total_furnitur}} item" placeholder="" disabled>
-                    <input class="cart-detail-input" type="text" id="" name="" value="Rp. {{keranjang.total}}" style="text-align: right;float: right;" placeholder="" disabled>
-                    <br>
-                    <input class="cart-detail-input" type="text" id="" name="" value="Biaya Pengantaran" placeholder="" disabled>
-                    <input class="cart-detail-input" type="text" id="" name="" value="Rp.100.000" style="text-align: right;float: right;" placeholder="" disabled>
-                    <br>
-                    <div class="small-gap"></div>
-                    <span>Total Tagihan</span>
-                    <input class="cart-detail-input" type="text" id="total_harga" name="" value={{keranjang.total}} style="text-align: right;float: right;color: rgba(255, 0, 0, 0.74);" placeholder="" disabled>
-                </div>
-                {% if request.user.username != "owner" and keranjang.status != "Completed"%}
-                <form action="/admin/order/{{keranjang.id}}" method="post">
-                {% csrf_token %}
-                    <label class="cart-detail-button" for="input-cart-submit">
-                        <img src={% static  "img/keranjang/shield-done.png"  %} style="vertical-align: middle;">
-                        <input type="submit" id="input-cart-submit" class="input-cart-submit" name="" value="Ubah staatus menjadi dikirim ">
-                    </label>
-            </form>
-            {% endif %}
-        </div>
-
+            <div class="cart-detail">    
+                    <div class="cart-detail-text">
+                        <span>Detail Belanja</span>
+                        <br>
+                        <input class="cart-detail-input" type="text" id="" name="" value="Alamat" placeholder="" disabled>
+                        <input class="cart-detail-input" type="text" id="" name="" value="{{keranjang.alamat}}" style="text-align: right;float: right;" placeholder="" disabled>
+                        <br>
+                        <input class="cart-detail-input" type="text" id="" name="" value="Status" placeholder="" disabled>
+                        <input class="cart-detail-input" type="text" id="" name="" value="{{keranjang.status}}" style="text-align: right;float: right;" placeholder="" disabled>
+                        <br>
+                        <br>
+                        <input class="cart-detail-input" type="text" id="" name="" value="Total Harga {{keranjang.total_furnitur}} item" placeholder="" disabled>
+                        <input class="cart-detail-input" type="text" id="" name="" value="Rp. {{keranjang.total}}" style="text-align: right;float: right;" placeholder="" disabled>
+                        <br>
+                        <input class="cart-detail-input" type="text" id="" name="" value="Biaya Pengantaran" placeholder="" disabled>
+                        <input class="cart-detail-input" type="text" id="" name="" value="Rp.100.000" style="text-align: right;float: right;" placeholder="" disabled>
+                        <br>
+                        <div class="small-gap"></div>
+                        <span>Total Tagihan</span>
+                        <input class="cart-detail-input" type="text" id="total_harga" name="" value={{keranjang.total}} style="text-align: right;float: right;color: rgba(255, 0, 0, 0.74);" placeholder="" disabled>
+                    </div>
+                    {% if request.user.username != "owner" and keranjang.status != "Completed"%}
+                    <form action="/admin/order/{{keranjang.id}}" method="post">
+                    {% csrf_token %}
+                        <label class="cart-detail-button" for="input-cart-submit">
+                            <img src={% static  "img/keranjang/shield-done.png"  %} style="vertical-align: middle;">
+                            <input type="submit" id="input-cart-submit" class="input-cart-submit" name="" value="Ubah staatus menjadi dikirim ">
+                        </label>
+                </form>
+                {% endif %}
+            </div>
+        </div>    
 <script>
 $(document).ready(function(){
     document.getElementById('total_harga').value = "Rp " + (parseInt(document.getElementById('total_harga').value) + 100000);
