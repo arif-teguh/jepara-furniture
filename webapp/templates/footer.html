@@ -1,118 +1,113 @@
+{% load static %}
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Righteous" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/footer.css' %}">  
 <style>
+  .footer-bg{
+    display: block;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    font-family: Poppins;
+    font-size: 14px;
+    white-space: nowrap;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding-bottom: 10px;
+  }
 
-footer{
-  /* margin-top:auto;  */
-  border-radius: 2.5vh 2.5vh 0vh 0vh;
-}
+  .footer-header{
+    padding: 30px 30px 0 30px;
+  }
 
-#cta{
-  font-family: 'Poppins', sans-serif;
-  color: #f2f2f2;
-  font-size: 12px;
+  .footer-block{
+    display: block;
+  }
+
+  .left-side{
+    display: inline-block;
+    width: calc(100% / 3);
+    padding: 30px;
+  }
+
+  .middle{
+    display: inline-block;
+    width: calc(100% / 3);
+    padding: 30px;
+  }
+
+  .right-side{
+    display: inline-block;
+    width: calc(100% / 3);
+    text-align: center;
+  }
+
+  .footer-line{
+    display: block;
+    width: 80%;
+    background-color: #C4C4C4;
+    height: 3px;
+    border-radius: 20px;
+    margin: auto;
+    margin: 20px auto;
+  }
+
+  .footer-cta{
+    display: block;
+    text-align: center;
+  }
+
+  a:link {
+  text-decoration: none;
+  }
+
+  a:visited {
+  text-decoration: none;
+  }
+
+  a:hover {
+  text-decoration: none;
+  }
+
+  a:active {
+  text-decoration: none;
+  }
+  
   }
 
 </style>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-{% load static %}
-<!-- Footer -->
-<!-- Remove the container if you want to extend the Footer to full width. -->
 
-  <!-- Footer -->
-  <footer id ="myfooter"
-          class="text-left text-lg-start text-white"
-          style="background-color: #262626"
-
-          >
-    <!-- Grid container -->
-    <div class="container-fluid">
-      <!-- Section: Links -->
-      <section class="">
-        <!--Grid row-->
-        <hr>
-        <div class="row">
-          <!--Grid column-->
-          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">  
-            <section class="">
-              <p class="d-flex justify-content-center align-items-center">
-                <a
-                 class="btn btn-outline-light m-1"
-                 href="#!"
-                 role="button"
-                 style="color:white "
-                >
-                <i class="fa fa-instagram fa-2x"></i>
-              </a>
-      
-                <a
-                 class="btn btn-outline-light btn-floating m-1"
-                 href="#!"
-                 role="button"
-                 style="color:white"
-                 ><i class="fa fa-twitter fa-2x"></i
-                ></a>
-      
-                        <a
-                 class="btn btn-outline-light btn-floating m-1"
-                 href="#!"
-                 role="button"
-                 style="color:white"
-                 ><i class="fa fa-facebook-f fa-2x"></i
-                ></a>
-   
-              </p>
-            </section>
-
-
-            </p>
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-            
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-2 col-md-6 mb-4 mb-md-0 text-right">
-            <section>
-              <h id="cta" style="color:white">©Copyright. All rights reserved.</h>
-              <br><br>
-              </section>
-          </div>
-          <!--Grid column-->
-        </div>
-        <!--Grid row-->
-      </section>
-      <!-- Section: Links -->
-
-      
-
-      <!-- Section: CTA -->
-      
-      
-      <!-- Section: CTA -->
-
-
-
-
-  </footer>
-  <!-- Footer -->
-
-<!-- End of .container -->
+<div class="footer-bg">
+  <div class="footer-header">
+    <h2 style="font-family: Righteous;">JEPARA FURNITURE</h2>
+    <a href="" style="color:white;">About Us</a>
+  </div>
+  <div class="footer-block">
+    <div class="left-side">
+      Jl. Mawar 3 no 99
+      <br>
+      Bintaro -  Jakarta Selatan 12330
+      <br>
+      No.Telpon : 087777936080
+      <br>
+      E-mail       : jeparafurniture@gmail.com
+    </div>
+    <div class="middle">
+      <span style="font-family: Righteous;font-size: 24px;">Waktu Operasional</span>
+      <br>
+      Senin - Jum’at
+      <br>
+      Pukul 09.00 - 17.00 WIB
+    </div>
+    <div class="right-side">
+      <span style="font-family: Righteous;font-size: 24px;">Follow Us</span>
+      <br>
+      <a href=""><img  style="padding: 10px;" src ={% static "img/instagram-icon.png" %}></a>
+      <a href=""><img  style="padding: 10px;" src ={% static "img/twitter-icon.png" %}></a>
+      <a href=""><img  style="padding: 10px;" src ={% static "img/facebook-icon.png" %}></a>
+    </div>
+  </div>
+  <div class="footer-line"></div>  
+  <div class="footer-cta">©Copyright. All rights reserved. </div>
+</div>

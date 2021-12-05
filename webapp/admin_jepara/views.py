@@ -18,7 +18,7 @@ from .forms import AddFurnitureForm
 from django.contrib import messages
 # Create your views here.
 
-home_admin = '/admin'
+home_admin = '/admin/order'
 
 @user_is_admin
 def add_staff(request):

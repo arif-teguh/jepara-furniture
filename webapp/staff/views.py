@@ -10,7 +10,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .middleware import user_is_staff
 
-home_staff = '/staff'
+home_staff = '/staff/chat'
 home = '/'
 #from .models import ChairMode
 @user_is_staff
