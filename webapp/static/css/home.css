@@ -40,12 +40,13 @@ a:link {
 }
 .bg-img{
     position: relative;
-    width: auto;
+    width: 100%;
     height: auto;
     background-color: #0A0405;
 }
 .img{
     position: relative;
+    left: 0;
     display: block;
     width: auto;
     height: inherit ;
