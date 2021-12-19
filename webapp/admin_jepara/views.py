@@ -14,7 +14,7 @@ from .middleware import user_is_admin
 from django.contrib import messages
 import user.models as userModel
 from .forms import AddFurnitureForm
-from django.contrib import messages
+
 # Create your views here.
 
 home_admin = '/admin/order'
