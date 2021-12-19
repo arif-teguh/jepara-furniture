@@ -8,7 +8,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from user.forms import RegisterUserForm 
 from django.contrib.auth.decorators import login_required
-from staff.models import IsStaffModel
 
 
 from .middleware import user_is_admin
@@ -61,10 +60,10 @@ def staff_list(request):
 
 @user_is_admin
 def user_list(request):
-    staffs = IsStaffModel.objects.all()
+    staffs = User.objects.filter(is_staff = True)
     user_in_staff = []
     for staff in staffs :
-        user_in_staff.append(staff.user.id)
+        user_in_staff.append(staff.id)
     staffs_profile = userModel.ProfileModels.objects.all().exclude(user__id__in = user_in_staff )
     return render(request,'admin/user_list.html',{'staffs':staffs_profile})
     
