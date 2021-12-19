@@ -122,6 +122,27 @@ def delete_furniture(request, furtniture_id):
     furniture.delete()
     return redirect(request.META.get('HTTP_REFERER'))
 
+
+@user_is_admin
+def edit_furniture(request, furtniture_id):
+    try:
+        furniture = userModel.FurnitureModels.objects.get(id = furtniture_id)
+        if (request.method == "POST"):
+            furniture.name = request.POST['nama']
+            furniture.harga = request.POST['harga']
+            furniture.info = request.POST['info']
+            furniture.stock = request.POST['stok']
+            furniture.kategori = request.POST['kategori'].lower()
+            gambar =request.FILES.get('file',"tidak ada")
+            if gambar != "tidak ada":
+                furniture.gambar =gambar
+            furniture.save()
+            messages.success(request, (f"{furniture.nama} berhasil diedit !"))
+        return render(request, 'admin/editfurniture.html',{'furniture': furniture})
+    except:
+        messages.error(request, ("Terjadi kesalahan furniture tidak ada atau ada value yang slaah !"))
+        return redirect(request.META.get('HTTP_REFERER'))        
+
 @user_is_admin
 def base(request):
     return render(request, 'admin/order.html')
