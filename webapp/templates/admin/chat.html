@@ -1,63 +1,47 @@
 <!DOCTYPE html>
-{% extends 'base_admin.html' %}
+{% extends 'base.html' %}
 <html lang="en">
 {% load static   %}
 <head>
     {% block style %}
+    <script>
+     $(document).ready(function() {
+         $('#chat').load(window.location.href + "/reload");
+    });
+
+setInterval(function(){
+   $('#chat').load(window.location.href + "/reload");
+}, 1000) /* time in milliseconds (ie 2 seconds)*/
+</script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/chat.css' %}">
     {% comment %} <script src="{% static 'json/chat.js' %}"></script> {% endcomment %}
     <title>Jepara Furniture</title>
-<script>
-setInterval(function(){
-   $('html').load(window.location.href);
-}, 3000) /* time in milliseconds (ie 2 seconds)*/
-</script>
+    
     {% endblock %}
 </head>
 <body>
     {% block body %}
     <div class="bg">
+        <!-- style="background-image: url({% static "img/wallpaper.jpg" %}); background-repeat: repeat-y;" -->
         <div class="form-bg">
-            <form action="/chat" method="post">
-                {% csrf_token %}
-                {% comment %} <input type="image" alt="Profile" value="" name="content" img src={% static  "img/chat/profile.png"  %} width="50px" height="50px" disabled> {% endcomment %}
-                <input type="text" class="login-input-textpw" name="content" placeholder="">
-                <input type="submit" class="login-input-login" name="" value="send">
-            </form>
             <div class="chat-bg">
-                <div class="chat-gap"></div>
-                <div id="chatlog9" class="chat-admin"></div>
-                <div class="chat-gap"></div>
-                <div id="chatlog10" class="chat-user"></div>
-                <div class="chat-gap"></div>
-                <div id="chatlog7" class="chat-admin"></div>
-                <div class="chat-gap"></div>
-                <div id="chatlog8" class="chat-user"></div>
-                <div class="chat-gap"></div>
-                <div id="chatlog5" class="chat-admin"></div>
-                <div class="chat-gap"></div>
-                <div id="chatlog6" class="chat-user"></div>
-                <div class="chat-gap"></div>
-                <div id="chatlog3" class="chat-admin"></div>
-                <div class="chat-gap"></div>
-                <div id="chatlog4" class="chat-user"></div>
-                <div class="chat-gap"></div>
-                <div id="chatlog1" class="chat-admin"></div>
-                <div class="chat-gap"></div>
-                <div id="chatlog2" class="chat-user"></div>
-                {% for content in contents %}
-                    {% if content.user.id == request.user.id %}
-                        <br>{{content.user.username}} : {{ content.content }}
-                    {% else %}
-                        <br>{{content.user.username}} : {{ content.content }}
-                    {% endif %}
-                {% endfor %}
+                <form action="/admin/chat/{{user_chat.id}}" method="post">
+                {% csrf_token %}
+                <div id = "chat">
+                </div>
                 <!-- Admin chatlog(ganjil) User chatlog(genap) -->
+                  
                 
             </div>
+            <div class="bg-chat-form">
+                {% comment %} <input type="image" alt="Profile" value="" name="content" img src={% static  "img/chat/profile.png"  %} width="50px" height="50px" disabled> {% endcomment %}
+                <input type="text" class="chat-text" name="content" placeholder="">
+                <input type="submit" class="chat-enter" name="" value=">">
+            </form>
+            </div> 
         </div>
     </div>
     {% endblock %}

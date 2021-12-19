@@ -4,13 +4,7 @@
 {% load static   %}
 <head>
     {% block style %}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
-    {% comment %} <script src="{% static 'json/chat.js' %}"></script> {% endcomment %}
-    <title>Jepara Furniture</title>
-<script>
+    <script>
      $(document).ready(function() {
          $('#chat').load(window.location.href + "/reload");
     });
@@ -19,158 +13,35 @@ setInterval(function(){
    $('#chat').load(window.location.href + "/reload");
 }, 1000) /* time in milliseconds (ie 2 seconds)*/
 </script>
-    <style>
-        .bg{
-    position: relative;
-    height: 100%;
-    width: 100%;
-    left:0%;
-    top:0%;
-    right: 0%;
-    bottom: 0%;
-    padding: 10% 0;
-    background-color: #ededed;
-    white-space: nowrap;
-    font-style: normal;
-    font-size: 150%;
-    min-height: 500px;
-}
-.form-bg{
-    position: relative;
-    display: block;
-    width: 30%;
-    height: auto;
-    border-radius: 25px;
-    padding: 3% 3% 3%;
-    margin: auto;
-    background-color: #262626;
-}
-
-.chat-bg{
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 4%;
-    border-radius: 10px;
-    margin-bottom: 4%;
-    background-color: rgb(255, 255, 255);
-    margin-top: 10px;
-    box-sizing: border-box;
-    font-size: 12px;
-}
-
-.chat-admin{
-  position: relative;
-  display: block;
-  background-color: #262626;
-  padding: 0 10px;
-  left: 40%;
-  width: 60%;
-  border-radius: 20px;
-  box-sizing: border-box;
-  line-height: 24px;
-  color: white;
-  font-size: 16px;
-  font-family: Asimov;
-}
-
-.chat-user{
-  position: relative;
-  display: block;
-  padding: 0px 10px;
-  box-sizing: border-box;
-  border-radius: 20px;
-  background-color: #E0E0E0;
-  width: 60%;
-  line-height: 24px;
-  font-size: 16px;
-  font-family: Asimov;
-  color: #262626;
-}
-
-.chat-text{
-    padding: 5px 10px;
-    background-color: transparent;
-    font-family: Asimov;
-    color:#262626;
-    border-radius: 15px;
-    width: 85%;
-    font-size: 16px;
-    display: inline-block;
-}
-
-.chat-enter{
-    padding: 5px 10px;
-    background-color: #262626;
-    font-family: Asimov;
-    color:#ffffff;
-    border-radius: 15px;
-    width: 15%;
-    font-size: 16px;
-    display: inline-block;
-}
-
-.bg-chat-form{
-    text-align: center;
-}
-
-.chat-gap{
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 5px;
-}
-
-#chatbox {
-  font: 12px arial, sans-serif;
-  height: 22px;
-  width: 100%;
-  margin-top: 20px;
-  border-radius: 20px;
-  padding: 0 5px;
-  box-sizing: border-box;
-}
-
-/* Place Holder CSS */
-
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgb(0, 0, 0);
-    font-size: 12px;
-    opacity: 1; /* Firefox */
-  }
-  
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: rgb(0, 0, 0);
-  }
-  
-  ::-ms-input-placeholder { /* Microsoft Edge */
-    color: rgb(0, 0, 0);
-  }
-
-  textarea:focus, input:focus{
-    outline: none;
-}
-    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+    {% comment %} <script src="{% static 'json/chat.js' %}"></script> {% endcomment %}
+    <title>Jepara Furniture</title>
+    
     {% endblock %}
 </head>
 <body>
     {% block body %}
     <div class="bg">
+        <!-- style="background-image: url({% static "img/wallpaper.jpg" %}); background-repeat: repeat-y;" -->
         <div class="form-bg">
             <div class="chat-bg">
                 <form action="/staff/chat/{{user_chat.id}}" method="post">
-                    {% csrf_token %}
-                    <div id="chat">
-                    </div>
-                    <!-- Admin chatlog(ganjil) User chatlog(genap) -->
-                    <div class="bg-chat-form">
-                            {% comment %} <input type="image" alt="Profile" value="" name="content" img src={% static  "img/chat/profile.png"  %} width="50px" height="50px" disabled> {% endcomment %}
-                            <input type="text" class="chat-text" name="content" placeholder="">
-                            <input type="submit" class="chat-enter" name="" value=">">
-                        </div>   
-                    </form>
+                {% csrf_token %}
+                <div id = "chat">
+                </div>
+                <!-- Admin chatlog(ganjil) User chatlog(genap) -->
+                  
+                
             </div>
+            <div class="bg-chat-form">
+                {% comment %} <input type="image" alt="Profile" value="" name="content" img src={% static  "img/chat/profile.png"  %} width="50px" height="50px" disabled> {% endcomment %}
+                <input type="text" class="chat-text" name="content" placeholder="">
+                <input type="submit" class="chat-enter" name="" value=">">
+            </form>
+            </div> 
         </div>
     </div>
     {% endblock %}

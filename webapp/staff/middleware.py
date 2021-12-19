@@ -18,7 +18,7 @@ def user_is_staff(func):
             if not user:
                 return redirect(home)
             else :
-                staff = IsStaffModel.objects.get(user = req.user)
+                staff = req.user.is_staff
                 if not staff :
                     return redirect(home)
             return func(*args, **kwargs)
