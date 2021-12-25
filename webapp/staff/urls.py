@@ -15,3 +15,4 @@ urlpatterns = [
     path('preorder',views.preorder_list),
     path('complain/delete/<int:complain_id>',views.delete_complain),
     path('preorder/delete/<int:preorder_id>',views.delete_preorder),
+]

@@ -191,13 +191,13 @@ a:active {
                         <td>{{each.complain.email}}</td>
                         <td>
                             
-                            <img src="/{{each.complain.picture}}">
+                            <img src="/{{each.complain.picture}}" width=100%>
                             
                         </td>
                         <td>{{each.complain.deskripsi}}</td>
                         <td>
                             <a href="/staff/chat/{{each.complain.user.id}}">
-                                <img src={% static  "img/search-button.png"  %} class="button-table">
+                                <img src={% static  "img/chat-button.png"  %} class="button-table">
                             </a>
                             </a>
                             <a href="/staff/complain/delete/{{each.complain.id}}">

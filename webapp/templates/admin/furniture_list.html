@@ -205,8 +205,9 @@ a:active {
                         <td>{{each.furniture.stock}}</td>
                         {% if request.user.username != "owner" %}
                         <td>
-                            <a href="tes1.com">
+                            <a href="/admin/furniture/edit/{{each.furniture.id}}">
                                 <img src={% static  "img/edit-button.png"  %} class="button-table">
+                                
                             </a>
                             </a>
                             <a href="/admin/furniture/delete/{{each.furniture.id}}">

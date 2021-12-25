@@ -191,13 +191,13 @@ a:active {
                         <td>{{each.preorder.email}}</td>
                         <td>
                             
-                            <img src="/{{each.preorder.picture}}">
+                            <img src="/{{each.preorder.picture}}" width=100%>
                             
                         </td>
                         <td>{{each.preorder.jenis_furniture}}</td>
                         <td>
                             <a href="/staff/chat/{{each.preorder.user.id}}">
-                                <img src={% static  "img/search-button.png"  %} class="button-table">
+                                <img src={% static  "img/chat-button.png"  %} class="button-table">
                             </a>
                             </a>
                             <a href="/staff/preorder/delete/{{each.preorder.id}}">

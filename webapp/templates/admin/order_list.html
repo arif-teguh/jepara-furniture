@@ -189,7 +189,7 @@ a:active {
                         <td>{{each.total}}</td>
                         <td>
                             
-                            <img src="/{{each.bukti_pembayaran}}">
+                            <img src="/{{each.bukti_pembayaran}}" width=100%>
                             
                         </td>
                         <td>{{each.alamat}}</td>
@@ -199,7 +199,7 @@ a:active {
                         {% else %}
                         
                             <a href="/admin/order/{{each.id}}">
-                                <img src={% static  "img/send-button.png"  %} class="button-table">
+                                <img src={% static  "img/deliver-button.png"  %} class="button-table">
                             </a>
                         
                         {%endif%}
