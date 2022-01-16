@@ -201,9 +201,10 @@ def order_detail(request, order_id):
 @user_is_admin
 def delete_user(request, id):
     try:
-        user = User.object.get(id= id)
+        user = User.objects.filter(id = id)
         user.delete()
         messages.success(request, 'Berhasil mendelete user')
-    except:
+    except Exception as e:
+        print(e)
         messages.error(request, 'Gagal mendelete user')
     return redirect(request.META.get('HTTP_REFERER'))

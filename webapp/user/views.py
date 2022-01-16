@@ -358,7 +358,12 @@ def confirmation(request):
 @login_required(login_url="/login")
 def detele_some_order(request, id):
     try:
+        
         order = OrderModels.objects.get(id = id , user= request.user)
+        harga = order.total
+        keranjang = ShoppingCartModels.objects.get(user= request.user)
+        keranjang.total -= harga
+        keranjang.save()
         order.delete()
         messages.success(request , 'Sukses mendelete orderan !')
     except:
