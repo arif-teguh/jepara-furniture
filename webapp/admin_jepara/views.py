@@ -196,3 +196,14 @@ def order_detail(request, order_id):
     all_order = userModel.OrderModels.objects.filter(user=payment.user , keranjang_deleted_id = keranjang_deleted_id)
     #return render(request, "user/checkout.html" ,{"orders": all_order , "keranjang" : keranjang})
     return render(request, "admin/order_detail.html",{"orders": all_order, "keranjang": payment})
+
+
+@user_is_admin
+def delete_user(request, id):
+    try:
+        user = User.object.get(id= id)
+        user.delete()
+        messages.success(request, 'Berhasil mendelete user')
+    except:
+        messages.error(request, 'Gagal mendelete user')
+    return redirect(request.META.get('HTTP_REFERER'))

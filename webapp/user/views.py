@@ -355,3 +355,12 @@ def confirmation(request):
     return render(request, "user/confirmation.html",{"orders": all_order, "keranjang": payment})
 
 
+@login_required(login_url="/login")
+def detele_some_order(request, id):
+    try:
+        order = OrderModels.objects.get(id = id , user= request.user)
+        order.delete()
+        messages.success(request , 'Sukses mendelete orderan !')
+    except:
+        messages.error(request, 'Gagal Mendelte order!')
+    return redirect(request.META.get('HTTP_REFERER'))
