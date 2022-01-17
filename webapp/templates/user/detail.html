@@ -12,6 +12,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Jepara Furniture</title>
+    <script type="text/javascript">  
+        function thousands_separators(num)
+          {
+              var num_parts = num.toString().split(".");
+              num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+              return num_parts.join(".");
+          }
+      </script>
     <style>
         .write-review-title{
             position: relative;
@@ -213,17 +221,17 @@
             
             <div class="btn-2">
                 <a href="">
-                    <img class="img-feature" src={% static  "img/detail/btn-feature-2.png"  %}>
+                    <img class="img-feature" src={% static  "img/new-chat.png"  %}>
                 </a>
             </div>
             <div class="btn-3">
                 <a href="">
-                    <img class="img-feature" src={% static  "img/detail/btn-feature-3.png"  %}>
+                    <img class="img-feature" src={% static  "img/new-complain.png"  %}>
                 </a>
             </div>    
             <div class="btn-4">
                 <a href="">
-                    <img class="img-feature" src={% static  "img/detail/btn-feature-4.png"  %}>
+                    <img class="img-feature" src={% static  "img/new-preorder.png"  %}>
                 </a>
             </div>
         </div> 
@@ -339,9 +347,7 @@
                         <div class="others-item-name">
                             {{each.nama}}
                         </div>
-                        <div class="others-item-price">
-                            Rp {{each.harga}}
-                        </div>
+                        <input class="others-item-price" id="each_harga" value="{{each.harga}}" disabled>
                     </a>
                 </div>
                 {% endfor %}
@@ -397,6 +403,9 @@
 			});
 		});
         console.log($(this))
+        $(document).ready(function(){
+            document.getElementsByClassName('each_harga').value = "Rp " + thousands_separators(parseInt(document.getElementsByClassName('each_harga').value));
+        });
         </script>
         {% endblock %}
 </body>

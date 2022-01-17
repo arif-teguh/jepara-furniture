@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="{% static 'css/keranjang.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
     <title>Jepara Furniture</title>
+    <script type="text/javascript">  
+        function thousands_separators(num)
+          {
+              var num_parts = num.toString().split(".");
+              num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+              return num_parts.join(".");
+          }
+      </script>
     {% endblock %}
 </head>
 <body style="background-color: #ededed;font-family: Asimov;font-size: 0px;color: #262626;">
@@ -27,14 +35,13 @@
                 </div>
                 <div class="cart-item-desc">
 
-                    <!-- Keknya css nya masih salah, nanti aku perbaiki sambil meet dgn nauval -->
                     <a href="/checkout/delete/{{item.id}}">
-                        <img src={% static  "img/delete-button.png"  %} style="width: 100%;text-align: right;">
+                        <img src={% static  "img/delete-button.png"  %} style="display:in">
                     </a>
                     
                     <input disabled class="cart-item-input" type="text" id="" name="" value=" {{item.jumlah}} {{item.furnitur.nama}}                                
                                         @{{item.furnitur.harga}}" placeholder="" >
-                    <input disabled class="cart-item-input" type="text" id="" name="" value="RP. {{item.total}}" style="text-align: right;" placeholder="" >
+                    <input disabled class="cart-item-input" type="text" id="item_total" name="" value="{{item.total}}" style="text-align: right;" placeholder="" >
                 </div>
             </div>
             {% endfor %}
@@ -47,7 +54,7 @@
                     <span>Detail Belanja</span>
                     <br>
                     <input class="cart-detail-input" type="text" id="" name="" value="Total Harga {{keranjang.total_furnitur}} item" placeholder="" disabled>
-                    <input class="cart-detail-input" type="text" id="" name="" value="Rp. {{keranjang.total}}" style="text-align: right;float: right;" placeholder="" disabled>
+                    <input class="cart-detail-input" type="text" id="keranjang_total" name="" value="{{keranjang.total}}" style="text-align: right;float: right;" placeholder="" disabled>
                     <br>
                     <input class="cart-detail-input" type="text" id="" name="" value="Biaya Pengantaran" placeholder="" disabled>
                     <input class="cart-detail-input" type="text" id="" name="" value="Rp.100.000" style="text-align: right;float: right;" placeholder="" disabled>
@@ -80,7 +87,9 @@
 
 <script>
 $(document).ready(function(){
-    document.getElementById('total_harga').value = "Rp " + (parseInt(document.getElementById('total_harga').value) + 100000);
+    document.getElementById('total_harga').value = "Rp " + thousands_separators(parseInt(document.getElementById('total_harga').value) + 100000);
+    document.getElementById('item_total').value = "Rp " + thousands_separators(parseInt(document.getElementById('item_total').value));
+    document.getElementById('keranjang_total').value = "Rp " + thousands_separators(parseInt(document.getElementById('keranjang_total').value));
 });
 </script>
     {% endblock %}
