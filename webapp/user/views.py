@@ -53,7 +53,7 @@ def register_user(request):
             email = request.POST["email"]
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
-            alamat = "alamat"
+            alamat = "-"
             gender = request.POST.get('gender',"-")
             phone = request.POST.get('phone',"-")
             full_name = request.POST.get('full_name',"-")
