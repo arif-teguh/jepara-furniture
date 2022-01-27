@@ -8,14 +8,13 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from user.forms import RegisterUserForm 
 from django.contrib.auth.decorators import login_required
-from staff.models import IsStaffModel
 
 
 from .middleware import user_is_admin
 from django.contrib import messages
 import user.models as userModel
 from .forms import AddFurnitureForm
-from django.contrib import messages
+
 # Create your views here.
 
 home_admin = '/admin/order'
@@ -61,10 +60,10 @@ def staff_list(request):
 
 @user_is_admin
 def user_list(request):
-    staffs = IsStaffModel.objects.all()
+    staffs = User.objects.filter(is_staff = True)
     user_in_staff = []
     for staff in staffs :
-        user_in_staff.append(staff.user.id)
+        user_in_staff.append(staff.id)
     staffs_profile = userModel.ProfileModels.objects.all().exclude(user__id__in = user_in_staff )
     return render(request,'admin/user_list.html',{'staffs':staffs_profile})
     
@@ -197,3 +196,15 @@ def order_detail(request, order_id):
     all_order = userModel.OrderModels.objects.filter(user=payment.user , keranjang_deleted_id = keranjang_deleted_id)
     #return render(request, "user/checkout.html" ,{"orders": all_order , "keranjang" : keranjang})
     return render(request, "admin/order_detail.html",{"orders": all_order, "keranjang": payment})
+
+
+@user_is_admin
+def delete_user(request, id):
+    try:
+        user = User.objects.filter(id = id)
+        user.delete()
+        messages.success(request, 'Berhasil mendelete user')
+    except Exception as e:
+        print(e)
+        messages.error(request, 'Gagal mendelete user')
+    return redirect(request.META.get('HTTP_REFERER'))

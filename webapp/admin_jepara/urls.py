@@ -14,6 +14,7 @@ urlpatterns = [
     path('staff/add',views.add_staff),
     path('staff',views.staff_list),
     path('user',views.user_list),
+    path('user/delete/<int:id>',views.delete_user),
     path('order',views.order_list),
     path('order/<int:order_id>',views.confirm_order),
     path('orders/detail/<int:order_id>',views.order_detail),

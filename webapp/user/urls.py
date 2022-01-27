@@ -13,6 +13,7 @@ urlpatterns = [
     path('view/furniture/<str:kategori>-<int:id>',views.view_furniture_details),
     path('view/furniture/<str:kategori>',views.view_furniture),
     path('review/furniture/<int:id>',views.review_furniture),
+    path('checkout/delete/<int:id>',views.detele_some_order),
     path('checkout',views.checkout_all),
     path('checkout/<int:id_furniture>',views.checkout_fast),
     path('payment',views.payment),
@@ -24,5 +25,6 @@ urlpatterns = [
     path('profile',views.profile),
     path('profile/edit',views.edit_profile),
     path('confirmation',views.confirmation),
+    path('category',views.get_category),
 ]
 

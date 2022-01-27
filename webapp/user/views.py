@@ -1,4 +1,5 @@
 from typing import overload
+from unicodedata import category
 from django.core import exceptions
 from datetime import datetime
 from django.http.response import HttpResponseNotAllowed
@@ -16,6 +17,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from .forms import RegisterUserForm
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 import random
 home = "/"
 LOGIN_URL = "/login"
@@ -52,16 +54,14 @@ def register_user(request):
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
             alamat = "alamat"
-            gender = request.POST.get('gender')
-            phone = request.POST.get('phone')
-            full_name = request.POST.get('full_name')
-            birth_date = request.POST.get('birth_date')
+            gender = request.POST.get('gender',"-")
+            phone = request.POST.get('phone',"-")
+            full_name = request.POST.get('full_name',"-")
             profile = ProfileModels.objects.create(
                 alamat = alamat,
                 gender = gender,
                 phone = phone,
                 full_name = full_name,
-                birth_date = birth_date,
                 user = user
             )
             profile.save()
@@ -355,3 +355,32 @@ def confirmation(request):
     return render(request, "user/confirmation.html",{"orders": all_order, "keranjang": payment})
 
 
+@login_required(login_url="/login")
+def detele_some_order(request, id):
+    try:
+        
+        order = OrderModels.objects.get(id = id , user= request.user)
+        harga = order.total
+        keranjang = ShoppingCartModels.objects.get(user= request.user)
+        keranjang.total -= harga
+        keranjang.save()
+        order.delete()
+        messages.success(request , 'Sukses mendelete orderan !')
+    except:
+        messages.error(request, 'Gagal Mendelte order!')
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
+def get_category(request):
+    category = FurnitureModels.objects.all().values('kategori').annotate(dcount=Count('kategori'))
+    categories = []
+    for a in category:
+        dict = {}
+        kategori = a.get("kategori")
+        exclude = ["chair","wardobe","table","bedroom"]
+        if kategori not in exclude:
+            dict = {}
+            dict["name"] = kategori
+            dict["name2"] = kategori.capitalize()
+            categories.append(dict)
+    return render(request, "user/category.html",{"categories":categories,})

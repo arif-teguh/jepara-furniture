@@ -182,7 +182,7 @@ a:active {
                         <th>Opsi</th>
                     </tr>
 
-                    {% for each in complains %}
+                    {% for each in preorders %}
                     <tr>
                         <!-- <td>{{each.user.id}}</td>     -->
                         <td>{{each.preorder.nama}}</td>
@@ -191,16 +191,16 @@ a:active {
                         <td>{{each.preorder.email}}</td>
                         <td>
                             
-                            <img src="/{{each.complain.picture}}">
+                            <img src="/{{each.preorder.picture}}" width=100%>
                             
                         </td>
                         <td>{{each.preorder.jenis_furniture}}</td>
                         <td>
-                            <a href="/staff/chat/{{each.complain.user.id}}">
-                                <img src={% static  "img/search-button.png"  %} class="button-table">
+                            <a href="/staff/chat/{{each.preorder.user.id}}">
+                                <img src={% static  "img/chat-button.png"  %} class="button-table">
                             </a>
                             </a>
-                            <a href="tes3.com">
+                            <a href="/staff/preorder/delete/{{each.preorder.id}}">
                                 <img src={% static  "img/delete-button.png"  %} class="button-table">
                             </a>
                         </td>

@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="{% static 'css/menu.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
     <title>Jepara Furniture</title>
+    <script type="text/javascript">  
+        function thousands_separators(num)
+          {
+              var num_parts = num.toString().split(".");
+              num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+              return num_parts.join(".");
+          }
+      </script>
     {% endblock %}
 </head>
 <body>
@@ -65,17 +73,17 @@
             
             <div class="btn-2">
                 <a href="">
-                    <img class="img-feature" src={% static  "img/menu/btn-feature-2.png"  %}>
+                    <img class="img-feature" src={% static  "img/new-chat.png"  %}>
                 </a>
             </div>
             <div class="btn-3">
                 <a href="">
-                    <img class="img-feature" src={% static  "img/menu/btn-feature-3.png"  %}>
+                    <img class="img-feature" src={% static  "img/new-complain.png"  %}>
                 </a>
             </div>    
             <div class="btn-4">
                 <a href="">
-                    <img class="img-feature" src={% static  "img/menu/btn-feature-4.png"  %}>
+                    <img class="img-feature" src={% static  "img/new-preorder.png"  %}>
                 </a>
             </div>
         </div> 
@@ -93,7 +101,7 @@
                     <div class="item-rating">
                         <span style="color: gold;">&#9733  </span>
                         <input class="input-rating" type="text" id="" name="" value={{each.rating}} placeholder="" disabled>
-                        <input class="input-price" type="text" id="" name="" value={{each.furniture.harga}} placeholder="" disabled>
+                        <input class="input-price" type="text" id="furniture_harga" name="" value={{each.furniture.harga}} placeholder="" disabled>
                     </div>
                     <br>
                         <h style="float: right;color: gray;font-size: 16px;" >Detail</a>
@@ -109,11 +117,11 @@
         </div>
     </div>
 
-    
-
-    
-
     <script>
+        $(document).ready(function(){
+            document.getElementById('furniture_harga').value = "Rp " + thousands_separators(parseInt(document.getElementById('furniture_harga').value));
+        });
+
         var slideIndex = 1;
         showSlides(slideIndex);
         
@@ -141,6 +149,6 @@
           dots[slideIndex-1].className += " active";
         }
         </script>
-        {% endblock %}
+    {% endblock %}
 </body>
 </html>

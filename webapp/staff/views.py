@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .middleware import user_is_staff
+from django.contrib import messages
 
 home_staff = '/staff/chat'
 home = '/'
@@ -96,3 +97,26 @@ def preorder_list(request):
 def chat_list(request):
     chat_list = userModel.ChatTopicModels.objects.all()
     return render ( request, 'staff/chat_list.html',{"chat_list": chat_list})
+
+
+@user_is_staff
+def delete_complain(request,complain_id):
+    try:
+        complain = userModel.ComplainModels.objects.get(id = complain_id)
+        messages.success(request, ("complain berhasil dihapus !"))
+        complain.delete()
+    except :
+        messages.error(request , ("complain tidak ada!"))
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
+
+@user_is_staff
+def delete_preorder(request,preorder_id):
+    try:
+        preorder = userModel.PreOrderModels.objects.get(id = preorder_id)
+        messages.success(request, ("Preorder berhasil dihapus !"))
+        preorder.delete()
+    except :
+        messages.error(request , ("Preorder tidak ada!"))
+    return redirect(request.META.get('HTTP_REFERER'))
