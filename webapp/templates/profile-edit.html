@@ -42,7 +42,16 @@
                 
                 <br>
                 <span class="filler-text">Jenis Kelamin</span>
-                <input class="profile-desc" type="text" id="" name="gender" value="{{profile.gender}}">
+                <select class="profile-desc" name="gender">
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                </select>
+                <br>
+                <span class="filler-text">Daerah</span>
+                <select class="profile-desc" name=" ">
+                    <option value="Jabodetabek">Jabodetabek</option>
+                    <option value="Non-jabodetabek">Non Jabodetabek</option>
+                </select>
                 <br>
                 <span class="filler-text">Alamat</span>
                 <input class="profile-desc" type="text" id="" name="alamat" value="{{profile.alamat}}">
@@ -57,9 +66,9 @@
                 <input class="profile-desc" type="text" id="" name="phone" value="{{profile.phone}}">
                 
                 <br>
-                
-                <input type="submit" class="submit-button" name="" value="Submit">
-                
+                <a href='/profile'>
+                    <input type="submit" class="submit-button" name="" value="Submit">
+                </a>
                 </form>    
             </div>
         </div>

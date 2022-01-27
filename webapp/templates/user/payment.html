@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="{% static 'css/payment.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
     <title>Jepara Furniture</title>
+    <script type="text/javascript">  
+        function thousands_separators(num)
+          {
+              var num_parts = num.toString().split(".");
+              num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+              return num_parts.join(".");
+          }
+      </script>
 
     {% endblock %}
 </head>
@@ -19,7 +27,7 @@
         <div class="title">
             <span>Batas Akhir Pembayaran</span>
             <br>
-            <span style="font-weight: bold;">Kamis, 23 September 2021</span>
+            <span style="font-weight: bold;"><span id="date"></span></span>
         </div>
         <div class="bg-va">
             <img src={% static  "img/payment/bca-img.png"  %} style="width: 10%;">
@@ -33,7 +41,7 @@
             <br>
             <span style="color: grey;">Total Pembayaran</span>
             <br>
-            <span style="font-weight: bold;">Rp. {{keranjang.total}}</span>
+            <span style="font-weight: bold;" id="keranjang_total">{{keranjang.total}}</span>
             <a href="/checkout"><span class="va-button">Lihat Detail</span></a>
         </div>
 
@@ -53,6 +61,17 @@
             <img src={% static  "img/payment/img-instructions.png"  %} style="width: 50%;">
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            document.getElementById('keranjang_total').value = "Rp " + thousands_separators(parseInt(document.getElementById('keranjang_total').value));
+            n =  new Date();
+            y = n.getFullYear();
+            m = n.getMonth() + 1;
+            d = n.getDate()+ 3;
+            document.getElementById("date").innerHTML = m + "-" + d + "-" + y;
+        });
+        
+        </script>
     {% endblock %}
 </body>
 </html>

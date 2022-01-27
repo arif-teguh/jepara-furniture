@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="{% static 'css/keranjang.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
     <title>Jepara Furniture</title>
+    <script type="text/javascript">  
+        function thousands_separators(num)
+          {
+              var num_parts = num.toString().split(".");
+              num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+              return num_parts.join(".");
+          }
+      </script>
     {% endblock %}
 </head>
 <body style="background-color: #ededed;font-family: Asimov;font-size: 0px;color: #262626;">
@@ -28,7 +36,7 @@
                 <div class="cart-item-desc">
                     <input disabled class="cart-item-input" type="text" id="" name="" value=" {{item.jumlah}} {{item.furnitur.nama}}                                
                                         @{{item.furnitur.harga}}" placeholder="" >
-                    <input disabled class="cart-item-input" type="text" id="" name="" value="RP. {{item.total}}" style="text-align: right;" placeholder="" >
+                    <input disabled class="cart-item-input" type="text" id="item_total" name="" value="{{item.total}}" style="text-align: right;" placeholder="" >
                 </div>
             </div>
             {% endfor %}
@@ -40,8 +48,21 @@
                 <div class="cart-detail-text">
                     <span>Detail Belanja</span>
                     <br>
+                    <span 
+                    style="
+                        font-family: Asimov;
+                        display: inline-block;
+                        font-size: 20px;
+                        width: 100%;
+                        margin-top: 5px;
+                        border: 0px;
+                        background-color: transparent;
+                        color: #262626;
+                    ">
+                    Tanggal Belanja :<span id="date"></span></span>
+                    <br>
                     <input class="cart-detail-input" type="text" id="" name="" value="Total Harga {{keranjang.total_furnitur}} item" placeholder="" disabled>
-                    <input class="cart-detail-input" type="text" id="" name="" value="Rp. {{keranjang.total}}" style="text-align: right;float: right;" placeholder="" disabled>
+                    <input class="cart-detail-input" type="text" id="keranjang_total" name="" value="{{keranjang.total}}" style="text-align: right;float: right;" placeholder="" disabled>
                     <br>
                     <input class="cart-detail-input" type="text" id="" name="" value="Biaya Pengantaran" placeholder="" disabled>
                     <input class="cart-detail-input" type="text" id="" name="" value="Rp.100.000" style="text-align: right;float: right;" placeholder="" disabled>
@@ -52,7 +73,7 @@
                 </div>
                     <label class="cart-detail-button" for="input-cart-submit">
                         <img src={% static  "img/keranjang/shield-done.png"  %} style="vertical-align: middle;">
-                        <input type="submit" id="input-cart-submit" class="input-cart-submit" name="" value="Konfirmasi Pnemerimaan">
+                        <input type="submit" id="input-cart-submit" class="input-cart-submit" name="" value="Konfirmasi Penerimaan">
                     </label>
             </form>
         </div>
@@ -87,7 +108,16 @@
 <script>
 $(document).ready(function(){
     document.getElementById('total_harga').value = "Rp " + (parseInt(document.getElementById('total_harga').value) + 100000);
+    document.getElementById('item_total').value = "Rp " + thousands_separators(parseInt(document.getElementById('item_total').value));
+    document.getElementById('keranjang_total').value = "Rp " + thousands_separators(parseInt(document.getElementById('keranjang_total').value));
+    document.getElementById('total_harga').value = "Rp " + thousands_separators(parseInt(document.getElementById('total_harga').value));
+    n =  new Date();
+    y = n.getFullYear();
+    m = n.getMonth() + 1;
+    d = n.getDate();
+    document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
 });
+
 </script>
     {% endblock %}
 </body>
