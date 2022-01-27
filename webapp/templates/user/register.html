@@ -18,8 +18,8 @@
             <form action="/register" method="post">
                 {% csrf_token %}
                 <p style="text-align: left;font-size: 200%;color: white;">REGISTER</p>
-                <select class="register-input-textpw" name=" ">
-                    <option value="Jabodetabek">Jabodetabek</option>
+                <select class="register-input-textpw" name="region">
+                    <option value="jabodetabek">Jabodetabek</option>
                     <option value="Non-jabodetabek">Non Jabodetabek</option>
                 </select>
                 <input type="text" class="register-input-textpw" name="email" placeholder="EMAIL">

@@ -268,7 +268,7 @@
   <div class="dropdown">
     <div class="dropbtn">
       <a href='/profile'>
-        <div class="name-profile">{{profile.full_name}}</div>
+        <div class="name-profile">{{request.user.username}}</div>
         <img  src ={% static "img/LoginUserIcon.png" %} width="28px" height ="28px">
       </a>
     </div> 

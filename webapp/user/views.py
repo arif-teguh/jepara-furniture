@@ -46,6 +46,9 @@ def register_user(request):
         password = request.POST["password"]
         email = request.POST["email"]
         print(username)
+        if request.POST.get('region',"-") != "jabodetabek":
+            messages.error(request, 'Layanan hanya bisa untuk daerah Jabodetabek saja!')
+            return redirect(request.META.get('HTTP_REFERER'))
         form = RegisterUserForm(request.POST)
         if form.is_valid():
             username = request.POST["username"]

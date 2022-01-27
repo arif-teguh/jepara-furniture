@@ -170,7 +170,7 @@ def view_profile(request, id_user):
 
 @user_is_admin
 def order_list(request):
-    payment = userModel.PaymentModels.objects.all().exclude(status = "Completed")
+    payment = userModel.PaymentModels.objects.all() #.exclude(status = "Completed")
     return render( request, 'admin/order_list.html',{'payment':payment})
 
 @user_is_admin
