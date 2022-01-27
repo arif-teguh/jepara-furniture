@@ -25,5 +25,6 @@ urlpatterns = [
     path('profile',views.profile),
     path('profile/edit',views.edit_profile),
     path('confirmation',views.confirmation),
+    path('category',views.get_category),
 ]
 

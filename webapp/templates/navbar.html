@@ -5,6 +5,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="{% static 'css/navbar.css' %}">  
+  <script>
+    $(document).ready(function() {
+      $('#test').load("/category");
+ });
+  </script>
 <style>
 
 </style>
@@ -35,12 +40,12 @@
   
   {% endif %}
 
-<div class="topnav">
-
+<div id="navbar-user" class="topnav">
+    <div id= "test">
+    </div>
     <a href="/view/furniture/chair">Chair</a>
     <a href="/view/furniture/table">Table</a>
     <a href="/view/furniture/bedroom">Bedroom</a>
-    <a href="/view/furniture/table">Table</a>
     <a href="/view/furniture/wardobe">Wardrobe</a>
     <a onclick="window.scrollTo(0,document.body.scrollHeight);" style="cursor: pointer;">About</a>
     <a href="/">Home</a>
