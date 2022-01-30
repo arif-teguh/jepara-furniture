@@ -167,6 +167,10 @@ def chat_reload(request):
 
 @login_required(login_url="/login")
 def complain(request):
+    payment = PaymentModels.objects.filter(user=request.user, status = "Completed")
+    if payment.count() == 0 :
+        messages.error(request, 'Tidak dapat melakukan komplain dikarenakan anda tidak memiliki pembayaran selesai')
+        return redirect(request.META.get('HTTP_REFERER'))
     if request.method == "POST":
         try :
             alamat = request.POST['alamat']
