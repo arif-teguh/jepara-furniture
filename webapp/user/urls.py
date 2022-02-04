@@ -26,5 +26,7 @@ urlpatterns = [
     path('profile/edit',views.edit_profile),
     path('confirmation',views.confirmation),
     path('category',views.get_category),
+    path('notif',views.get_notif),
+    path('notif/dismiss',views.dismiss_notif),
 ]
 

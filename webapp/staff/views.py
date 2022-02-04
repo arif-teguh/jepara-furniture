@@ -1,3 +1,4 @@
+from telnetlib import STATUS
 import user.models as userModel
 from .models import IsStaffModel
 from django.core.exceptions import ObjectDoesNotExist
@@ -74,9 +75,22 @@ def complain_list(request):
         final_complains.append(complain)
     return render(request, 'staff/complain_list.html',{"complains": final_complains})
 
+
+@user_is_staff
+def accept_preorder(request,preorder_id):
+    preorder = userModel.PreOrderModels.objects.get(id=preorder_id)
+    preorder.status = 'accepted'
+    preorder.save()
+    messages.success(request, ("Preorder berhasil diterima !"))
+    return redirect(request.META.get('HTTP_REFERER'))
+    
+
+
 @user_is_staff
 def preorder_list(request):
-    preorders = userModel.PreOrderModels.objects.all()
+    preorders = userModel.PreOrderModels.objects.all().exclude(status='deleted')
+    # in case accepted ilang
+    # preorders = userModel.PreOrderModels.objects.all().exclude(status__in=['deleted','accepted','viewed']) 
     final_preorders = []
     for each in preorders:
         preorder = {}
@@ -115,8 +129,9 @@ def delete_complain(request,complain_id):
 def delete_preorder(request,preorder_id):
     try:
         preorder = userModel.PreOrderModels.objects.get(id = preorder_id)
+        preorder.status = 'deleted'
+        preorder.save()
         messages.success(request, ("Preorder berhasil dihapus !"))
-        preorder.delete()
     except :
         messages.error(request , ("Preorder tidak ada!"))
     return redirect(request.META.get('HTTP_REFERER'))

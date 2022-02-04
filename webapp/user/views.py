@@ -391,3 +391,36 @@ def get_category(request):
             dict["name2"] = kategori.capitalize()
             categories.append(dict)
     return render(request, "user/category.html",{"categories":categories,})
+
+
+
+def get_notif(request):
+    try:
+        preorder_deleted = PreOrderModels.objects.filter(user= request.user, status = 'deleted')
+        preorder_accepeted = PreOrderModels.objects.filter(user= request.user, status = 'accepted')
+        accepeted = len(preorder_accepeted)
+        deleted = len(preorder_deleted)
+        print('aaaaaa')
+        if accepeted == 0 and deleted == 0:
+            print('aaaaaa2')
+            return HttpResponse('')
+        else:
+            print('aaaaaa3')
+            # return HttpResponse('ada notif')
+            return render(request, "user/notif.html",{"accepted":accepeted, "deleted":deleted})
+    except:
+        return HttpResponse('')
+
+@login_required
+def dismiss_notif(request):
+    try:
+        preorders = PreOrderModels.objects.filter(user = request.user)
+        for preorder in preorders:
+            if preorder.status == 'deleted':
+                preorder.delete()
+            else:
+                preorder.status = 'viewed'
+                preorder.save()
+        return redirect(request.META.get('HTTP_REFERER'))
+    except:
+        return redirect(request.META.get('HTTP_REFERER'))

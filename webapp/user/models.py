@@ -75,8 +75,9 @@ class PreOrderModels(models.Model):
     user =  models.ForeignKey(User,on_delete=models.CASCADE,
          null=False, blank=False)
     alamat = models.TextField()
-    nama =  models.CharField(max_length=50)
+    nama =  models.CharField(max_length=50, null=True, default='pending')
     email = models.CharField(max_length=50)
+    status = models.CharField(max_length=50)
     jenis_furniture =  models.TextField()
     picture = models.FileField(upload_to = 'static/uploaded/preorder', null= True)
 

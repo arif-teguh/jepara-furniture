@@ -8,6 +8,7 @@
   <script>
     $(document).ready(function() {
       $('#test').load("/category");
+      $('#notif').load("/notif");
   });
   </script>
   
@@ -262,6 +263,7 @@
     height: 10px;
     background-color: #ededed;
     }
+    
   </style>
 
 {% if user.is_authenticated %}
@@ -324,6 +326,7 @@
     <a id='main_logo' style="float: left;" href="/">JEPARA FURNITURE</h>
     </a>
 </div>
+<div id = 'notif' class="notif_po"> </div>
 <div class="gap"></div>
 
 {% if messages %}

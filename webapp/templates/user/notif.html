@@ -1,0 +1,53 @@
+<style>
+    .notif_po{
+        position: relative;
+        width: 100%;
+        background-color: rgb(93, 93, 248);
+        color: white;
+        font-family: Asimov;
+        padding: 7px 10px;
+    }
+    a:link {
+        text-decoration: none;
+    }
+    
+    a:visited {
+        text-decoration: none;
+    }
+    
+    a:hover {
+        text-decoration: none;
+    }
+    
+    a:active {
+        text-decoration: none;
+    }
+    a:link {
+        color: white;
+    }
+    a:visited {
+        color: white;
+    }
+    a:hover {
+        color: white;
+    }
+    a:active {
+        color: white;
+    }
+    .silang{
+        margin-right: 15px;
+        font-family: Segoe UI Symbol;
+    }
+</style>
+
+<div class="notif_po">
+    <a href='/notif/dismiss' class="silang">&#10060;</a>
+    {% if accepted > 0 %}
+        {{ accepted }} Preorder anda diterima
+    {% endif %}
+
+    {% if deleted > 0 %}
+    {{ deleted }} Preorder anda ditolak
+    {% endif %}
+</div>
+        

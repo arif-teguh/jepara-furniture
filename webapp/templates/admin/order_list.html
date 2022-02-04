@@ -89,8 +89,8 @@ color: white;
 
 .table-staff tr:hover {background-color: #4e4e4e;}
 
-/* table th:first-child {width: 4%;}
-table td:first-child {width: 4%;} */
+.table-staff th:first-child {width: 4%;}
+.table-staff td:first-child {width: 4%;}
 
 .table-staff th {
 padding-top: 12px;
@@ -174,17 +174,20 @@ a:active {
                 <table class="table-staff">
                     <tr>
                         <!-- <th>ID</th> -->
-                        <th>Nama Pembei</th>
+                        <th>ID</th>
+                        <th>Nama Pembeli</th>
                         <th>Harga</th>
-                        <th>Gambar pembayaran</th>
-                        <th>alamat</th>
-                        <th>status</th>
+                        <th>Gambar Pembayaran</th>
+                        <th>Alamat</th>
+                        <th>Tanggal Pembayaran</th>
+                        <th>Status</th>
                         <th>Opsi</th>
                     </tr>
 
                     {% for each in payment %}
                     <tr>
                         <!-- <td>{{each.user.id}}</td>     -->
+                        <td>{{each.id}}</td>
                         <td>{{each.user.username}}</td>
                         <td>{{each.total}}</td>
                         <td>
@@ -193,6 +196,7 @@ a:active {
                             
                         </td>
                         <td>{{each.alamat}}</td>
+                        <td>{{each.tanggal_bayar}}</td>
                         <td>{{each.status}}</td>
                         <td>
                         {% if request.user.username == "owner" %}
@@ -215,6 +219,16 @@ a:active {
             </div>
         </div>
     </div>
+    <script>
+      $(document).ready(function(){
+          n =  new Date();
+          y = n.getFullYear();
+          m = n.getMonth() + 1;
+          d = n.getDate();
+          document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
+      });
+      
+      </script>
     {% endblock %}  
 </body>
 </html>

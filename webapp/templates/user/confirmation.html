@@ -107,7 +107,6 @@
 
 <script>
 $(document).ready(function(){
-<<<<<<< HEAD
     document.getElementById('total_harga').value = "Rp " + (parseInt(document.getElementById('total_harga').value) + 100000);
     document.getElementById('item_total').value = "Rp " + thousands_separators(parseInt(document.getElementById('item_total').value));
     document.getElementById('keranjang_total').value = "Rp " + thousands_separators(parseInt(document.getElementById('keranjang_total').value));
@@ -117,11 +116,6 @@ $(document).ready(function(){
     m = n.getMonth() + 1;
     d = n.getDate();
     document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
-=======
-    document.getElementById('total_harga').value = "Rp " + thousands_separators(parseInt(document.getElementById('total_harga').value) + 100000);
-    document.getElementById('item_total').value = "Rp " + thousands_separators(parseInt(document.getElementById('item_total').value));
-    document.getElementById('keranjang_total').value = "Rp " + thousands_separators(parseInt(document.getElementById('keranjang_total').value));
->>>>>>> 770baef1a043154a83bcb73fc15bab7d42d43323
 });
 
 </script>
