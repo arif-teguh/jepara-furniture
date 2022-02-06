@@ -147,7 +147,17 @@
 
 {% load static %}
 </style>
-</style>
+<script>
+  $(document).ready(function(){
+
+$('#kategoribaru').keyup(function() {
+  var value = $( this ).val();
+  
+  $('#text1').text(value);
+})
+.keyup();
+})
+</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -164,12 +174,23 @@
         {% csrf_token %}
             <h1 style="text-align: left;color:#ededed ;">Add Furniture</h1>
             <br>
-            <input class="addfurniture-input" name="nama" type="text" name="nama" placeholder="Nama"> 
+            <input class="addfurniture-input" name="nama" type="text" placeholder="Nama"> 
             <input class="addfurniture-input" name="harga" type="number"  placeholder="Price"> 
             <input class="addfurniture-input" name="stok" type="number"  placeholder="Stock"> 
             <input class="addfurniture-input" name="info" type="text"  placeholder="Deskripsi">
-            <input class="addfurniture-input" name="kategori" type="text"  placeholder="Kategori"> 
-            
+            <!-- <input class="addfurniture-input" name="kategori" type="text"  placeholder="Kategori"> -->
+            <select name="kategori" class="addfurniture-input">
+              <option value="wardobe">Wardobe</option>
+              <option value="bed">Bed</option>
+              <option value="table">Table</option>
+              <option value="chair">Chair</option>
+              <option value="drawer">Drawer</option>
+              <option value="text1" id='text1'></option>
+            </select> 
+
+            <h3 style="text-align: left;color:#ededed ;">Add Category</h1>
+            <input id="kategoribaru" class="addfurniture-input" name="kategori" type="text" placeholder="New Category">
+
             <div class="bg-button">
                 <input type="submit" class="button-submit" name="" value="Add">
                 <label for="button-upload" class="button-upload">
