@@ -104,6 +104,10 @@ def addNewFurniture(request):
         info = request.POST['info']
         stock = request.POST['stok']
         kategori = request.POST['kategori'].lower()
+        kategoribaru = request.POST['kategoribaru']
+        # kondisi jika ada add kategori baru
+        if bool(kategoribaru):
+            kategori = kategoribaru.lower()
         gambar =request.FILES.get('file')
         #form = AddFurnitureForm(request.POST)
         if(form.is_valid()):
