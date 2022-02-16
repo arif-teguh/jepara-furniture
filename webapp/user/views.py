@@ -5,7 +5,7 @@ from datetime import datetime
 from django.http.response import HttpResponseNotAllowed
 from .models import (
     FurnitureModels, OrderModels, ReviewModels, ChatTopicModels,
-    ChatContentModels, OrderModels,ShoppingCartModels, ProfileModels,ComplainModels, PreOrderModels, PaymentModels
+    ChatContentModels, OrderModels,ShoppingCartModels, ProfileModels,ComplainModels, PreOrderModels, PaymentModels, KategoriModels
 )
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
@@ -378,12 +378,26 @@ def detele_some_order(request, id):
     return redirect(request.META.get('HTTP_REFERER'))
 
 
-def get_category(request):
-    category = FurnitureModels.objects.all().values('kategori').annotate(dcount=Count('kategori'))
+# def get_category(request):
+#     category = FurnitureModels.objects.all().values('kategori').annotate(dcount=Count('kategori'))
+#     categories = []
+#     for a in category:
+#         dict = {}
+#         kategori = a.get("kategori")
+#         exclude = ["chair","wardobe","table","bedroom"]
+#         if kategori not in exclude:
+#             dict = {}
+#             dict["name"] = kategori
+#             dict["name2"] = kategori.capitalize()
+#             categories.append(dict)
+#     return render(request, "user/category.html",{"categories":categories,})
+
+def get_categoty(request):
+    kategori = KategoriModels.objects.all()
     categories = []
-    for a in category:
+    for a in kategori:
         dict = {}
-        kategori = a.get("kategori")
+        kategori = a.nama
         exclude = ["chair","wardobe","table","bedroom"]
         if kategori not in exclude:
             dict = {}
@@ -391,7 +405,6 @@ def get_category(request):
             dict["name2"] = kategori.capitalize()
             categories.append(dict)
     return render(request, "user/category.html",{"categories":categories,})
-
 
 
 def get_notif(request):

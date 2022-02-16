@@ -185,14 +185,14 @@ a:active {
                         {% endif %}
                     </tr>
 
-                    {% for each in furnitures %}
+                    {% for each in kategori %}
                     <tr>
-                        <td>{{each.furniture.id}}</td>
-                        <td>{{each.furniture.kategori}}</td>
+                        <td>{{each.id}}</td>
+                        <td>{{each.nama}}</td>
                         {% if request.user.username != "owner" %}
                         <td>
                             </a>
-                            <a href="/admin/furniture/delete/{{each.furniture.id}}">
+                            <a href="/admin/kategori/delete/{{each.id}}">
                                 <img src={% static  "img/delete-button.png"  %} class="button-table">
                             </a>
                         </td>

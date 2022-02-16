@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
@@ -80,13 +81,8 @@ def furniture_list(request):
 # Coba-coba kategori
 @user_is_admin
 def kategori_list(request):
-    furnitures = userModel.FurnitureModels.objects.all()
-    final_furnitures = []
-    for each in furnitures:
-        furnitur = {}
-        furnitur["furniture"] = each
-        final_furnitures.append(furnitur)
-    return render(request, "admin/kategori.html", {"furnitures": final_furnitures})
+    kategori = userModel.KategoriModels.objects.all()
+    return render(request, "admin/kategori.html", {"kategori": kategori})
 
 @user_is_admin
 def delete_kategori(request, furtniture_id):
@@ -97,26 +93,28 @@ def delete_kategori(request, furtniture_id):
 
 @user_is_admin
 def addNewKategori(request):
-    form = AddFurnitureForm(request.POST)
     if (request.method == "POST"):
-        name = request.POST['nama']
-        harga = request.POST['harga']
-        info = request.POST['info']
-        stock = request.POST['stok']
-        kategori = request.POST['kategori'].lower()
-        kategoribaru = request.POST['kategoribaru']
-        # kondisi jika ada add kategori baru
-        if bool(kategoribaru):
-            kategori = kategoribaru.lower()
-        gambar =request.FILES.get('file')
-        #form = AddFurnitureForm(request.POST)
-        if(form.is_valid()):
-            furniture = userModel.FurnitureModels.objects.create(nama =  name , harga = harga, gambar = gambar, kategori = kategori, info = info , stock = stock)
-            furniture.save()
-            messages.success(request, (f"{furniture.nama} berhasil ditambahkan !"))
-        else :
-            messages.error(request, 'Ada data yang kurang atau belum diisi!')
-    return render(request, 'admin/addkategori.html',{'form': form})
+        try:
+            name = request.POST['nama']
+            kategori = userModel.KategoriModels.objects.create(nama = name)
+            kategori.save()
+            messages.success(request, (f"Kategori {name} berhasil ditambahkan !"))
+            return redirect(request.META.get('HTTP_REFERER'))
+        except:
+            messages.error(request, (f"Kategori Sudah ada atau kosong !"))
+    return render(request, 'admin/addkategori.html')
+
+
+@user_is_admin
+def delete_kategori(request,id):
+    try:
+        kategori = userModel.KategoriModels.objects.get(id = id)
+        name = kategori.nama
+        kategori.delete()
+        messages.success(request, (f"Kategori {name} berhasil dihapus !"))
+    except:
+        messages.error(request, (f"Kategori gagal dihapus !"))
+    return redirect(request.META.get('HTTP_REFERER'))
 
 # Coba-coba kategori
 
@@ -147,7 +145,7 @@ def addNewFurniture(request):
         info = request.POST['info']
         stock = request.POST['stok']
         kategori = request.POST['kategori'].lower()
-        kategoribaru = request.POST['kategoribaru']
+        kategoribaru = request.POST.get('kategoribaru', None)
         # kondisi jika ada add kategori baru
         if bool(kategoribaru):
             kategori = kategoribaru.lower()
@@ -159,7 +157,8 @@ def addNewFurniture(request):
             messages.success(request, (f"{furniture.nama} berhasil ditambahkan !"))
         else :
             messages.error(request, 'Ada data yang kurang atau belum diisi!')
-    return render(request, 'admin/addfurniture.html',{'form': form})
+    category = kategori = userModel.KategoriModels.objects.all()
+    return render(request, 'admin/addfurniture.html',{'form': form, 'category':category})
 
 @user_is_admin
 def delete_furniture(request, furtniture_id):

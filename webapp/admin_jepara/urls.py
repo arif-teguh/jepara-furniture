@@ -22,6 +22,7 @@ urlpatterns = [
 
     path('kategori',views.kategori_list),
     path('kategori/add',views.addNewKategori),
+    path('kategori/delete/<int:id>>',views.addNewKategori),
 
     path('chat/<int:user_id>',views.reply_chat),
     path('furniture/add',views.addNewFurniture),

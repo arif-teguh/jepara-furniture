@@ -28,7 +28,8 @@ class ShoppingCartModels(models.Model):
     total_furnitur = models.IntegerField(null=False , default = 0)   
 
 
-
+class KategoriModels(models.Model):
+    nama = models.CharField(max_length=200, unique=True)
 
 
 class ReviewModels(models.Model):
