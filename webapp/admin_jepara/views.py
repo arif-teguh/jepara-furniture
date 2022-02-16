@@ -84,12 +84,7 @@ def kategori_list(request):
     kategori = userModel.KategoriModels.objects.all()
     return render(request, "admin/kategori.html", {"kategori": kategori})
 
-@user_is_admin
-def delete_kategori(request, furtniture_id):
-    furniture = userModel.FurnitureModels.objects.get(id = furtniture_id)
-    messages.success(request, (f"{furniture.nama} berhasil dihapus !"))
-    furniture.delete()
-    return redirect(request.META.get('HTTP_REFERER'))
+
 
 @user_is_admin
 def addNewKategori(request):
@@ -111,6 +106,7 @@ def delete_kategori(request,id):
         kategori = userModel.KategoriModels.objects.get(id = id)
         name = kategori.nama
         kategori.delete()
+        userModel.FurnitureModels.objects.filter(kategori = name).delete()
         messages.success(request, (f"Kategori {name} berhasil dihapus !"))
     except:
         messages.error(request, (f"Kategori gagal dihapus !"))
