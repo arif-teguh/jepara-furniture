@@ -61,20 +61,14 @@ textarea{
   background-color: rgb(255, 255, 255);
   padding: 40px;
   box-sizing: border-box;
-}
-
-.complain-left{
+  height: fit-content;
+  }
+  
+  .complain-right{
   display: inline-block;
-  width: 48%;
-  text-align: justify;
-}
-
-.complain-right{
-  display: inline-block;
-  width: 48%;
-  float: right;
+  width: 100%;
   font-size: 0px;
-}
+  }
 
 .bg-button{
   position: relative;

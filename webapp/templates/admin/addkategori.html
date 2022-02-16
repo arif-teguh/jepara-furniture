@@ -1,0 +1,190 @@
+{% extends 'base_admin.html' %}
+<html>
+<head>
+{% block style %}
+<style>
+.addfurniture-bg{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    left:0%;
+    top:0%;
+    right: 0%;
+    bottom: 0%;
+    
+    padding: 10% 0;
+    background-color: #ededed;
+    white-space: nowrap;
+
+    font-family: Asimov;
+    font-style: normal;
+    font-size: 150%;
+}
+.addfurniture-form-bg{
+    position: relative;
+    display: block;
+    width: 40%;
+    height: auto;
+    border-radius: 25px;
+    padding: 0 3%;
+    padding-bottom: 2%;
+    margin: auto;
+    background-color: #262626;
+    text-align: center;
+}
+
+.addfurniture-input{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: fit-content;
+    padding: 4%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-bottom: 4%;
+    background-color: rgb(255, 255, 255);
+    font-family: Asimov;
+    font-size: 20px;
+}
+
+.bg-button{
+  position: relative;
+  display: block;
+  width: 100%;
+  font-size: 20px;
+  height: fit-content;
+}
+
+.button-upload{
+  display: inline-block;
+  background-color: #ededed;
+  color: #262626;
+  padding: 5px 25px;
+  text-align: center;
+  box-sizing: border-box;
+  margin-right: 5px;
+  border-radius: 25px;
+  height: 100%;
+  font-family: Asimov;
+  font-size: 20px;
+  cursor: pointer;
+  float: left; 
+  }
+  
+  input[type="file"] {
+      display: none;
+      width: 0px;
+      height: 0px;
+  }
+
+  .button-submit{
+    display: inline-block;
+    background-color: #ededed;
+    color: #262626;
+    padding: 5px 25px;
+    text-align: center;
+    box-sizing: border-box;
+    margin-right: 5px;
+    border-radius: 25px;
+    height: 100%;
+    float: right;
+    font-family: Asimov;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+}
+
+
+
+::-webkit-input-placeholder { /* Edge */
+    color: rgba(0, 0, 0, 0.308);
+    font-family: Asimov;
+    font-style: normal;
+    font-size: 20px;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer */
+    color: rgba(0, 0, 0, 0.308);
+    font-family: Asimov;
+    font-style: normal;
+    font-size: 20px;
+  }
+  
+  ::placeholder {
+    color: rgba(0, 0, 0, 0.308);
+    font-family: Asimov;
+    font-style: normal;
+    font-size: 20px;
+  }
+
+  a:link {
+    text-decoration: none;
+  }
+  
+  a:visited {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
+  
+  a:active {
+    text-decoration: none;
+  }
+  a:link {
+    color: rgba(255, 255, 255, 0.411);
+  }
+  a:visited {
+    color: rgba(255, 255, 255, 0.411);
+  }
+  a:hover {
+    color: rgb(255, 255, 255);
+  }
+  a:active {
+    color: rgba(255, 255, 255, 0.411);
+  }
+
+
+{% load static %}
+</style>
+<script>
+  $(document).ready(function(){
+
+$('#kategoribaru').keyup(function() {
+  var value = $( this ).val();
+  
+  $('#text1').text(value);
+})
+.keyup();
+})
+</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- <link rel="stylesheet" href="{% static 'css/addfurniture.css' %}"> -->
+{% endblock %}
+{% block body %}
+<body>
+    <div class="addfurniture-bg">
+    <div  class="addfurniture-form-bg">
+        <br>
+        <form  action="/admin/furniture/add"  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <h1 style="text-align: left;color:#ededed ;">Add Categories</h1>
+            <br>
+
+            <input class="addfurniture-input" name="nama" type="text" placeholder="Nama"> 
+
+            <div class="bg-button">
+                <input type="submit" class="button-submit" name="" value="Add">
+            </div>
+
+        </form>
+        <br>
+    </div>
+    </div>
+</body>     
+{% endblock %}

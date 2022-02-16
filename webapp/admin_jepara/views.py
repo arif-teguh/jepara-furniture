@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from user.forms import RegisterUserForm 
 from django.contrib.auth.decorators import login_required
-
+from django.db.models import Count
 
 from .middleware import user_is_admin
 from django.contrib import messages
@@ -76,6 +76,49 @@ def furniture_list(request):
         furnitur["furniture"] = each
         final_furnitures.append(furnitur)
     return render(request, "admin/furniture_list.html", {"furnitures": final_furnitures})
+
+# Coba-coba kategori
+@user_is_admin
+def kategori_list(request):
+    furnitures = userModel.FurnitureModels.objects.all()
+    final_furnitures = []
+    for each in furnitures:
+        furnitur = {}
+        furnitur["furniture"] = each
+        final_furnitures.append(furnitur)
+    return render(request, "admin/kategori.html", {"furnitures": final_furnitures})
+
+@user_is_admin
+def delete_kategori(request, furtniture_id):
+    furniture = userModel.FurnitureModels.objects.get(id = furtniture_id)
+    messages.success(request, (f"{furniture.nama} berhasil dihapus !"))
+    furniture.delete()
+    return redirect(request.META.get('HTTP_REFERER'))
+
+@user_is_admin
+def addNewKategori(request):
+    form = AddFurnitureForm(request.POST)
+    if (request.method == "POST"):
+        name = request.POST['nama']
+        harga = request.POST['harga']
+        info = request.POST['info']
+        stock = request.POST['stok']
+        kategori = request.POST['kategori'].lower()
+        kategoribaru = request.POST['kategoribaru']
+        # kondisi jika ada add kategori baru
+        if bool(kategoribaru):
+            kategori = kategoribaru.lower()
+        gambar =request.FILES.get('file')
+        #form = AddFurnitureForm(request.POST)
+        if(form.is_valid()):
+            furniture = userModel.FurnitureModels.objects.create(nama =  name , harga = harga, gambar = gambar, kategori = kategori, info = info , stock = stock)
+            furniture.save()
+            messages.success(request, (f"{furniture.nama} berhasil ditambahkan !"))
+        else :
+            messages.error(request, 'Ada data yang kurang atau belum diisi!')
+    return render(request, 'admin/addkategori.html',{'form': form})
+
+# Coba-coba kategori
 
 @user_is_admin
 def reply_chat(request,user_id):

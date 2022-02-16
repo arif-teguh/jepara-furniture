@@ -19,6 +19,10 @@ urlpatterns = [
     path('order/<int:order_id>',views.confirm_order),
     path('orders/detail/<int:order_id>',views.order_detail),
     path('furniture',views.furniture_list),
+
+    path('kategori',views.kategori_list),
+    path('kategori/add',views.addNewKategori),
+
     path('chat/<int:user_id>',views.reply_chat),
     path('furniture/add',views.addNewFurniture),
     path('furniture/delete/<int:furtniture_id>',views.delete_furniture),
