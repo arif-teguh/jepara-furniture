@@ -392,7 +392,7 @@ def detele_some_order(request, id):
 #             categories.append(dict)
 #     return render(request, "user/category.html",{"categories":categories,})
 
-def get_categoty(request):
+def get_category(request):
     kategori = KategoriModels.objects.all()
     categories = []
     for a in kategori:

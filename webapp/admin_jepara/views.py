@@ -90,7 +90,7 @@ def kategori_list(request):
 def addNewKategori(request):
     if (request.method == "POST"):
         try:
-            name = request.POST['nama']
+            name = request.POST['nama_kategori']
             kategori = userModel.KategoriModels.objects.create(nama = name)
             kategori.save()
             messages.success(request, (f"Kategori {name} berhasil ditambahkan !"))
