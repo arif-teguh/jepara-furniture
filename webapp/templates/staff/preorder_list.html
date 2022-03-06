@@ -199,13 +199,13 @@ a:active {
                             <a href="/staff/chat/{{each.preorder.user.id}}">
                                 <img src={% static  "img/chat-button.png"  %} class="button-table">
                             </a>
+                            <a href="/staff/preorder/accept/{{each.preorder.id}}">
+                              <img src={% static  "img/tombol-ceklis.png"  %} class="button-table">
                             </a>
                             <a href="/staff/preorder/delete/{{each.preorder.id}}">
-                                <img src={% static  "img/delete-button.png"  %} class="button-table">
+                                <img src={% static  "img/tombol-silang.png"  %} class="button-table">
                             </a>
-                            <a href="/staff/preorder/accept/{{each.preorder.id}}">
-                              <img src={% static  "img/deliver-button.png"  %} class="button-table">
-                          </a>
+                            
                         </td>
                     </tr>
                     {% endfor %}

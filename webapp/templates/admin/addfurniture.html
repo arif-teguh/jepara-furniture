@@ -185,7 +185,7 @@ $('#kategoribaru').keyup(function() {
               <option value="table">Table</option>
               <option value="chair">Chair</option>
               <option value="drawer">Drawer</option>
-              {%for each in category}
+              {% for each in category %}
               <option value="{{each.nama}}">{{each.nama}}</option>
               {% endfor %}
             </select> 
